@@ -1,6 +1,5 @@
 #include "Hora.h"
 
-
 /// Constructores
 
 Hora::Hora()

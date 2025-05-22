@@ -1,6 +1,5 @@
 #pragma once
-#include "cstring"
-
+#include <string>
 
 class Hora
 {
