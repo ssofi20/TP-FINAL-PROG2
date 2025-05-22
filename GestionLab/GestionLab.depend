@@ -1,11 +1,12 @@
 # depslib dependency file v1.0
-1747851788 source:e:\utn\programaciòn 2\1c 2025\tp-final-prog2\gestionlab\main.cpp
+1747936792 source:e:\utn\programaciòn 2\1c 2025\tp-final-prog2\gestionlab\main.cpp
 	<iostream>
 
-1747857172 source:e:\utn\programaciòn 2\1c 2025\tp-final-prog2\gestionlab\src\fecha.cpp
+1747936792 source:e:\utn\programaciòn 2\1c 2025\tp-final-prog2\gestionlab\src\fecha.cpp
 	"Fecha.h"
+	<ctime>
 
-1747857148 e:\utn\programaciòn 2\1c 2025\tp-final-prog2\gestionlab\include\fecha.h
+1747936792 e:\utn\programaciòn 2\1c 2025\tp-final-prog2\gestionlab\include\fecha.h
 	<string>
 
 1747920322 source:d:\utn\programaciòn 2\1c 2025\tp-final-prog2\gestionlab\src\fecha.cpp
@@ -18,4 +19,17 @@
 1747919408 source:d:\utn\programaciòn 2\1c 2025\tp-final-prog2\gestionlab\main.cpp
 	<iostream>
 	"Fecha.h"
+
+1747936792 source:e:\utn\programaciòn 2\1c 2025\tp-final-prog2\gestionlab\src\hora.cpp
+	"Hora.h"
+
+1747936792 e:\utn\programaciòn 2\1c 2025\tp-final-prog2\gestionlab\include\hora.h
+	<string>
+
+1747937864 source:e:\utn\programaciòn 2\1c 2025\tp-final-prog2\gestionlab\src\paciente.cpp
+	"Paciente.h"
+
+1747938200 e:\utn\programaciòn 2\1c 2025\tp-final-prog2\gestionlab\include\paciente.h
+	"Fecha.h"
+	<cstring>
 
