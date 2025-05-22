@@ -26,3 +26,10 @@
 1747936792 e:\utn\programaciòn 2\1c 2025\tp-final-prog2\gestionlab\include\hora.h
 	<string>
 
+1747937864 source:e:\utn\programaciòn 2\1c 2025\tp-final-prog2\gestionlab\src\paciente.cpp
+	"Paciente.h"
+
+1747937790 e:\utn\programaciòn 2\1c 2025\tp-final-prog2\gestionlab\include\paciente.h
+	"Fecha.h"
+	<cstring>
+
