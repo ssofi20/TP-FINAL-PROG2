@@ -1,28 +1,43 @@
 #include "Fecha.h"
+#include <ctime>
 
 //CONSTRUCTORES
 Fecha::Fecha(){
-    
+
     _dia = 0;
     _mes = 0;
     _anio = 0;
 }
 
 Fecha::Fecha(int dia, int mes, int anio){
-    
+
     setDia(dia);
     setMes(mes);
     setAnio(anio);
 }
 
+//METODOS DE LA CLASE
+std::string Fecha::toString(){
+
+    return std::to_string(_dia) + "/" + std::to_string(_mes) + "/" + std::to_string(_anio);
+
+}
+
+bool Fecha::esBisiesto(){
+    if(_anio%400 == 0 || (_anio % 4 == 0 && _anio % 100 != 0)){
+        return true;
+    }
+    return false;
+}
+
 //GETTERS
 int Fecha::getDia(){
-    
+
     return _dia;
 }
 
 int Fecha::getMes(){
-    
+
     return _mes;
 }
 
@@ -33,7 +48,7 @@ int Fecha::getAnio(){
 
 //SETTERS
 void Fecha::setDia(int dia){
-    
+
     if(dia <= 31 && dia >=1){
         _dia = dia;
     }
@@ -42,20 +57,49 @@ void Fecha::setDia(int dia){
 void Fecha::setMes(int mes){
 
     if(mes <= 12 && mes >= 1){
-        _mes = mes;
+        if(_dia == 31){
+            switch(_mes){
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    _mes = _mes;
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    _mes = 0;
+                    break;
+            }
+        }
+        else if(_dia < 30 && mes == 2){
+            _mes = mes;
+        }
+        else {
+            _mes = mes;
+        }
+    }
+    else {
+        _mes = 0;
     }
 }
 
 void Fecha::setAnio(int anio){
-    
-    if(anio > 1900){
-        _anio = anio;
+    _anio = anio;
+    if((_anio <= 1900) or (_dia == 29 && _mes == 2 && !esBisiesto())){
+        _anio = 0;
     }
 }
 
-//METODOS DE LA CLASE
-std::string Fecha::toString(){
-    
-    return std::to_string(_dia) + "/" + std::to_string(_mes) + "/" + std::to_string(_anio);
-
+void Fecha::setFechaActual(){
+    std::time_t t = std::time(0);   // get time now
+    std::tm* now = std::localtime(&t);
+    _dia = now->tm_mday;
+    _mes = now->tm_mon + 1;
+    _anio = now->tm_year + 1900;
 }
+
