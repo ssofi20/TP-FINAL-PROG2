@@ -8,7 +8,25 @@ class Paciente
         
         Paciente();
         Paciente(int DNI, const char *nombre, const char *apellido, const char *telefono, const char *email, const char *obraSocial, const char *numeroAfiliado, Fecha dateB);
-         
+        
+        void setDNI(int dni);
+        void setNombre(const char *nombre);
+        void setApellido(const char *apellido);
+        void setTelefono(const char *telefono);
+        void setEmail(const char *email);
+        void setObraSocial(const char *obraSocial);
+        void setNumeroAfiliado(const char *numeroAfiliado);
+        void setFecha();
+        
+        int getDNI() const;
+        const char * getNombre() const;
+        const char * getApellido() const;
+        const char * getTelefono() const;
+        const char * getEmail() const;
+        const char * getObraSocial() const;
+        const char * getNumeroAfiliado() const;
+        Fecha getFecha() const;
+        
     private:
         int _DNI;
         char _nombre[30];
