@@ -16,7 +16,7 @@ class Paciente
         void setEmail(const char *email);
         void setObraSocial(const char *obraSocial);
         void setNumeroAfiliado(const char *numeroAfiliado);
-        void setFecha(Fecha dateB);
+        void setDateB(Fecha dateB);
         
         int getDNI() const;
         const char * getNombre() const;
@@ -25,7 +25,7 @@ class Paciente
         const char * getEmail() const;
         const char * getObraSocial() const;
         const char * getNumeroAfiliado() const;
-        Fecha getFecha() const;
+        Fecha getDateB() const;
         
     private:
         int _DNI;

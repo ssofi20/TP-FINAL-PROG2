@@ -16,7 +16,15 @@ Paciente::Paciente(){
 
 }
 Paciente::Paciente(int DNI, const char *nombre, const char *apellido, const char *telefono, const char *email, const char *obraSocial, const char *numeroAfiliado, Fecha dateB){
-            
+     
+    setDNI(DNI);
+    setNombre(nombre);
+    setApellido(apellido);
+    setTelefono(telefono);
+    setEmail(email);
+    setObraSocial(obraSocial);
+    setNumeroAfiliado(numeroAfiliado);
+    setDateB(dateB);
 
 }
 
@@ -41,7 +49,7 @@ void Paciente::setObraSocial(const char *obraSocial){
 void Paciente::setNumeroAfiliado(const char *numeroAfiliado){
     strcpy(_numeroAfiliado, numeroAfiliado);
 }
-void Paciente::setFecha(Fecha dateB){
+void Paciente::setDateB(Fecha dateB){
     _dateB = dateB;
 }
 
@@ -66,6 +74,6 @@ const char * Paciente::getObraSocial() const{
 const char * Paciente::getNumeroAfiliado() const{
     return _numeroAfiliado;
 }
-Fecha Paciente::getFecha() const{
+Fecha Paciente::getDateB() const{
     return _dateB;
 }
