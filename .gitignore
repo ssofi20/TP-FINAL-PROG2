@@ -1,3 +1,25 @@
+# Archivos de proyecto de Code::Blocks
+*.depend
+*.layout
+*.layout.save
+*.cbp.save
+
+# Archivos temporales y de backup
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.out
+*~
+
+# Carpetas comunes de compilación
+bin/
+build/
+dist/
+
+# === Tu bloque actual ===
+
 # Prerequisites
 *.d
 
