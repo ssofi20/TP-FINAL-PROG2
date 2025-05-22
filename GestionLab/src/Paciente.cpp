@@ -26,6 +26,7 @@ Paciente::Paciente(int DNI, const char *nombre, const char *apellido, const char
     setObraSocial(obraSocial);
     setNumeroAfiliado(numeroAfiliado);
     setDateB(dateB);
+    setEstado(true);
 
 }
 
@@ -54,6 +55,9 @@ void Paciente::setNumeroAfiliado(const char *numeroAfiliado){
 void Paciente::setDateB(Fecha dateB){
     _dateB = dateB;
 }
+void Paciente::setEstado(bool estado){
+    _estado = estado;
+}
 
 //GETTERS
 int Paciente::getDNI() const{
@@ -79,4 +83,7 @@ const char * Paciente::getNumeroAfiliado() const{
 }
 Fecha Paciente::getDateB() const{
     return _dateB;
+}
+bool Paciente::getEstado() const{
+    return _estado;
 }

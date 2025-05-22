@@ -19,6 +19,7 @@ class Paciente
         void setObraSocial(const char *obraSocial);
         void setNumeroAfiliado(const char *numeroAfiliado);
         void setDateB(Fecha dateB);
+        void setEstado(bool estado);
         
         //GETTES
         int getDNI() const;
@@ -29,6 +30,7 @@ class Paciente
         const char * getObraSocial() const;
         const char * getNumeroAfiliado() const;
         Fecha getDateB() const;
+        bool getEstado()const;
         
     private:
         int _DNI;
