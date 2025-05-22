@@ -1,5 +1,6 @@
 #include "Paciente.h"
 
+//CONSTRUCTORES
 Paciente::Paciente(){
     
     _DNI = 0;
@@ -28,6 +29,7 @@ Paciente::Paciente(int DNI, const char *nombre, const char *apellido, const char
 
 }
 
+//SETTERS
 void Paciente::setDNI(int dni){
     _DNI = dni;
 }
@@ -53,6 +55,7 @@ void Paciente::setDateB(Fecha dateB){
     _dateB = dateB;
 }
 
+//GETTERS
 int Paciente::getDNI() const{
     return _DNI;
 }

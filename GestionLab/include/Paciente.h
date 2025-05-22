@@ -6,9 +6,11 @@ class Paciente
 {
     public:
         
+        //CONSTRUCTORES
         Paciente();
         Paciente(int DNI, const char *nombre, const char *apellido, const char *telefono, const char *email, const char *obraSocial, const char *numeroAfiliado, Fecha dateB);
         
+        //SETTERS
         void setDNI(int dni);
         void setNombre(const char *nombre);
         void setApellido(const char *apellido);
@@ -18,6 +20,7 @@ class Paciente
         void setNumeroAfiliado(const char *numeroAfiliado);
         void setDateB(Fecha dateB);
         
+        //GETTES
         int getDNI() const;
         const char * getNombre() const;
         const char * getApellido() const;
