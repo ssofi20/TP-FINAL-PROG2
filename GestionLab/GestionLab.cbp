@@ -36,11 +36,13 @@
 		</Compiler>
 		<Unit filename="include/Fecha.h" />
 		<Unit filename="include/Hora.h" />
-		<Unit filename="include/Turnos.h" />
+		<Unit filename="include/Paciente.h" />
+		<Unit filename="include/Turno.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/Hora.cpp" />
-		<Unit filename="src/Turnos.cpp" />
+		<Unit filename="src/Paciente.cpp" />
+		<Unit filename="src/Turno.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

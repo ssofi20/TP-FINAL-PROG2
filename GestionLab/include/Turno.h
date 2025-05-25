@@ -2,7 +2,8 @@
 #include "Hora.h"
 #include "Fecha.h"
 
-class Turnos
+class Turno
+
 {
     private:
     int _IDTurno;
@@ -14,8 +15,8 @@ class Turnos
     public:
         /// Constructores
 
-        Turnos();
-        Turnos (int IDTurno, Fecha fechaProgramada, Hora horaProgramada, int estadoTurno);
+        Turno();
+        Turno (int IDTurno, Fecha fechaProgramada, Hora horaProgramada, int estadoTurno);
 
         /// Setters
 
@@ -30,8 +31,5 @@ class Turnos
         Fecha getFechaProgramada();
         Hora getHoraProgramada();
         int getEstadoTurno();
-
-
-
 };
 
