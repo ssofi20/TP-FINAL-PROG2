@@ -1,4 +1,6 @@
 #pragma once
+#include <Hora.h>
+#include <Fecha.h>
 
 class Turnos
 {
