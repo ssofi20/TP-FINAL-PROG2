@@ -2,14 +2,14 @@
 
 /// Constructores
 
-Turnos::Turnos()
+Turno::Turno()
 : _fechaProgramada(0,0,0),  _horaProgramada(0,0)
 {
     _IDTurno = 0;
     _estadoTurno = 0;
 }
 
-Turnos::Turnos (int IDTurno, Fecha fechaProgramada, Hora horaProgramada, int estadoTurno)
+Turno::Turno (int IDTurno, Fecha fechaProgramada, Hora horaProgramada, int estadoTurno)
 {
     setIDTurno(IDTurno);
     setFechaProgramada(fechaProgramada);
@@ -19,44 +19,44 @@ Turnos::Turnos (int IDTurno, Fecha fechaProgramada, Hora horaProgramada, int est
 
 /// Setters
 
-void Turnos::setIDTurno (int idTurno)
+void Turno::setIDTurno (int idTurno)
 {
     _IDTurno = idTurno;
 }
 
-void Turnos::setFechaProgramada(Fecha fechaProgramada)
+void Turno::setFechaProgramada(Fecha fechaProgramada)
 {
     _fechaProgramada = fechaProgramada;
 }
 
-void Turnos::setHoraProgramada (Hora horaProgramada)
+void Turno::setHoraProgramada (Hora horaProgramada)
 {
     _horaProgramada = horaProgramada;
 }
 
-void Turnos::setEstadoTurno (int estadoTurno)
+void Turno::setEstadoTurno (int estadoTurno)
 {
     _estadoTurno = estadoTurno;
 }
 
 /// Getters
 
-int Turnos::getIDTurno ()
+int Turno::getIDTurno ()
 {
     return _IDTurno;
 }
 
-Fecha Turnos::getFechaProgramada()
+Fecha Turno::getFechaProgramada()
 {
     return _fechaProgramada;
 }
 
-Hora Turnos::getHoraProgramada()
+Hora Turno::getHoraProgramada()
 {
     return _horaProgramada;
 }
 
-int Turnos::getEstadoTurno()
+int Turno::getEstadoTurno()
 {
     return _estadoTurno;
 }
