@@ -3,7 +3,6 @@
 #include "Fecha.h"
 
 class Turno
-
 {
     private:
     int _IDTurno;
@@ -16,6 +15,7 @@ class Turno
         /// Constructores
 
         Turno();
+
         Turno (int IDTurno, Fecha fechaProgramada, Hora horaProgramada, int estadoTurno);
 
         /// Setters

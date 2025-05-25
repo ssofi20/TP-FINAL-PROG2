@@ -1,5 +1,5 @@
 #pragma once
-#include "Turnos.h"
+#include "Turno.h"
 #include <cstring>
 
 
@@ -12,14 +12,14 @@ class Estudio
         int _DNI;
         int _estadoEstudio;
         char _sala[6];
-        Turnos _turno;
+        Turno _turno;
         bool _estado;
 
     public:
         /// Constructores
 
         Estudio();
-        Estudio(const char *IDEstudio, int dni, int estEstudio, const char *sala, Turnos turno, bool estado);
+        Estudio(const char *IDEstudio, int dni, int estEstudio, const char *sala, Turno turno, bool estado);
 
         /// Setters
 
@@ -27,7 +27,7 @@ class Estudio
         void setDNI (int dni);
         void setEstadoEstudio(int estadoEstudio);
         void setSala (const char *sala);
-        void setTurno(Turnos turno);
+        void setTurno(Turno turno);
         void setEstado(bool estado);
 
         /// Getters
@@ -36,7 +36,7 @@ class Estudio
         int getDNI();
         int getEstadoEstudio();
         const char *getSala();
-        Turnos getTurno();
+        Turno getTurno();
         bool getEstado();
 
 };
