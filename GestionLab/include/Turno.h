@@ -15,6 +15,7 @@ class Turno
         /// Constructores
 
         Turno();
+
         Turno (int IDTurno, Fecha fechaProgramada, Hora horaProgramada, int estadoTurno);
 
         /// Setters
@@ -30,6 +31,5 @@ class Turno
         Fecha getFechaProgramada();
         Hora getHoraProgramada();
         int getEstadoTurno();
-
 };
 

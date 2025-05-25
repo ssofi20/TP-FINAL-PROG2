@@ -12,14 +12,15 @@
 *.so
 *.out
 *~
-*.tmp           # Agregado: ignora archivos temporales como los generados por Word
 
 # Carpetas comunes de compilación
 bin/
 build/
 dist/
 
-# Archivos de dependencias
+# === Tu bloque actual ===
+
+# Prerequisites
 *.d
 
 # Compiled Object files
@@ -50,5 +51,3 @@ dist/
 # Executables
 *.exe
 *.out
-*.app
-
