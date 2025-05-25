@@ -1,6 +1,18 @@
 #include "TipoMuestra.h"
 
 TipoMuestra::TipoMuestra(){
+   
+   _IDMuestra = 0;
+   strcpy(_nombre, "SIN NOMBRE");
+   _estado = true;
+    
+}
+
+TipoMuestra::TipoMuestra(int IDMuestra, const char *nombre){
+   
+   _IDMuestra = IDMuestra;
+   strcpy(_nombre, nombre);
+   _estado = true;
     
 }
 

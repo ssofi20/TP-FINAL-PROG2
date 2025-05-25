@@ -6,6 +6,7 @@ class TipoMuestra
     public:
         
         TipoMuestra();
+        TipoMuestra(int IDMuestra, const char *nombre);
         
         //SETTERS
         void setIDMuestra(int IDMuestra);
