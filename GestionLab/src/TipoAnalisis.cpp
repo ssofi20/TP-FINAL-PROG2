@@ -10,12 +10,12 @@ TipoAnalisis::TipoAnalisis()
     _estado = true;
 }
 
-TipoAnalisis::TipoAnalisis(int idAnalisis, int idMuestra, const char *name, bool estado)
+TipoAnalisis::TipoAnalisis(int idAnalisis, int idMuestra, const char *name)
 {
     setIDAnalisis(idAnalisis);
     setIDMuestra(idMuestra);
     setNombre(name);
-    setEstado(estado);
+    setEstado(true);
 }
 
 /// Setters
@@ -37,7 +37,7 @@ void TipoAnalisis::setNombre(const char *name)
 
 void TipoAnalisis::setEstado(bool estado)
 {
-    _estado = true;
+    _estado = estado;
 }
 
 /// Getters

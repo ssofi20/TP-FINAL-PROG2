@@ -13,7 +13,7 @@ class TipoAnalisis
         /// Constructores
 
         TipoAnalisis();
-        TipoAnalisis(int idAnalisis, int idMuestra, const char *name, bool estado);
+        TipoAnalisis(int idAnalisis, int idMuestra, const char *name);
 
         /// Setters
 
