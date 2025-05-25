@@ -3,10 +3,9 @@
 /// Constructores
 
 Turnos::Turnos()
+: _fechaProgramada(0,0,0),  _horaProgramada(0,0)
 {
     _IDTurno = 0;
-    _fechaProgramada = 0;
-    _horaProgramada = 0;
     _estadoTurno = 0;
 }
 
