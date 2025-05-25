@@ -10,9 +10,9 @@ TipoMuestra::TipoMuestra(){
 
 TipoMuestra::TipoMuestra(int IDMuestra, const char *nombre){
    
-   _IDMuestra = IDMuestra;
-   strcpy(_nombre, nombre);
-   _estado = true;
+   setIDMuestra(IDMuestra);
+   setNombre(nombre);
+   setEstado(true);
     
 }
 
