@@ -34,13 +34,21 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Estudio.h" />
 		<Unit filename="include/Fecha.h" />
 		<Unit filename="include/Hora.h" />
 		<Unit filename="include/TipoMuestra.h" />
+		<Unit filename="include/Paciente.h" />
+		<Unit filename="include/TipoAnalisis.h" />
+		<Unit filename="include/Turno.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Estudio.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/Hora.cpp" />
 		<Unit filename="src/TipoMuestra.cpp" />
+		<Unit filename="src/Paciente.cpp" />
+		<Unit filename="src/TipoAnalisis.cpp" />
+		<Unit filename="src/Turno.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
