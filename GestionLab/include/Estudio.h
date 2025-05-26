@@ -19,7 +19,7 @@ class Estudio
         /// Constructores
 
         Estudio();
-        Estudio(const char *IDEstudio, int dni, int estEstudio, const char *sala, Turno turno, bool estado);
+        Estudio(const char *IDEstudio, int dni, int estEstudio, const char *sala, Turno turno);
 
         /// Setters
 
