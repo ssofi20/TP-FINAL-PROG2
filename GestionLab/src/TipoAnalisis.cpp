@@ -5,7 +5,7 @@
 TipoAnalisis::TipoAnalisis()
 {
     _IDAnalisis = 0;
-    _IDAnalisis = 0;
+    _IDMuestra = 0;
     strcpy(_nombre, "SIN NOMBRE");
     _estado = true;
 }

@@ -12,7 +12,7 @@ Estudio::Estudio()
     _estado = true;
 }
 
-Estudio::Estudio(const char *IDEstudio, int dni, int estEstudio, const char *sala, Turno turno, bool estado)
+Estudio::Estudio(const char *IDEstudio, int dni, int estEstudio, const char *sala, Turno turno)
 {
     setIDEstudio(IDEstudio);
     setDNI(dni);
@@ -51,7 +51,7 @@ void Estudio::setTurno(Turno turno)
 
 void Estudio::setEstado(bool estado)
 {
-    _estado = true;
+    _estado = estado;
 }
 
 /// Getters
