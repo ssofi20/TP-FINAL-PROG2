@@ -31,6 +31,14 @@ Paciente PacienteArchivo::leer(int posicion){
 }
 
 void PacienteArchivo::leer(int cantidadRegistros, Paciente *vecPaciente){
+    
+    FILE *pFile = fopen(_fileName.c_str(), "rb");
+    if(pFile == nullptr){
+        return;
+    }
+    for(int i = 0; i < cantidadRegistros; i++){
+        vecPaciente[i] = leer(i);
+    }
 }
 
 int PacienteArchivo::buscar(int DNI){
