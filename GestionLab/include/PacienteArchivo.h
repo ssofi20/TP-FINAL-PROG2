@@ -7,12 +7,12 @@ class PacienteArchivo
     public:
         
         PacienteArchivo(std::string fileName);
-        int CantidadRegistros();
-        int Buscar(int DNI);
-        bool Guardar(Paciente paciente);
-        bool Guardar(Paciente paciente, int posicion);
-        Paciente Leer(int posicion);
-        void Leer(int cantidadRegistros, Paciente *vecPaciente);
+        int cantidadRegistros();
+        int buscar(int DNI);
+        bool guardar(Paciente paciente);
+        bool guardar(Paciente paciente, int posicion);
+        Paciente leer(int posicion);
+        void leer(int cantidadRegistros, Paciente *vecPaciente);
         
     private:
         
