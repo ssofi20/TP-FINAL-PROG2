@@ -5,6 +5,7 @@ PacienteArchivo::PacienteArchivo(std::string fileName)
     _fileName = fileName;
 }
 
+//DEVUELVE LA CANTIDAD DE REGISTROS EN EL ARCHIVO
 int PacienteArchivo::cantidadRegistros(){
     
     FILE *pFile = fopen(_fileName.c_str(), "rb");
@@ -17,6 +18,7 @@ int PacienteArchivo::cantidadRegistros(){
     return cantidad;
 }
 
+//LEE UN REGISTRO EN LA POSICION DADA Y DEVUELVE UN OBJETO CARGADO
 Paciente PacienteArchivo::leer(int posicion){
     
     FILE *pFile = fopen(_fileName.c_str(), "rb");
@@ -30,6 +32,7 @@ Paciente PacienteArchivo::leer(int posicion){
     return paciente;
 }
 
+//LEE TODO EL ARCHIVO Y VA GUARDANDO LOS REGISTROS EN EL VECTOR DADO
 void PacienteArchivo::leer(int cantidadRegistros, Paciente *vecPaciente){
     
     FILE *pFile = fopen(_fileName.c_str(), "rb");
@@ -41,6 +44,7 @@ void PacienteArchivo::leer(int cantidadRegistros, Paciente *vecPaciente){
     }
 }
 
+//BUSCA QUE REGISTRO COINCIDE CON ESE CAMPO Y DEVUELVE SU POSICION
 int PacienteArchivo::buscar(int DNI){
     
     FILE *pFile = fopen(_fileName.c_str(), "rb");
@@ -58,6 +62,8 @@ int PacienteArchivo::buscar(int DNI){
     return -1;
     
 }
+
+//GUARDA AL FINAL DE ARCHIVO UN REGISTRO
 bool PacienteArchivo::guardar(Paciente paciente){
     
     FILE *pFile = fopen(_fileName.c_str(), "ab");
@@ -69,6 +75,8 @@ bool PacienteArchivo::guardar(Paciente paciente){
     return escribio;
     
 }
+
+//GUARDA UN REGISTRO EN LA POSCION DADA
 bool PacienteArchivo::guardar(Paciente paciente, int posicion){
     
     FILE *pFile = fopen(_fileName.c_str(), "ab");
