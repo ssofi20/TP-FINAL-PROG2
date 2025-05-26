@@ -34,6 +34,21 @@ void PacienteArchivo::leer(int cantidadRegistros, Paciente *vecPaciente){
 }
 
 int PacienteArchivo::buscar(int DNI){
+    
+    FILE *pFile = fopen(_fileName.c_str(), "rb");
+    if(pFile == nullptr){
+        return -2;
+    }
+    Paciente paciente;
+    int cant = cantidadRegistros();
+    for(int i = 0; i < cant; i++){
+        paciente = leer(i);
+        if(paciente.getDNI() == DNI){
+            return i;
+        }
+    }
+    return -1;
+    
 }
 bool PacienteArchivo::guardar(Paciente paciente){
 }
