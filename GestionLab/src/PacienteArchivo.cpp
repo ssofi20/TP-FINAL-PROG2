@@ -1,6 +1,6 @@
 #include "PacienteArchivo.h"
 
-PacienteArchivo::PacienteArchivo()
+PacienteArchivo::PacienteArchivo(std::string fileName)
 {
-    //ctor
+    _fileName = fileName;
 }
