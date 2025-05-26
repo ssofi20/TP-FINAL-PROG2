@@ -59,6 +59,24 @@ int PacienteArchivo::buscar(int DNI){
     
 }
 bool PacienteArchivo::guardar(Paciente paciente){
+    
+    FILE *pFile = fopen(_fileName.c_str(), "ab");
+    if(pFile == nullptr){
+        return false;
+    }
+    bool escribio = fwrite(&paciente, sizeof(Paciente), 1, pFile);
+    fclose(pFile);
+    return escribio;
+    
 }
 bool PacienteArchivo::guardar(Paciente paciente, int posicion){
+    
+    FILE *pFile = fopen(_fileName.c_str(), "ab");
+    if(pFile == nullptr){
+        return false;
+    }
+    fseek(pFile, sizeof(Paciente) * posicion, SEEK_SET);
+    bool escribio = fwrite(&paciente, sizeof(Paciente), 1, pFile);
+    fclose(pFile);
+    return escribio;
 }
