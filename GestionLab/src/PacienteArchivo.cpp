@@ -42,6 +42,7 @@ void PacienteArchivo::leer(int cantidadRegistros, Paciente *vecPaciente){
     for(int i = 0; i < cantidadRegistros; i++){
         vecPaciente[i] = leer(i);
     }
+    fclose(pFile);
 }
 
 //BUSCA QUE REGISTRO COINCIDE CON ESE CAMPO Y DEVUELVE SU POSICION
