@@ -5,6 +5,17 @@ class EstudioAnalisis
     public:
         
         EstudioAnalisis();
+        EstudioAnalisis(const char *IDEstudio, int IDAnalisis);
+        
+        //SETTERS
+        void setIDEstudio(const char *IDEstudio);
+        void setIDAnalisis(int IDAnalisis);
+        void setEstado(bool estado);
+        
+        //GETTERS
+        const char * getIDEstudio();
+        int getIDAnalisis();
+        bool getEstado();
 
     private:
         
