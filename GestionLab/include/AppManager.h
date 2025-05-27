@@ -3,7 +3,7 @@
 class AppManager
 {
     public:
-
-    private:
+        
+        void menuInicio();
 };
 
