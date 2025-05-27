@@ -36,7 +36,8 @@ void AppManager::menuInicio(){
             cout << "Gracias por utilizar nuestro programa!!" << endl;
             break;
         default: 
-            cout << "Opcion incorrecta!. Intente nuevamente" << endl;
+            cout << "Opcion incorrecta! Intente nuevamente" << endl;
+            system("pause");
             break;
         }
         
