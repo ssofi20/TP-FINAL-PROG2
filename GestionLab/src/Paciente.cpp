@@ -1,7 +1,9 @@
 #include "Paciente.h"
 
 //CONSTRUCTORES
-Paciente::Paciente(){
+Paciente::Paciente()
+: _dateB(0,0,0)
+{
     
     _DNI = 0;
     strcpy(_nombre, "SIN NOMBRE");
@@ -10,9 +12,6 @@ Paciente::Paciente(){
     strcpy(_email, "SIN EMAIL");
     strcpy(_obraSocial, "SIN OS");
     strcpy(_numeroAfiliado, "0");
-    _dateB.setDia(0);
-    _dateB.setMes(0);
-    _dateB.setAnio(0);
     _estado = true;
 
 }
