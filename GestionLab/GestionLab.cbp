@@ -37,6 +37,7 @@
 		<Unit filename="include/Estudio.h" />
 		<Unit filename="include/Fecha.h" />
 		<Unit filename="include/Hora.h" />
+		<Unit filename="include/Menu.h" />
 		<Unit filename="include/Paciente.h" />
 		<Unit filename="include/PacienteArchivo.h" />
 		<Unit filename="include/TipoAnalisis.h" />
@@ -46,6 +47,7 @@
 		<Unit filename="src/Estudio.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/Hora.cpp" />
+		<Unit filename="src/Menu.cpp" />
 		<Unit filename="src/Paciente.cpp" />
 		<Unit filename="src/PacienteArchivo.cpp" />
 		<Unit filename="src/TipoAnalisis.cpp" />
