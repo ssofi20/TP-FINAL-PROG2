@@ -3,38 +3,6 @@
 
 using namespace std;
 
-Menu::Menu()
-{
-    int opc;
-    while (true)
-    {
-        system("cls");
-        cout << "Menu" << endl;
-        cout << "-------------------------------------" << endl;
-        cout << "1. Menu Principal " << endl;
-        cout << "2. Menu Informes " << endl;
-        cout << "3. Menu Configuraciones " << endl;
-        cout << "0. Salir " << endl;
-        cout << "-------------------------------------" << endl;
-        cout << "Ingrese la opcion deseada: ";
-        cin >> opc;
-        system ("cls");
-        switch (opc)
-        {
-        case 1:
-            menuPrincipal();
-            break;
-        case 2:
-            menuInformes();
-            break;
-        case 3:
-            menuConfiguraciones();
-        case 0:
-            return;
-        }
-    }
-}
-
 void Menu::menuPrincipal()
 {
     int opc;
