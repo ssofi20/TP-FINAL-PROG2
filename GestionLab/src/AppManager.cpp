@@ -7,6 +7,7 @@ using namespace std;
 void AppManager::menuInicio(){
     
     int opcion;
+    Menu menu;
     
     do {
           
@@ -23,10 +24,13 @@ void AppManager::menuInicio(){
         system("cls");
         switch(opcion){
         case 1:
+            menu.menuPrincipal();
             break;
         case 2:
+            menu.menuInformes();
             break;
         case 3:
+            menu.menuConfiguraciones();
             break;
         case 0:
             cout << "Gracias por utilizar nuestro programa!!" << endl;
