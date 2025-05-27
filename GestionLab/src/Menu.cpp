@@ -15,7 +15,7 @@ void Menu::menuPrincipal()
         cout << "2. Gestion de Turnos " << endl;
         cout << "3. Gestion de Estudios " << endl;
         cout << "4. Gestion de datos del sistema " << endl;
-        cout << "0. Salir " << endl;
+        cout << "0. Volver a atras " << endl;
         cout << "-------------------------------------" << endl;
         cout << "Ingrese la opcion deseada: ";
         cin >> opc;
@@ -36,6 +36,10 @@ void Menu::menuPrincipal()
             break;
         case 0:
             return;
+        default: 
+            cout << "Opcion incorrecta! Intente nuevamente" << endl;
+            system("pause");
+            break;
         }
     }
 }
@@ -49,11 +53,11 @@ void Menu::menuInformes()
         cout << "Menu Informes" << endl;
         cout << "-------------------------------------" << endl;
         cout << "1. Paciente con mayor cantidad de estudios realizados.  " << endl;
-        cout << "2. Recaudación por tipo de estudio. " << endl;
-        cout << "3. Recaudación anual por mes. " << endl;
-        cout << "4. Listar pacientes en orden alfabético.  " << endl;
+        cout << "2. Recaudacion por tipo de estudio. " << endl;
+        cout << "3. Recaudacion anual por mes. " << endl;
+        cout << "4. Listar pacientes en orden alfabetico.  " << endl;
         cout << "5. Mostrar historial de un paciente.  " << endl;
-        cout << "0. Salir " << endl;
+        cout << "0. Volver a atras " << endl;
         cout << "-------------------------------------" << endl;
         cout << "Ingrese la opcion deseada: ";
         cin >> opc;
@@ -77,6 +81,10 @@ void Menu::menuInformes()
             break;
         case 0:
             return;
+        default: 
+            cout << "Opcion incorrecta! Intente nuevamente" << endl;
+            system("pause");
+            break;
         }
     }
 }
@@ -89,9 +97,9 @@ void Menu::menuConfiguraciones()
         system("cls");
         cout << "Menu de Configuraciones" << endl;
         cout << "-------------------------------------" << endl;
-        cout << "1. Copias de Seguridad." << endl;
-        cout << "2. Restaurar copias de Seguridad." << endl;
-        cout << "0. Salir " << endl;
+        cout << "1. Copias de Seguridad" << endl;
+        cout << "2. Restaurar copias de Seguridad" << endl;
+        cout << "0. Volver a atras" << endl;
         cout << "-------------------------------------" << endl;
         cout << "Ingrese la opcion deseada: ";
         cin >> opc;
@@ -106,6 +114,10 @@ void Menu::menuConfiguraciones()
             break;
         case 0:
             return;
+        default: 
+            cout << "Opcion incorrecta! Intente nuevamente" << endl;
+            system("pause");
+            break;
         }
     }
 }
