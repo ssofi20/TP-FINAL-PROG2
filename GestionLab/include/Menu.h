@@ -22,7 +22,6 @@ private:
     void restaurarCopiaSeguridad();
 
 public:
-    Menu();
     void menuPrincipal();
     void menuInformes();
     void menuConfiguraciones();
