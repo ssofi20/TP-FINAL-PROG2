@@ -8,6 +8,8 @@ using namespace std;
 "6. Mostrar lista de pacientes
 */
 
+
+
 //Dar de baja un paciente
 void PacienteManager::opcion4(){
 
@@ -81,6 +83,23 @@ void PacienteManager::opcion5(){
 
 }
 
+//Mostrar lista de pacientes
 void PacienteManager::opcion6(){
+
+    cout << "Listado de pacientes" << endl;
+    int cant = _archivo.cantidadRegistros();
+
+    Paciente *vecRegistros = new Paciente[cant];
+    if(vecRegistros == nullptr){
+        cout << "Error al pedir memoria" << endl;
+        return;
+    }
+    _archivo.leer(cant,vecRegistros);
+    for (int i = 0; i < cant; i++){
+
+        cout << "-------------------------" << endl;
+        //mostrar
+        cout << "-------------------------" << endl << endl;
+    }
 
 }
