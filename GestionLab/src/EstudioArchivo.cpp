@@ -45,7 +45,6 @@ void EstudioArchivo::leer(int cantidadRegistros, Estudio *vec)
     fclose(pFile);
 }
 
-//BUSCA QUE REGISTRO COINCIDE CON ESE CAMPO Y DEVUELVE SU POSICION
 int EstudioArchivo::buscar(const char* IDEstudio)
 {
     FILE *pFile = fopen(_nombreArchivo.c_str(), "rb");
