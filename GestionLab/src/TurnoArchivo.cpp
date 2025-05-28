@@ -20,6 +20,15 @@ int TurnoArchivo::cantidadRegistros(){
 
 Turno TurnoArchivo::leer(int posicion){
     
+    FILE *pFile = fopen(_nombreArchivo.c_str(), "rb");
+    if(pFile == nullptr){
+        return Turno();
+    }
+    Turno registro;
+    fseek(pFile, sizeof(Turno) * posicion, SEEK_SET);
+    fread(&registro, sizeof(Turno), 1, pFile);
+    fclose(pFile);
+    return registro;
     
 }
 int TurnoArchivo::buscar(int IDTurno, int DNIPaciente){
