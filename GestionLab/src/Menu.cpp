@@ -5,6 +5,8 @@ using namespace std;
 
 void Menu::menuGestionPacientes(){
 
+    PacienteManager manager;
+
     int opc;
     while(true){
 
@@ -34,13 +36,13 @@ void Menu::menuGestionPacientes(){
             ///sofi desarrolla
             break;
         case 4:
-
+            manager.opcion4();
             break;
         case 5:
-
+            manager.opcion5();
             break;
         case 6:
-
+            manager.opcion6();
             break;
         case 0:
             return;

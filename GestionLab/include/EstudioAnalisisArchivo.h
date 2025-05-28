@@ -6,7 +6,7 @@ class EstudioAnalisisArchivo
 {
     public:
 
-        EstudioAnalisisArchivo(std::string nombreArchivo);
+        EstudioAnalisisArchivo(std::string nombreArchivo = "archivos/EstudioAnalisis.dat");
         int cantidadRegistros();
         EstudioAnalisis leer(int posicion);
         bool guardar(EstudioAnalisis registro);

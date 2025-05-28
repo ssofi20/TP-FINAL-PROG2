@@ -2,13 +2,27 @@
 #include <iostream>
 
 using namespace std;
-/*
-"4. Dar de baja un paciente
-"5. Restaurar un paciente
-"6. Mostrar lista de pacientes
-*/
 
+//FUNCIONES UTILIES
+void PacienteManager::mostrar(Paciente registro){
 
+    cout << "DNI: " << registro.getDNI() << endl;
+
+    cout << "Nombre/s: " << registro.getNombre() << endl;
+
+    cout << "Apellido/s: " << registro.getApellido() << endl;
+
+    cout << "Fecha Nacimiento: " << registro.getDateB().toString() << endl;
+
+    cout << "Telefono: " << registro.getTelefono() << endl;
+
+    cout << "Email: "  << registro.getEmail() << endl;
+
+    cout << "Obra social: " << registro.getObraSocial() << endl;
+
+    cout << "Numero de afiliado: " << registro.getNumeroAfiliado() << endl;
+
+}
 
 //Dar de baja un paciente
 void PacienteManager::opcion4(){
@@ -43,8 +57,7 @@ void PacienteManager::opcion4(){
         }
     }
     cout << "No se encontro un paciente con ese DNI en el archivo" << endl;
-
-
+    system("pause");
 }
 
 //Restaurar un paciente
@@ -80,7 +93,7 @@ void PacienteManager::opcion5(){
         }
     }
     cout << "No se encontro un paciente con ese DNI en el archivo" << endl;
-
+    system("pause");
 }
 
 //Mostrar lista de pacientes
@@ -96,10 +109,10 @@ void PacienteManager::opcion6(){
     }
     _archivo.leer(cant,vecRegistros);
     for (int i = 0; i < cant; i++){
-
+        Paciente registro = _archivo.leer(i);
         cout << "-------------------------" << endl;
-        //mostrar
+        mostrar(registro);
         cout << "-------------------------" << endl << endl;
     }
-
+    system("pause");
 }
