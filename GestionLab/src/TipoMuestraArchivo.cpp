@@ -79,5 +79,14 @@ bool TipoMuestraArchivo::guardar(TipoMuestra registro)
 
 bool TipoMuestraArchivo::guardar(TipoMuestra registro, int posicion)
 {
+    FILE *pFile = fopen(_nombreArchivo.c_str() , "ab");
+    if (pFile == nullptr)
+    {
+        return -1;
+    }
+    fseek(pFile, sizeof (TipoMuestra) * posicion, SEEK_SET);
+    bool escribio = fwrite(&registro, sizeof (TipoMuestra), 1, pFile);
+    fclose(pFile);
+    return escribio;
 
 }
