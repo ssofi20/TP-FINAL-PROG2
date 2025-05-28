@@ -1,13 +1,19 @@
-#ifndef ESTUDIOANALISISARCHIVO_H
-#define ESTUDIOANALISISARCHIVO_H
-
+#pragma once
+#include "EstudioAnalisis.h"
+#include <string>
 
 class EstudioAnalisisArchivo
 {
     public:
-        EstudioAnalisisArchivo();
+
+        EstudioAnalisisArchivo(std::string nombreArchivo);
+        int cantidadRegistros();
+        EstudioAnalisis leer(int posicion);
+        bool guardar(EstudioAnalisis registro);
+        bool guardar(EstudioAnalisis registro, int posicion);
 
     private:
-};
 
-#endif // ESTUDIOANALISISARCHIVO_H
+        std::string _nombreArchivo;
+
+};
