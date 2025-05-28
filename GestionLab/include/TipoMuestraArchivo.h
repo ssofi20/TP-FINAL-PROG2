@@ -1,4 +1,6 @@
 #pragma once
+#include "TipoMuestra.h"
+#include <string>
 #include <cstring>
 
 class TipoMuestraArchivo

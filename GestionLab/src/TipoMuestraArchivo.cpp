@@ -37,7 +37,7 @@ void TipoMuestraArchivo::leer(int cantidadRegistros, TipoMuestra *vec)
     FILE *pFile = fopen(_nombreArchivo.c_str(), "rb");
     if (pFile == nullptr)
     {
-        return TipoMuestra();
+        return;
     }
     for(int i = 0; i < cantidadRegistros; i++){
         vec[i] = leer(i);
@@ -52,12 +52,14 @@ int TipoMuestraArchivo::buscar(int IDMuestra)
     {
         return -1;
     }
+
     TipoMuestra registro;
+
     int cantidad = cantidadRegistros();
     for (int i = 0; i < cantidad; i++)
     {
         registro = leer(i);
-        if (strcmp(registro.getIDMuestra(), IDMuestra))
+        if (registro.getIDMuestra(), IDMuestra)
         {
             return i;
         }
@@ -72,7 +74,7 @@ bool TipoMuestraArchivo::guardar(TipoMuestra registro)
     {
         return -1;
     }
-    bool escribio = fwrite(&registro, sizeof(Estudio), 1, pFile);
+    bool escribio = fwrite(&registro, sizeof(TipoMuestra), 1, pFile);
     fclose(pFile);
     return escribio;
 }
