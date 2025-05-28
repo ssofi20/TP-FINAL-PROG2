@@ -67,7 +67,14 @@ int TipoMuestraArchivo::buscar(int IDMuestra)
 
 bool TipoMuestraArchivo::guardar(TipoMuestra registro)
 {
-
+    FILE *pFile = fopen(_nombreArchivo.c_str() , "ab");
+    if (pFile == nullptr)
+    {
+        return -1;
+    }
+    bool escribio = fwrite(&registro, sizeof(Estudio), 1, pFile);
+    fclose(pFile);
+    return escribio;
 }
 
 bool TipoMuestraArchivo::guardar(TipoMuestra registro, int posicion)
