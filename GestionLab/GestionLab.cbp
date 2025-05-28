@@ -37,6 +37,7 @@
 		<Unit filename="include/AppManager.h" />
 		<Unit filename="include/Estudio.h" />
 		<Unit filename="include/EstudioAnalisis.h" />
+		<Unit filename="include/EstudioArchivo.h" />
 		<Unit filename="include/Fecha.h" />
 		<Unit filename="include/Hora.h" />
 		<Unit filename="include/Menu.h" />
@@ -49,6 +50,7 @@
 		<Unit filename="src/AppManager.cpp" />
 		<Unit filename="src/Estudio.cpp" />
 		<Unit filename="src/EstudioAnalisis.cpp" />
+		<Unit filename="src/EstudioArchivo.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/Hora.cpp" />
 		<Unit filename="src/Menu.cpp" />
