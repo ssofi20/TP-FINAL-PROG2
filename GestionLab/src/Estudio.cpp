@@ -3,22 +3,22 @@
  /// Constructores
 
 Estudio::Estudio()
-: _turno(0, Fecha(0,0,0), Hora(0,0),1 )
 {
     strcpy(_IDEstudio, "SIN ID");
     _DNI = 0;
     _estadoEstudio = 0;
     strcpy(_sala, "SIN SALA");
+    _IDTurno = 0;
     _estado = true;
 }
 
-Estudio::Estudio(const char *IDEstudio, int dni, int estEstudio, const char *sala, Turno turno)
+Estudio::Estudio(const char *IDEstudio, int dni, int estEstudio, const char *sala, int IDTurno)
 {
     setIDEstudio(IDEstudio);
     setDNI(dni);
     setEstadoEstudio(estEstudio);
     setSala(sala);
-    setTurno(turno);
+    setIDTurno(IDTurno);
     setEstado(true);
 }
 
@@ -44,9 +44,9 @@ void Estudio::setSala (const char *sala)
     strcpy(_sala, sala);
 }
 
-void Estudio::setTurno(Turno turno)
+void Estudio::setIDTurno(int IDTurno)
 {
-    _turno = turno;
+    _IDTurno = IDTurno;
 }
 
 void Estudio::setEstado(bool estado)
@@ -76,9 +76,9 @@ const char * Estudio::getSala()
     return _sala;
 }
 
-Turno Estudio::getTurno()
+int Estudio::getIDTurno()
 {
-    return _turno;
+    return _IDTurno;
 }
 
 bool Estudio::getEstado()

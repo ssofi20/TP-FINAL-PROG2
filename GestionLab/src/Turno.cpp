@@ -6,12 +6,14 @@ Turno::Turno()
 : _fechaProgramada(0,0,0),  _horaProgramada(0,0)
 {
     _IDTurno = 0;
+    _DNIPaciente = 0;
     _estadoTurno = 0;
 }
 
-Turno::Turno (int IDTurno, Fecha fechaProgramada, Hora horaProgramada, int estadoTurno)
+Turno::Turno (int IDTurno, int DNIPaciente, Fecha fechaProgramada, Hora horaProgramada, int estadoTurno)
 {
     setIDTurno(IDTurno);
+    setDNIPaciente(DNIPaciente);
     setFechaProgramada(fechaProgramada);
     setHoraProgramada(horaProgramada);
     setEstadoTurno(estadoTurno);
@@ -22,6 +24,11 @@ Turno::Turno (int IDTurno, Fecha fechaProgramada, Hora horaProgramada, int estad
 void Turno::setIDTurno (int idTurno)
 {
     _IDTurno = idTurno;
+}
+
+void Turno::setDNIPaciente(int DNIPaciente)
+{
+    _DNIPaciente = DNIPaciente;
 }
 
 void Turno::setFechaProgramada(Fecha fechaProgramada)
@@ -41,9 +48,14 @@ void Turno::setEstadoTurno (int estadoTurno)
 
 /// Getters
 
-int Turno::getIDTurno ()
+int Turno::getIDTurno()
 {
     return _IDTurno;
+}
+
+int Turno::getDNIPaciente()
+{
+    return _DNIPaciente;
 }
 
 Fecha Turno::getFechaProgramada()
