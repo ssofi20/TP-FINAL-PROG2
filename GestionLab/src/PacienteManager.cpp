@@ -45,7 +45,39 @@ void PacienteManager::opcion4(){
 
 }
 
+//Restaurar un paciente
 void PacienteManager::opcion5(){
+
+    Paciente registro;
+    int DNI;
+    cout << "Ingrese le DNI del paciente a dar de alta: ";
+    cin >> DNI;
+
+    int cantidadReg = _archivo.cantidadRegistros();
+
+    bool encontrado = false;
+    int pos;
+    for(int i = 0; i < cantidadReg; i++){
+
+        registro = _archivo.leer(i);
+        if(registro.getDNI() == DNI){
+            encontrado = true;
+            pos = i;
+            break;
+        }
+    }
+
+    if(encontrado){
+
+        registro.setEstado(true);
+        if(_archivo.guardar(registro, pos)){
+            cout << "Paciente se restauro exitosamente!" << endl;
+        }
+        else {
+            cout << "Error al restaurar el paciente" << endl;
+        }
+    }
+    cout << "No se encontro un paciente con ese DNI en el archivo" << endl;
 
 }
 
