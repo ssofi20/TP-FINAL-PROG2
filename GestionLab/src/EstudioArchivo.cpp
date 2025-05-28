@@ -79,7 +79,6 @@ bool EstudioArchivo::guardar(Estudio registro)
 
 bool EstudioArchivo::guardar(Estudio registro, int posicion)
 {
-
     FILE *pFile = fopen(_nombreArchivo.c_str(), "ab");
     if(pFile == nullptr){
         return false;
@@ -88,6 +87,5 @@ bool EstudioArchivo::guardar(Estudio registro, int posicion)
     bool escribio = fwrite(&registro, sizeof(Estudio), 1, pFile);
     fclose(pFile);
     return escribio;
-
 }
 
