@@ -24,6 +24,7 @@ Turno TurnoArchivo::leer(int posicion){
     if(pFile == nullptr){
         return Turno();
     }
+    
     Turno registro;
     fseek(pFile, sizeof(Turno) * posicion, SEEK_SET);
     fread(&registro, sizeof(Turno), 1, pFile);
@@ -31,9 +32,48 @@ Turno TurnoArchivo::leer(int posicion){
     return registro;
     
 }
+
 int TurnoArchivo::buscar(int IDTurno, int DNIPaciente){
+    
+    FILE *pFile = fopen(_nombreArchivo.c_str(), "rb");
+    if(pFile == nullptr){
+        return -1;
+    }
+    
+    Turno registro;
+    int cant = cantidadRegistros();
+    
+    for(int i = 0; i < cant; i++){
+        
+        registro = leer(i);
+        if(registro.getIDTurno() == IDTurno && registro.getDNIPaciente() == DNIPaciente){
+            return i;
+        }
+    }
+    return -2;
 }
+
 bool TurnoArchivo::guardar(Turno registro){
+    
+    FILE *pFile = fopen(_nombreArchivo.c_str(), "rb");
+    if(pFile == nullptr){
+        return false;
+    }
+    
+    bool escribio = fwrite(&registro, sizeof(Turno), 1, pFile);
+    fclose(pFile);
+    return escribio;
+    
 }
 bool TurnoArchivo::guardar(Turno registro, int posicion){
+    
+    FILE *pFile = fopen(_nombreArchivo.c_str(), "rb");
+    if(pFile == nullptr){
+        return false;
+    }
+    
+    fseek(pFile, sizeof(Turno) * posicion, SEEK_SET);
+    bool escribio = fwrite(&registro, sizeof(Turno), 1, pFile);
+    fclose(pFile);
+    return escribio;
 }
