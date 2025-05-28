@@ -7,7 +7,7 @@ class TipoMuestraArchivo
 {
 public:
 
-    TipoMuestraArchivo (std::string nombreArchivo);
+    TipoMuestraArchivo (std::string nombreArchivo = "archivos/TiposMuestras.dat");
     int cantidadRegistros();
     TipoMuestra leer(int posicion);
     void leer(int cantidadRegistros, TipoMuestra *vec);

@@ -6,24 +6,26 @@ using namespace std;
 
 void Menu::menuGestionPacientes()
 {
+
+    PacienteManager manager;
+
     int opc;
-    while (true)
-    {
+    while(true){
+
         system("cls");
         cout << "Menu Pacientes" << endl;
         cout << "-------------------------------------" << endl;
-        cout << "1. Registrar nuevo paciente." << endl;
-        cout << "2. Buscar un paciente." << endl;
-        cout << "3. Editar informaciÃ³n de un paciente." << endl;
-        cout << "4. Dar de baja un paciente." << endl;
-        cout << "5. Restaurar un paciente." << endl;
-        cout << "6. Mostrar lista de pacientes." << endl;
-        cout << "0. Volver a atras " << endl;
+        cout << "1. Registrar nuevo paciente " << endl;
+        cout << "2. Buscar un paciente " << endl;
+        cout << "3. Editar información de un paciente " << endl;
+        cout << "4. Dar de baja un paciente  " << endl;
+        cout << "5. Restaurar un paciente  " << endl;
+        cout << "6. Mostrar lista de pacientes  " << endl;
+        cout << "0. Volver al menu anterior  " << endl;
         cout << "-------------------------------------" << endl;
         cout << "Ingrese la opcion deseada: ";
         cin >> opc;
         system ("cls");
-        PacienteManager manager;
         switch (opc)
         {
         case 1:
@@ -36,13 +38,13 @@ void Menu::menuGestionPacientes()
             manager.opcion3();
             break;
         case 4:
-            /// Sofi
+            manager.opcion4();
             break;
         case 5:
-            /// Sofi
+            manager.opcion5();
             break;
         case 6:
-            /// Sofi
+            manager.opcion6();
             break;
         case 0:
             return;
@@ -52,9 +54,7 @@ void Menu::menuGestionPacientes()
             break;
         }
     }
-
 }
-
 
 void Menu::menuGestiones()
 {

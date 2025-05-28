@@ -6,7 +6,7 @@ class TipoAnalisisArchivo
 {
 public:
 
-    TipoAnalisisArchivo (std::string nombreArchivo);
+    TipoAnalisisArchivo (std::string nombreArchivo = "archivos/TiposAnalisis.dat");
     int cantidadRegistros();
     TipoAnalisis leer(int posicion);
     void leer(int cantidadRegistros, TipoAnalisis *vec);

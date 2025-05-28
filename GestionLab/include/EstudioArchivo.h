@@ -11,7 +11,7 @@ std::string _nombreArchivo;
 
 public:
 
-EstudioArchivo(std::string nombreArchivo);
+EstudioArchivo(std::string nombreArchivo = "archivos/Estudios.dat");
 int cantidadRegistros();
 Estudio leer(int posicion);
 void leer(int cantidadRegistros, Estudio *vec);

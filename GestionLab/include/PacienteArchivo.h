@@ -5,8 +5,7 @@
 class PacienteArchivo
 {
     public:
-
-        PacienteArchivo(std::string fileName = "Pacientes.dat");
+        PacienteArchivo(std::string fileName="archivos/Pacientes.dat");
         int cantidadRegistros();
         int buscar(int DNI);
         bool guardar(Paciente paciente);
