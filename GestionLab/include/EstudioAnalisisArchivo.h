@@ -1,0 +1,19 @@
+#pragma once
+#include "EstudioAnalisis.h"
+#include <string>
+
+class EstudioAnalisisArchivo
+{
+    public:
+
+        EstudioAnalisisArchivo(std::string nombreArchivo);
+        int cantidadRegistros();
+        EstudioAnalisis leer(int posicion);
+        bool guardar(EstudioAnalisis registro);
+        bool guardar(EstudioAnalisis registro, int posicion);
+
+    private:
+
+        std::string _nombreArchivo;
+
+};
