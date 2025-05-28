@@ -62,7 +62,7 @@ int TipoMuestraArchivo::buscar(int IDMuestra)
             return i;
         }
     }
-    return -1; s
+    return -1;
 }
 
 bool TipoMuestraArchivo::guardar(TipoMuestra registro)
