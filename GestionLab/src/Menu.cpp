@@ -3,13 +3,13 @@
 
 using namespace std;
 
-void Menu::menuPrincipal()
+void Menu::menuGestiones()
 {
     int opc;
     while (true)
     {
         system("cls");
-        cout << "Menu Principal" << endl;
+        cout << "Menu Gestiones" << endl;
         cout << "-------------------------------------" << endl;
         cout << "1. Gestion de Pacientes " << endl;
         cout << "2. Gestion de Turnos " << endl;
@@ -36,7 +36,7 @@ void Menu::menuPrincipal()
             break;
         case 0:
             return;
-        default: 
+        default:
             cout << "Opcion incorrecta! Intente nuevamente" << endl;
             system("pause");
             break;
@@ -81,7 +81,7 @@ void Menu::menuInformes()
             break;
         case 0:
             return;
-        default: 
+        default:
             cout << "Opcion incorrecta! Intente nuevamente" << endl;
             system("pause");
             break;
@@ -114,7 +114,7 @@ void Menu::menuConfiguraciones()
             break;
         case 0:
             return;
-        default: 
+        default:
             cout << "Opcion incorrecta! Intente nuevamente" << endl;
             system("pause");
             break;
