@@ -22,7 +22,7 @@ private:
     void restaurarCopiaSeguridad();
 
 public:
-    void menuPrincipal();
+    void menuGestiones();
     void menuInformes();
     void menuConfiguraciones();
 
