@@ -34,6 +34,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/AppManager.h" />
 		<Unit filename="include/Estudio.h" />
 		<Unit filename="include/EstudioAnalisis.h" />
 		<Unit filename="include/EstudioArchivo.h" />
@@ -46,6 +47,7 @@
 		<Unit filename="include/TipoMuestra.h" />
 		<Unit filename="include/Turno.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/AppManager.cpp" />
 		<Unit filename="src/Estudio.cpp" />
 		<Unit filename="src/EstudioAnalisis.cpp" />
 		<Unit filename="src/EstudioArchivo.cpp" />
