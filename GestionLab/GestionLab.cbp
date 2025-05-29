@@ -50,6 +50,7 @@
 		<Unit filename="include/TipoMuestra.h" />
 		<Unit filename="include/TipoMuestraArchivo.h" />
 		<Unit filename="include/Turno.h" />
+		<Unit filename="include/TurnoArchivo.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/AppManager.cpp" />
 		<Unit filename="src/Estudio.cpp" />
@@ -67,6 +68,7 @@
 		<Unit filename="src/TipoMuestra.cpp" />
 		<Unit filename="src/TipoMuestraArchivo.cpp" />
 		<Unit filename="src/Turno.cpp" />
+		<Unit filename="src/TurnoArchivo.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
