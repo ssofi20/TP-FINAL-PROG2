@@ -6,6 +6,7 @@ class Turno
 {
     private:
     int _IDTurno;
+    int _DNIPaciente;
     Fecha _fechaProgramada;
     Hora _horaProgramada;
     int _estadoTurno;
@@ -16,18 +17,20 @@ class Turno
 
         Turno();
 
-        Turno (int IDTurno, Fecha fechaProgramada, Hora horaProgramada, int estadoTurno);
+        Turno (int IDTurno, int DNIPaciente, Fecha fechaProgramada, Hora horaProgramada, int estadoTurno);
 
         /// Setters
 
         void setIDTurno (int idTurno);
+        void setDNIPaciente(int DNIPaciente);
         void setFechaProgramada(Fecha fechaProgramada);
         void setHoraProgramada (Hora horaProgramada);
         void setEstadoTurno (int estadoTurno);
 
         /// Getters
 
-        int getIDTurno ();
+        int getIDTurno();
+        int getDNIPaciente();
         Fecha getFechaProgramada();
         Hora getHoraProgramada();
         int getEstadoTurno();

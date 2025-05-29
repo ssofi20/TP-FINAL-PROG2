@@ -3,7 +3,6 @@
 #include <cstring>
 
 
-
 class Estudio
 {
     private:
@@ -12,14 +11,14 @@ class Estudio
         int _DNI;
         int _estadoEstudio;
         char _sala[6];
-        Turno _turno;
+        int _IDTurno;
         bool _estado;
 
     public:
         /// Constructores
 
         Estudio();
-        Estudio(const char *IDEstudio, int dni, int estEstudio, const char *sala, Turno turno);
+        Estudio(const char *IDEstudio, int dni, int estEstudio, const char *sala, int IDTurno);
 
         /// Setters
 
@@ -27,7 +26,7 @@ class Estudio
         void setDNI (int dni);
         void setEstadoEstudio(int estadoEstudio);
         void setSala (const char *sala);
-        void setTurno(Turno turno);
+        void setIDTurno(int IDturno);
         void setEstado(bool estado);
 
         /// Getters
@@ -36,7 +35,7 @@ class Estudio
         int getDNI();
         int getEstadoEstudio();
         const char *getSala();
-        Turno getTurno();
+        int getIDTurno();
         bool getEstado();
 
 };
