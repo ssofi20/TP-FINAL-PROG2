@@ -13,6 +13,7 @@ class PacienteArchivo
         Paciente leer(int posicion);
         void leer(int cantidadRegistros, Paciente *vecPaciente);
 
+
     private:
 
         std::string _fileName;

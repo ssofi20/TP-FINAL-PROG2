@@ -55,7 +55,7 @@ Paciente PacienteManager::cargarPaciente()
     cout << "Anio: " << endl;
     cin >> anio;
 
-   return Paciente(dni, nombres, apellidos, telefono, email, nombreOS, nroAfiliado, Fecha (dia, mes, anio));
+    return Paciente(dni, nombres, apellidos, telefono, email, nombreOS, nroAfiliado, Fecha (dia, mes, anio));
 }
 
 void PacienteManager::mostrar(Paciente registro)
@@ -98,7 +98,7 @@ void PacienteManager::opcion1()
 ///Buscar un paciente.
 void PacienteManager::opcion2()
 {
-cout << "Ingrese el nro. de DNI del paciente que desea buscar: " << endl;
+    cout << "Ingrese el nro. de DNI del paciente que desea buscar: " << endl;
     int dni;
     cin >> dni;
     int pos = _archivo.buscar(dni);
@@ -108,16 +108,143 @@ cout << "Ingrese el nro. de DNI del paciente que desea buscar: " << endl;
         return;
     }
     Paciente obj = _archivo.leer(pos);
-    //obj.mostrar();
+    mostrar(obj);
 }
 
+///Editar información de un paciente segun DNI
 void PacienteManager::opcion3()
 {
+    int dni;
+    cout<<"Ingrese el DNI del paciente a modificar: ";
+    cin>>dni;
+    int pos = _archivo.buscar(dni);
+    if(pos<0)
+    {
+        cout<<"No existe un paciente con ese DNI en el archivo."<<endl;
+        return;
+    }
+    Paciente obj;
+    obj = _archivo.leer(pos);
+    int opc;
+    cout<<"Ingrese la opcion del dato que quiere modificar: " << endl;
+    cout<<"1- Modificar DNI." << endl;
+    cout<<"2- Modificar nombre." << endl;
+    cout<<"4- Modificar apellido." << endl;
+    cout<<"5- Modificar nro. de telefono." << endl;
+    cout<<"6- Modificar email." << endl;
+    cout<<"7- Modificar Obra Social." << endl;
+    cout<<"8- Modificar nro. de Afiliado." << endl;
+    cout<<"9- Modificar fecha de nacimiento." << endl;
+    cout <<"0- Volver al menu anterior." << endl;
+    cin >> opc;
+    switch(opc)
+    {
+    case 1:
+        {
+        int dniNuevo;
+        cout<<"Ingrese el nuevo DNI del paciente: "<< endl;
+        cin >> dniNuevo;
+        obj.setDNI(dniNuevo);
+        _archivo.guardar(obj, dniNuevo);
+        break;
+        }
+
+    case 2:
+        {
+        char nombre [30];
+        cout<<"Ingrese el nuevo nombre del paciente: "<< endl;
+        cargarCadena(nombre, 29);
+        obj.setNombre(nombre);
+        _archivo.guardar(obj, dni);
+        break;
+        }
+
+    case 3:
+        {
+        char apellido [40];
+        cout<<"Ingrese el nuevo apellido del paciente: "<< endl;
+        cargarCadena(apellido, 39);
+        obj.setApellido(apellido);
+        _archivo.guardar(obj, dni);
+        break;
+        }
+
+    case 4:
+        {
+        char nroTel [10];
+        cout<<"Ingrese el nuevo nro. de telefono del paciente: "<< endl;
+        cargarCadena(nroTel, 9);
+        obj.setNombre(nroTel);
+        _archivo.guardar(obj, dni);
+        break;
+        }
+
+    case 5:
+        {
+        char mail [60];
+        cout<<"Ingrese el nuevo correo electronico del paciente: "<< endl;
+        cargarCadena(mail, 59);
+        obj.setEmail(mail);
+        _archivo.guardar(obj, dni);
+        break;
+        }
+
+    case 6:
+        {
+        char obraSocial [50];
+        cout<<"Ingrese la nueva obra social del paciente: "<< endl;
+        cargarCadena(obraSocial, 49);
+        obj.setObraSocial(obraSocial);
+        _archivo.guardar(obj, dni);
+        break;
+        }
+
+    case 7:
+        {
+        char nroAfiliado [11];
+        cout<<"Ingrese el nuevo nro. de afiliado del paciente: "<< endl;
+        cargarCadena(nroAfiliado, 10);
+        obj.setNumeroAfiliado(nroAfiliado);
+        _archivo.guardar(obj, dni);
+        break;
+        }
+
+    case 8:
+        {
+        Fecha fechaNac;
+        int dia, mes, anio;
+        cout<<"Ingrese el nuevo nombre del paciente: " << endl;
+        cout<<"Dia: " << endl;
+        cin>> dia;
+        fechaNac.setDia(dia);
+        cout<<"Mes: " << endl;
+        cin>> mes;
+        fechaNac.setMes(mes);
+        cout<<"Anio: " << endl;
+        cin>> anio;
+        fechaNac.setAnio(anio);
+        obj.setDateB(fechaNac);
+        _archivo.guardar(obj, dni);
+        break;
+        }
+
+    case 0:
+        {
+        return;
+        }
+    default:
+        {
+        cout << "Opcion incorrecta! Intente nuevamente" << endl;
+        system("pause");
+        break;
+        }
+    }
 }
 
 
 //Dar de baja un paciente
-void PacienteManager::opcion4(){
+void PacienteManager::opcion4()
+{
 
     Paciente registro;
     int DNI;
@@ -128,23 +255,28 @@ void PacienteManager::opcion4(){
 
     bool encontrado = false;
     int pos;
-    for(int i = 0; i < cantidadReg; i++){
+    for(int i = 0; i < cantidadReg; i++)
+    {
 
         registro = _archivo.leer(i);
-        if(registro.getDNI() == DNI){
+        if(registro.getDNI() == DNI)
+        {
             encontrado = true;
             pos = i;
             break;
         }
     }
 
-    if(encontrado){
+    if(encontrado)
+    {
 
         registro.setEstado(false);
-        if(_archivo.guardar(registro, pos)){
+        if(_archivo.guardar(registro, pos))
+        {
             cout << "Paciente dado de baja exitosamente!" << endl;
         }
-        else {
+        else
+        {
             cout << "Error al dar de baja el paciente" << endl;
         }
     }
@@ -153,7 +285,8 @@ void PacienteManager::opcion4(){
 }
 
 //Restaurar un paciente
-void PacienteManager::opcion5(){
+void PacienteManager::opcion5()
+{
 
     Paciente registro;
     int DNI;
@@ -164,23 +297,28 @@ void PacienteManager::opcion5(){
 
     bool encontrado = false;
     int pos;
-    for(int i = 0; i < cantidadReg; i++){
+    for(int i = 0; i < cantidadReg; i++)
+    {
 
         registro = _archivo.leer(i);
-        if(registro.getDNI() == DNI){
+        if(registro.getDNI() == DNI)
+        {
             encontrado = true;
             pos = i;
             break;
         }
     }
 
-    if(encontrado){
+    if(encontrado)
+    {
 
         registro.setEstado(true);
-        if(_archivo.guardar(registro, pos)){
+        if(_archivo.guardar(registro, pos))
+        {
             cout << "Paciente se restauro exitosamente!" << endl;
         }
-        else {
+        else
+        {
             cout << "Error al restaurar el paciente" << endl;
         }
     }
@@ -189,18 +327,21 @@ void PacienteManager::opcion5(){
 }
 
 //Mostrar lista de pacientes
-void PacienteManager::opcion6(){
+void PacienteManager::opcion6()
+{
 
     cout << "Listado de pacientes" << endl;
     int cant = _archivo.cantidadRegistros();
 
     Paciente *vecRegistros = new Paciente[cant];
-    if(vecRegistros == nullptr){
+    if(vecRegistros == nullptr)
+    {
         cout << "Error al pedir memoria" << endl;
         return;
     }
     _archivo.leer(cant,vecRegistros);
-    for (int i = 0; i < cant; i++){
+    for (int i = 0; i < cant; i++)
+    {
         Paciente registro = _archivo.leer(i);
         cout << "-------------------------" << endl;
         mostrar(registro);
