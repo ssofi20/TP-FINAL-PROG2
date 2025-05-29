@@ -108,6 +108,7 @@ void Paciente::cargar(){
     cargarCadena(_numeroAfiliado, 19);
     cout << "Fecha de Nacimiento" << endl;
     _dateB.cargar();
+    _estado = true;
     
 }
 void Paciente::mostrar(){
