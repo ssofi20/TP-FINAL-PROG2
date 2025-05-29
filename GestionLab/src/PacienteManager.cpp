@@ -25,7 +25,7 @@ Paciente PacienteManager::cargarPaciente()
     int dni;
     char nombres [30];
     char apellidos [40];
-    char telefono [10];
+    char telefono [11];
     char email [60];
     char nombreOS [60];
     char nroAfiliado [20];
@@ -34,7 +34,7 @@ Paciente PacienteManager::cargarPaciente()
     int mes;
     int anio;
 
-
+    //falta telefono
     cout << "Ingrese el DNI del paciente: " << endl;
     cin >> dni;
     cout << "Ingrese el nombre del paciente: " << endl;
@@ -126,7 +126,7 @@ void PacienteManager::opcion3()
     Paciente obj;
     obj = _archivo.leer(pos);
     int opc;
-    cout<<"Ingrese la opcion del dato que quiere modificar: " << endl;
+    cout<<"Ingrese la opcion del dato que quiere modificar: " << endl << endl;
     cout<<"1- Modificar DNI." << endl;
     cout<<"2- Modificar nombre." << endl;
     cout<<"4- Modificar apellido." << endl;
@@ -145,7 +145,7 @@ void PacienteManager::opcion3()
         cout<<"Ingrese el nuevo DNI del paciente: "<< endl;
         cin >> dniNuevo;
         obj.setDNI(dniNuevo);
-        _archivo.guardar(obj, dniNuevo);
+        _archivo.guardar(obj, pos);
         break;
         }
 
@@ -155,7 +155,7 @@ void PacienteManager::opcion3()
         cout<<"Ingrese el nuevo nombre del paciente: "<< endl;
         cargarCadena(nombre, 29);
         obj.setNombre(nombre);
-        _archivo.guardar(obj, dni);
+        _archivo.guardar(obj, pos);
         break;
         }
 
@@ -165,17 +165,17 @@ void PacienteManager::opcion3()
         cout<<"Ingrese el nuevo apellido del paciente: "<< endl;
         cargarCadena(apellido, 39);
         obj.setApellido(apellido);
-        _archivo.guardar(obj, dni);
+        _archivo.guardar(obj, pos);
         break;
         }
 
     case 4:
         {
-        char nroTel [10];
+        char nroTel [11];
         cout<<"Ingrese el nuevo nro. de telefono del paciente: "<< endl;
-        cargarCadena(nroTel, 9);
+        cargarCadena(nroTel, 10);
         obj.setNombre(nroTel);
-        _archivo.guardar(obj, dni);
+        _archivo.guardar(obj, pos);
         break;
         }
 
@@ -185,7 +185,7 @@ void PacienteManager::opcion3()
         cout<<"Ingrese el nuevo correo electronico del paciente: "<< endl;
         cargarCadena(mail, 59);
         obj.setEmail(mail);
-        _archivo.guardar(obj, dni);
+        _archivo.guardar(obj, pos);
         break;
         }
 
@@ -195,7 +195,7 @@ void PacienteManager::opcion3()
         cout<<"Ingrese la nueva obra social del paciente: "<< endl;
         cargarCadena(obraSocial, 49);
         obj.setObraSocial(obraSocial);
-        _archivo.guardar(obj, dni);
+        _archivo.guardar(obj, pos);
         break;
         }
 
@@ -205,7 +205,7 @@ void PacienteManager::opcion3()
         cout<<"Ingrese el nuevo nro. de afiliado del paciente: "<< endl;
         cargarCadena(nroAfiliado, 10);
         obj.setNumeroAfiliado(nroAfiliado);
-        _archivo.guardar(obj, dni);
+        _archivo.guardar(obj, pos);
         break;
         }
 
@@ -213,7 +213,7 @@ void PacienteManager::opcion3()
         {
         Fecha fechaNac;
         int dia, mes, anio;
-        cout<<"Ingrese el nuevo nombre del paciente: " << endl;
+        cout<<"Ingrese la nueva fecha de nacimiento del paciente: " << endl;
         cout<<"Dia: " << endl;
         cin>> dia;
         fechaNac.setDia(dia);
@@ -224,7 +224,7 @@ void PacienteManager::opcion3()
         cin>> anio;
         fechaNac.setAnio(anio);
         obj.setDateB(fechaNac);
-        _archivo.guardar(obj, dni);
+        _archivo.guardar(obj, pos);
         break;
         }
 
