@@ -1,7 +1,60 @@
 #include "Menu.h"
 #include <iostream>
 
+
 using namespace std;
+
+void Menu::menuGestionPacientes()
+{
+
+    PacienteManager manager;
+
+    int opc;
+    while(true){
+
+        system("cls");
+        cout << "Menu Pacientes" << endl;
+        cout << "-------------------------------------" << endl;
+        cout << "1. Registrar nuevo paciente " << endl;
+        cout << "2. Buscar un paciente " << endl;
+        cout << "3. Editar información de un paciente " << endl;
+        cout << "4. Dar de baja un paciente  " << endl;
+        cout << "5. Restaurar un paciente  " << endl;
+        cout << "6. Mostrar lista de pacientes  " << endl;
+        cout << "0. Volver al menu anterior  " << endl;
+        cout << "-------------------------------------" << endl;
+        cout << "Ingrese la opcion deseada: ";
+        cin >> opc;
+        system ("cls");
+        switch (opc)
+        {
+        case 1:
+            manager.opcion1();
+             break;
+        case 2:
+            manager.opcion2();
+            break;
+        case 3:
+            manager.opcion3();
+            break;
+        case 4:
+            manager.opcion4();
+            break;
+        case 5:
+            manager.opcion5();
+            break;
+        case 6:
+            manager.opcion6();
+            break;
+        case 0:
+            return;
+        default:
+            cout << "Opcion incorrecta! Intente nuevamente" << endl;
+            system("pause");
+            break;
+        }
+    }
+}
 
 void Menu::menuGestiones()
 {
@@ -23,7 +76,7 @@ void Menu::menuGestiones()
         switch (opc)
         {
         case 1:
-            /// menuGestionPacientes();
+            menuGestionPacientes();
             break;
         case 2:
             ///menuGestionTurnos();
