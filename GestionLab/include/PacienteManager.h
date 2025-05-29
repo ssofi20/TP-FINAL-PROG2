@@ -1,11 +1,13 @@
 #pragma once
 #include "Paciente.h"
 #include "PacienteArchivo.h"
+#include "FuncionesGlobales.h"
 
 
 class PacienteManager
 {
-    private:
+    private:  
+        
     PacienteArchivo _archivo;
 
     public:
@@ -19,12 +21,6 @@ class PacienteManager
         void opcion4();
         void opcion5();
         void opcion6();
-
-
-        ///Funciones utiles
-        void cargarCadena(char *palabra, int tamano);
-        Paciente cargarPaciente();
-        void mostrar(Paciente registro);
 };
 
 

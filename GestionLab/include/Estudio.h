@@ -2,7 +2,6 @@
 #include "Turno.h"
 #include <cstring>
 
-
 class Estudio
 {
     private:
@@ -15,6 +14,7 @@ class Estudio
         bool _estado;
 
     public:
+        
         /// Constructores
 
         Estudio();
