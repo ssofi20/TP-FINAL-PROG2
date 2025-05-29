@@ -1,4 +1,7 @@
 #include "EstudioAnalisis.h"
+#include <iostream>
+
+using namespace std;
 
 EstudioAnalisis::EstudioAnalisis(){
     
@@ -33,4 +36,16 @@ int EstudioAnalisis::getIDAnalisis(){
 }
 bool EstudioAnalisis::getEstado(){
     return _estado;
+}
+
+//Metodos de la clase
+
+void EstudioAnalisis::cargar(){
+
+    cout << "ID Estudio: ";
+    cin >> _IDEstudio;
+    cout << "ID Analisis: ";
+    cin >> _IDAnalisis;
+    _estado = true;
+    
 }
