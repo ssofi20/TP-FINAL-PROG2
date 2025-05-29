@@ -22,6 +22,7 @@ class Fecha
 
         //METODOS DE LA CLASE
         std::string toString();
+        void cargar();
 
 
     private:

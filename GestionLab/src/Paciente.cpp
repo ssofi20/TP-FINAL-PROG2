@@ -92,22 +92,22 @@ bool Paciente::getEstado() const{
 
 void Paciente::cargar(){
 
-    cout << "DNI: " << endl;
+    cout << "DNI: ";
     cin >> _DNI;
-    cout << "Nombre/s: " << endl;
+    cout << "Nombre/s: ";
     cargarCadena(_nombre, 29);
-    cout << "Apellido/s: " << endl;
+    cout << "Apellido/s: ";
     cargarCadena(_apellido, 39);
-    cout << "Telefono: " << endl;
+    cout << "Telefono: ";
     cargarCadena(_telefono, 10);
-    cout << "Email: " << endl;
+    cout << "Email: ";
     cargarCadena(_email, 59);
-    cout << "Obra Social: " << endl;
+    cout << "Obra Social: ";
     cargarCadena(_obraSocial, 59);
-    cout << "Numero Afiliado: " << endl;
+    cout << "Numero Afiliado: ";
     cargarCadena(_numeroAfiliado, 19);
-    cout << "Fecha de Nacimiento: " << endl;
-    ///_dateB.cargar();
+    cout << "Fecha de Nacimiento" << endl;
+    _dateB.cargar();
     
 }
 void Paciente::mostrar(){

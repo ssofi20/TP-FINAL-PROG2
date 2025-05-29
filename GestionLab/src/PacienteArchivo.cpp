@@ -80,7 +80,7 @@ bool PacienteArchivo::guardar(Paciente paciente){
 //GUARDA UN REGISTRO EN LA POSCION DADA
 bool PacienteArchivo::guardar(Paciente paciente, int posicion){
     
-    FILE *pFile = fopen(_fileName.c_str(), "ab");
+    FILE *pFile = fopen(_fileName.c_str(), "rb+");
     if(pFile == nullptr){
         return false;
     }

@@ -16,6 +16,7 @@ void PacienteManager::opcion1()
     {
         cout << "No se pudo guardar el paciente. ";
     }
+    system("pause");
 }
 
 //Buscar un paciente.
@@ -32,22 +33,32 @@ void PacienteManager::opcion2()
     }
     Paciente obj = _archivo.leer(pos);
     obj.mostrar();
+    system("pause");
 }
 
-//Editar información de un paciente segun DNI
+//Editar informacion de un paciente por DNI
 void PacienteManager::opcion3()
 {
     int dni;
-    cout<<"Ingrese el DNI del paciente a modificar: ";
-    cin>>dni;
+    cout << "Ingrese el DNI del paciente a modificar: ";
+    cin >> dni;
+    
     int pos = _archivo.buscar(dni);
-    if(pos<0)
+    if(pos < 0)
     {
         cout<<"No existe un paciente con ese DNI en el archivo."<<endl;
+        system("pause");
         return;
     }
+    
     Paciente obj;
+    
     obj = _archivo.leer(pos);
+    
+    system("cls");
+    cout << "Datos del paciente buscado" << endl;
+    obj.mostrar();
+    
     int opc;
     cout<<"Ingrese la opcion del dato que quiere modificar: " << endl << endl;
     cout<<"1- Modificar DNI." << endl;
@@ -60,6 +71,7 @@ void PacienteManager::opcion3()
     cout<<"9- Modificar fecha de nacimiento." << endl;
     cout <<"0- Volver al menu anterior." << endl;
     cin >> opc;
+    
     switch(opc)
     {
     case 1:
@@ -267,7 +279,7 @@ void PacienteManager::opcion6()
     {
         Paciente registro = _archivo.leer(i);
         cout << "-------------------------" << endl;
-        //mostrar(registro);
+        registro.mostrar();
         cout << "-------------------------" << endl << endl;
     }
     system("pause");
