@@ -1,5 +1,8 @@
 #include "Fecha.h"
 #include <ctime>
+#include <iostream>
+
+using namespace std;
 
 //CONSTRUCTORES
 Fecha::Fecha(){
@@ -101,5 +104,16 @@ void Fecha::setFechaActual(){
     _dia = now->tm_mday;
     _mes = now->tm_mon + 1;
     _anio = now->tm_year + 1900;
+}
+
+void Fecha::cargar(){
+    
+    cout << "Dia: ";
+    cin >> _dia;
+    cout << "Mes: ";
+    cin >> _mes;
+    cout << "Anio: ";
+    cin >> _anio;
+
 }
 

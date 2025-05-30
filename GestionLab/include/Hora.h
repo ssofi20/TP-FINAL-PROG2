@@ -25,6 +25,7 @@ class Hora
 
      /// Metodo de clase
         std::string toString();
+        void cargar();
 
 };
 

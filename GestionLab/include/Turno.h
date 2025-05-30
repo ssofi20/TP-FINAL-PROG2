@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include "Hora.h"
 #include "Fecha.h"
 
@@ -34,5 +35,9 @@ class Turno
         Fecha getFechaProgramada();
         Hora getHoraProgramada();
         int getEstadoTurno();
+        
+        ///Metodos de la clase
+        void cargar();
+        std::string toString();
 };
 

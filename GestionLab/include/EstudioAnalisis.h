@@ -17,6 +17,9 @@ class EstudioAnalisis
         const char * getIDEstudio();
         int getIDAnalisis();
         bool getEstado();
+        
+        //Metodos de la clase
+        void cargar();
 
     private:
         

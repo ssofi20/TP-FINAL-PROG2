@@ -55,7 +55,7 @@ int TurnoArchivo::buscar(int IDTurno, int DNIPaciente){
 
 bool TurnoArchivo::guardar(Turno registro){
     
-    FILE *pFile = fopen(_nombreArchivo.c_str(), "rb");
+    FILE *pFile = fopen(_nombreArchivo.c_str(), "ab");
     if(pFile == nullptr){
         return false;
     }
@@ -67,7 +67,7 @@ bool TurnoArchivo::guardar(Turno registro){
 }
 bool TurnoArchivo::guardar(Turno registro, int posicion){
     
-    FILE *pFile = fopen(_nombreArchivo.c_str(), "rb");
+    FILE *pFile = fopen(_nombreArchivo.c_str(), "rb+");
     if(pFile == nullptr){
         return false;
     }

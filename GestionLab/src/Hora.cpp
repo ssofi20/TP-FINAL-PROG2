@@ -1,4 +1,7 @@
 #include "Hora.h"
+#include <iostream>
+
+using namespace std;
 
 /// Constructores
 
@@ -42,6 +45,17 @@ int Hora::getHora()
 int Hora::getMinuto()
 {
     return _minuto;
+}
+
+
+///Metodos de la clase
+
+void Hora::cargar(){
+
+    cin >> _hora;
+    cout << ":";
+    cin >> _minuto;
+    
 }
 
 std::string Hora::toString()

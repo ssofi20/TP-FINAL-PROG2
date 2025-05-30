@@ -1,4 +1,7 @@
 #include "Turno.h"
+#include <iostream>
+
+using namespace std;
 
 /// Constructores
 
@@ -71,4 +74,29 @@ Hora Turno::getHoraProgramada()
 int Turno::getEstadoTurno()
 {
     return _estadoTurno;
+}
+
+///Metodos de la clase
+void Turno::cargar(){
+    
+    cout << "ID Turno: "; 
+    cin >> _IDTurno;
+    
+    cout << "DNI Paciente: ";
+    cin >> _DNIPaciente;
+    
+    cout << "Fecha programada: ";
+    _fechaProgramada.cargar();
+    
+    cout << "Hora programada: ";
+    _horaProgramada.cargar();
+    
+    _estadoTurno = true;
+    
+}
+
+std::string Turno::toString(){
+    
+    return std::to_string(_IDTurno) + ", " +std::to_string(_DNIPaciente) + ", " + _fechaProgramada.toString() + ", " + _horaProgramada.toString();
+    
 }

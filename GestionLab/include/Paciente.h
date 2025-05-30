@@ -1,7 +1,8 @@
 #pragma once
-#include "Fecha.h"
 #include <cstring>
-            
+#include "Fecha.h"
+#include "FuncionesGlobales.h"
+
 class Paciente
 {
     public:
@@ -32,6 +33,10 @@ class Paciente
         Fecha getDateB() const;
         bool getEstado()const;
         
+        //METODOS CARGAR Y MOSTRAR 
+        void cargar();
+        void mostrar();
+        
     private:
         int _DNI;
         char _nombre[30];
@@ -42,5 +47,7 @@ class Paciente
         char _numeroAfiliado[11];
         Fecha _dateB;
         bool _estado;
+        
+        
 };
 

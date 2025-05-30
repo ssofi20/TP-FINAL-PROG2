@@ -81,7 +81,7 @@ bool TipoMuestraArchivo::guardar(TipoMuestra registro)
 
 bool TipoMuestraArchivo::guardar(TipoMuestra registro, int posicion)
 {
-    FILE *pFile = fopen(_nombreArchivo.c_str() , "ab");
+    FILE *pFile = fopen(_nombreArchivo.c_str() , "ab+");
     if (pFile == nullptr)
     {
         return -1;

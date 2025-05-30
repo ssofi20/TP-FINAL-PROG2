@@ -47,7 +47,7 @@ bool EstudioAnalisisArchivo::guardar(EstudioAnalisis registro){
 
 bool EstudioAnalisisArchivo::guardar(EstudioAnalisis registro, int posicion){
 
-    FILE *pFile = fopen(_nombreArchivo.c_str(), "rb");
+    FILE *pFile = fopen(_nombreArchivo.c_str(), "rb+");
     if(pFile == nullptr){
         return false;
     }

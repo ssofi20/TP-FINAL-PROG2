@@ -90,7 +90,7 @@ bool TipoAnalisisArchivo::guardar(TipoAnalisis registro)
 
 bool TipoAnalisisArchivo::guardar(TipoAnalisis registro, int posicion)
 {
- FILE *pFile = fopen(_nombreArchivo.c_str(), "ab");
+ FILE *pFile = fopen(_nombreArchivo.c_str(), "rb+");
     if(pFile == nullptr){
         return false;
     }
