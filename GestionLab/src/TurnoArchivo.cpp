@@ -33,7 +33,7 @@ Turno TurnoArchivo::leer(int posicion){
     
 }
 
-int TurnoArchivo::buscar(int IDTurno, int DNIPaciente){
+int TurnoArchivo::buscar(int IDTurno){
     
     FILE *pFile = fopen(_nombreArchivo.c_str(), "rb");
     if(pFile == nullptr){
@@ -46,7 +46,7 @@ int TurnoArchivo::buscar(int IDTurno, int DNIPaciente){
     for(int i = 0; i < cant; i++){
         
         registro = leer(i);
-        if(registro.getIDTurno() == IDTurno && registro.getDNIPaciente() == DNIPaciente){
+        if(registro.getIDTurno() == IDTurno){
             return i;
         }
     }
