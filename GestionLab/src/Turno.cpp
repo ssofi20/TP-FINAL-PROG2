@@ -85,10 +85,10 @@ void Turno::cargar(){
     cout << "DNI Paciente: ";
     cin >> _DNIPaciente;
     
-    cout << "Fecha programada: ";
+    cout << "Fecha programada: " << endl;
     _fechaProgramada.cargar();
     
-    cout << "Hora programada: ";
+    cout << "Hora programada: " << endl;
     _horaProgramada.cargar();
     
     _estadoTurno = 1;

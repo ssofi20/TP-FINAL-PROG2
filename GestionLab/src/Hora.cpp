@@ -52,13 +52,14 @@ int Hora::getMinuto()
 
 void Hora::cargar(){
 
+    cout << "Hora: ";
     cin >> _hora;
-    cout << ":";
+    cout << "Minuto: ";
     cin >> _minuto;
     
 }
 
 std::string Hora::toString()
 {
-    return std::to_string(_hora) + "/" + std::to_string(_minuto);
+    return std::to_string(_hora) + ":" + std::to_string(_minuto);
 }

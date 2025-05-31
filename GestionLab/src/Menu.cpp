@@ -80,13 +80,13 @@ void Menu::menuGestionTurnos()
         switch (opc)
         {
         case 1:
-            //manager.opcion1();
+            manager.opcion1();
             break;
         case 2:
-            //manager.opcion2();
+            manager.opcion2();
             break;
         case 3:
-            //manager.opcion3();
+            manager.opcion3();
             break;
         case 4:
             manager.opcion4();
