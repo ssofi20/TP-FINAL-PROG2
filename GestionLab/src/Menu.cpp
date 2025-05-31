@@ -56,6 +56,54 @@ void Menu::menuGestionPacientes()
     }
 }
 
+void Menu::menuGestionTurnos()
+{
+
+    TurnoManager manager;
+
+    int opc;
+    while(true){
+
+        system("cls");
+        cout << "Menu Turnos" << endl;
+        cout << "-------------------------------------" << endl;
+        cout << "1. Agendar nuevo turno " << endl;
+        cout << "2. Reprogramar turno " << endl;
+        cout << "3. Modificar estado de un turno " << endl;
+        cout << "4. Buscar turnos de un paciente  " << endl;
+        cout << "5. Mostrar lista de turnos  " << endl;
+        cout << "0. Volver al menu anterior  " << endl;
+        cout << "-------------------------------------" << endl;
+        cout << "Ingrese la opcion deseada: ";
+        cin >> opc;
+        system ("cls");
+        switch (opc)
+        {
+        case 1:
+            //manager.opcion1();
+            break;
+        case 2:
+            //manager.opcion2();
+            break;
+        case 3:
+            //manager.opcion3();
+            break;
+        case 4:
+            manager.opcion4();
+            break;
+        case 5:
+            manager.opcion5();
+            break;
+        case 0:
+            return;
+        default:
+            cout << "Opcion incorrecta! Intente nuevamente" << endl;
+            system("pause");
+            break;
+        }
+    }
+}
+
 void Menu::menuGestiones()
 {
     int opc;
@@ -79,7 +127,7 @@ void Menu::menuGestiones()
             menuGestionPacientes();
             break;
         case 2:
-            ///menuGestionTurnos();
+            menuGestionTurnos();
             break;
         case 3:
            /// menuGestionEstudios();

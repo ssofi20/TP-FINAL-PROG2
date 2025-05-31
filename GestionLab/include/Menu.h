@@ -1,5 +1,6 @@
 #pragma once
 #include "PacienteManager.h"
+#include "TurnoManager.h"
 
 class Menu
 {
