@@ -8,6 +8,7 @@ void TurnoManager::opcion1(){
 
     Turno registro;
     registro.cargar();
+    
     if(_archivo.guardar(registro)){
         cout << "El Turno se registro correctamente" << endl;
     } 
@@ -122,7 +123,7 @@ void TurnoManager::opcion4()
     int dni;
     int cantidad = _archivo.cantidadRegistros();
 
-    cout << "Ingrese el DNI del paciente por el que quiere consultar: " << endl;
+    cout << "Ingrese el DNI del paciente por el que quiere consultar: ";
     cin >> dni;
 
     for (int i = 0; i < cantidad; i++)
