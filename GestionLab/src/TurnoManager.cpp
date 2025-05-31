@@ -7,21 +7,23 @@ using namespace std;
 /// Buscar turnos del paciente
 void TurnoManager::opcion4()
 {
-    TurnoArchivo registro;
-    int dni, idTurno;
+    Turno registro;
+    int dni;
+    int cantidad = _archivo.cantidadRegistros();
 
     cout << "Ingrese el DNI del paciente por el que quiere consultar: " << endl;
     cin >> dni;
-    cout << "Ingrese el ID del turno: " << endl;
-    cin >> idTurno;
-    int pos = _archivo.buscar( idTurno, dni);
-    if (pos < 0)
+
+    for (int i = 0; i < cantidad; i++)
     {
-        cout << "El nro. de DNI no existe en el archivo. " << endl;
-        return;
+        registro = _archivo.leer(i);
+        if (registro.getDNIPaciente()==dni)
+        {
+            cout << "-------------------------" << endl;
+            registro.toString();
+            cout << "-------------------------" << endl << endl;
+        }
     }
-    Turno obj = _archivo.leer(pos);
-    cout << obj.toString() << endl;
     system("pause");
 }
 
@@ -31,18 +33,11 @@ void TurnoManager::opcion5()
     cout << "Listado de turnos" << endl;
     int cantidad = _archivo.cantidadRegistros();
 
-    Turno *vecReg = new Turno[cantidad];
-    if(vecReg == nullptr){
-        cout << "Error al pedir memoria" << endl;
-        return;
-    }
-    for (int i = 0; i < cantidad; i++){
-            vecReg[i] = _archivo.leer(i);
-    }
     for (int i=0; i < cantidad; i++)
     {
         Turno registro = _archivo.leer(i);
-        if(registro.getEstadoTurno()){
+        if(registro.getEstadoTurno())
+        {
             cout << "-------------------------" << endl;
             registro.toString();
             cout << "-------------------------" << endl << endl;
