@@ -65,7 +65,7 @@ void TurnoManager::opcion2(){
 ///Modificar estado de un turno
 void TurnoManager::opcion3(){
     
-     int IDTurno;
+    int IDTurno;
     cout << "Ingrese el ID del turno a modificar: ";
     cin >> IDTurno;
     
@@ -128,10 +128,10 @@ void TurnoManager::opcion4()
     for (int i = 0; i < cantidad; i++)
     {
         registro = _archivo.leer(i);
-        if (registro.getDNIPaciente()==dni)
+        if (registro.getDNIPaciente() == dni)
         {
             cout << "-------------------------" << endl;
-            registro.toString();
+            registro.mostrar();
             cout << "-------------------------" << endl << endl;
         }
     }
@@ -144,13 +144,13 @@ void TurnoManager::opcion5()
     cout << "Listado de turnos" << endl;
     int cantidad = _archivo.cantidadRegistros();
 
-    for (int i=0; i < cantidad; i++)
+    for (int i = 0; i < cantidad; i++)
     {
         Turno registro = _archivo.leer(i);
         if(registro.getEstadoTurno())
         {
             cout << "-------------------------" << endl;
-            registro.toString();
+            registro.mostrar();
             cout << "-------------------------" << endl << endl;
         }
     }

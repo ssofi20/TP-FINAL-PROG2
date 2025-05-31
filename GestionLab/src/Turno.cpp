@@ -91,12 +91,33 @@ void Turno::cargar(){
     cout << "Hora programada: ";
     _horaProgramada.cargar();
     
-    _estadoTurno = true;
+    _estadoTurno = 1;
     
 }
 
-std::string Turno::toString(){
+void Turno::mostrar(){
     
-    return std::to_string(_IDTurno) + ", " +std::to_string(_DNIPaciente) + ", " + _fechaProgramada.toString() + ", " + _horaProgramada.toString();
+    cout << "ID Turno: " << _IDTurno << endl;
+    cout << "DNI Paciente: " << _DNIPaciente << endl;
+    cout << "Fecha: " << _fechaProgramada.toString() << endl;
+    cout << "Hora: "  << _horaProgramada.toString() << endl;
+    cout << "Estado del turno: ";
     
+    switch(_estadoTurno){
+    case 1:
+        cout << "Pendiente" << endl;
+        break;
+    case 2:
+        cout << "Confirmado" << endl;
+        break;
+    case 3:
+        cout << "Finalizado" << endl;
+        break;
+    case 4:
+        cout << "Cancelado" << endl;
+        break;
+    case 5:
+        cout << "Ausente" << endl;
+        break;
+    }
 }
