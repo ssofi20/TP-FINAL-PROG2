@@ -39,6 +39,7 @@
 		<Unit filename="include/EstudioAnalisis.h" />
 		<Unit filename="include/EstudioAnalisisArchivo.h" />
 		<Unit filename="include/EstudioArchivo.h" />
+		<Unit filename="include/EstudioManager.h" />
 		<Unit filename="include/Fecha.h" />
 		<Unit filename="include/FuncionesGlobales.h" />
 		<Unit filename="include/Hora.h" />
@@ -58,6 +59,7 @@
 		<Unit filename="src/EstudioAnalisis.cpp" />
 		<Unit filename="src/EstudioAnalisisArchivo.cpp" />
 		<Unit filename="src/EstudioArchivo.cpp" />
+		<Unit filename="src/EstudioManager.cpp" />
 		<Unit filename="src/Fecha.cpp" />
 		<Unit filename="src/FuncionesGlobales.cpp" />
 		<Unit filename="src/Hora.cpp" />
