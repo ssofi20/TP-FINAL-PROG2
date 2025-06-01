@@ -1,6 +1,9 @@
 #include "Estudio.h"
+#include <iostream>
 
- /// Constructores
+using namespace std;
+
+/// Constructores
 
 Estudio::Estudio()
 {
@@ -85,3 +88,29 @@ bool Estudio::getEstado()
 {
     return _estado;
 }
+
+//METODOS CARGAR Y MOSTRAR
+void Estudio::cargar()
+{
+    cout << "ID del estudio: ";
+    cargarCadena(_IDEstudio, 11);
+    cout << "DNI: ";
+    cin >> _DNI;
+     cout << "Estado del estudio: ";
+    cin >> _estadoEstudio;
+    cout << "Sala: ";
+    cargarCadena(_sala, 5);
+    cout << "ID turno: ";
+   cin >> _IDTurno;
+    _estado = true;
+}
+
+void Estudio::mostrar()
+{
+    cout << "ID ESTUDIO: " << _IDEstudio << endl;
+    cout << "DNI: " << _DNI << endl;
+    cout << "ESTADO DEL ESTUDIO: " << _estadoEstudio << endl;
+    cout << "SALA: " << _sala << endl;
+    cout << "ID TURNO: " << _IDTurno << endl;
+}
+
