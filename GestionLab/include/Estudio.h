@@ -1,5 +1,6 @@
 #pragma once
 #include "Turno.h"
+#include "FuncionesGlobales.h"
 #include <cstring>
 
 class Estudio
@@ -14,7 +15,7 @@ class Estudio
         bool _estado;
 
     public:
-        
+
         /// Constructores
 
         Estudio();
@@ -37,6 +38,10 @@ class Estudio
         const char *getSala();
         int getIDTurno();
         bool getEstado();
+
+        ///METODOS CARGAR Y MOSTRAR
+        void cargar();
+        void mostrar();
 
 };
 
