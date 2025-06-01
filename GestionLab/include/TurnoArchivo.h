@@ -5,7 +5,7 @@ class TurnoArchivo
 {
     public:
         
-        TurnoArchivo(std::string nombreArchivo = "Turnos.dat");
+        TurnoArchivo(std::string nombreArchivo = "archivos/Turnos.dat");
         
         int cantidadRegistros();
         Turno leer(int posicion);

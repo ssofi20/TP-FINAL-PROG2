@@ -9,14 +9,15 @@ private:
 
 public:
 
-    ///Registrar nuevo estudio.
+    ///Registrar nuevo estudio
     void opcion1();
-    /// Eliminar estudios
+    ///Eliminar estudios
     void opcion2();
 
     /// Sofi
     void opcion3();
     void opcion4();
+    void opcion5();
 
 };
 

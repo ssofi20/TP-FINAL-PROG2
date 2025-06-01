@@ -104,6 +104,54 @@ void Menu::menuGestionTurnos()
     }
 }
 
+void Menu::menuGestionEstudios()
+{
+
+    EstudioManager manager;
+
+    int opc;
+    while(true){
+
+        system("cls");
+        cout << "Menu Estudios" << endl;
+        cout << "-------------------------------------" << endl;
+        cout << "1. Registrar nuevo estudio" << endl;
+        cout << "2. Eliminar estudio" << endl;
+        cout << "3. Modificar un estudio" << endl;
+        cout << "4. Buscar un estudio" << endl;
+        cout << "5. Listar todos los estudios" << endl;
+        cout << "0. Volver al menu anterior  " << endl;
+        cout << "-------------------------------------" << endl;
+        cout << "Ingrese la opcion deseada: ";
+        cin >> opc;
+        system ("cls");
+        switch (opc)
+        {
+        case 1:
+            manager.opcion1();
+            break;
+        case 2:
+            manager.opcion2();
+            break;
+        case 3:
+            manager.opcion3();
+            break;
+        case 4:
+            manager.opcion4();
+            break;
+        case 5:
+            manager.opcion5();
+            break;
+        case 0:
+            return;
+        default:
+            cout << "Opcion incorrecta! Intente nuevamente" << endl;
+            system("pause");
+            break;
+        }
+    }
+}
+
 void Menu::menuGestiones()
 {
     int opc;
@@ -130,10 +178,10 @@ void Menu::menuGestiones()
             menuGestionTurnos();
             break;
         case 3:
-           /// menuGestionEstudios();
+            menuGestionEstudios();
             break;
         case 4:
-           /// menuGestionDatosSistema();
+            //menuGestionDatosSistema();
             break;
         case 0:
             return;
