@@ -93,7 +93,7 @@ void Turno::cargar(){
     
         if(_fechaProgramada.getMes() == 0 || _fechaProgramada.getAnio() == 0){
             cout << _fechaProgramada.toString() << endl;    
-            cout << "Fecha invalida! Pruebe nuevamente" << endl;
+            cout << endl << "Fecha invalida! Pruebe nuevamente" << endl << endl;
         } 
         else {
             invalido = false;

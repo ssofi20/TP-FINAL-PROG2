@@ -30,7 +30,7 @@ void Menu::menuGestionPacientes()
         {
         case 1:
             manager.opcion1();
-             break;
+            break;
         case 2:
             manager.opcion2();
             break;
