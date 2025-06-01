@@ -79,7 +79,7 @@ int Turno::getEstadoTurno()
 ///Metodos de la clase
 void Turno::cargar(){
     
-    bool valido = false;
+    bool invalido = true;
     
     cout << "ID Turno: "; 
     cin >> _IDTurno;
@@ -87,20 +87,21 @@ void Turno::cargar(){
     cout << "DNI Paciente: ";
     cin >> _DNIPaciente;
     
-    while(!valido){
+    while(invalido){
         cout << "Fecha programada: " << endl;
         _fechaProgramada.cargar();
     
         if(_fechaProgramada.getMes() == 0 || _fechaProgramada.getAnio() == 0){
+            cout << _fechaProgramada.toString() << endl;    
             cout << "Fecha invalida! Pruebe nuevamente" << endl;
         } 
         else {
-            valido = true;
+            invalido = false;
         }
     }
     
-    valido = false;
-    while(!valido){
+    invalido = true;
+    while(invalido){
             
         cout << "Hora programada: " << endl;
         _horaProgramada.cargar();
@@ -108,7 +109,7 @@ void Turno::cargar(){
             cout << "Hora invalida! Pruebe nuevamente" << endl;
         }
         else {
-            valido = true;
+            invalido = false;
         }
         
     }

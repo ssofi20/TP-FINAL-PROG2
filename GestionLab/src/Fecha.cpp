@@ -86,7 +86,7 @@ void Fecha::setMes(int mes){
 }
 
 void Fecha::setAnio(int anio){
-    if(anio <= 1900){
+    if(anio >= 1900){
         _anio = anio;
     }     
     else {
