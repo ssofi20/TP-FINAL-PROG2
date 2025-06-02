@@ -1,6 +1,10 @@
 #pragma once
 #include "EstudioArchivo.h"
 #include "Estudio.h"
+#include "EstudioAnalisis.h"
+#include "EstudioAnalisisArchivo.h"
+#include "TipoAnalisis.h"
+#include "TipoAnalisisArchivo.h"
 
 class EstudioManager
 {
