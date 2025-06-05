@@ -173,8 +173,8 @@ void Menu::menuGestionDatosSistema(){
         cout << "   6. Eliminar un tipo de analisis" << endl;
         cout << "   7. Modificar un tipo de analisis" << endl;
         cout << "   8. Listar todos los tipos de analisis" << endl;
-        cout << "0. Volver al menu anterior  " << endl;
         cout << "-------------------------------------" << endl;
+        cout << "0. Volver al menu anterior  " << endl;
         cout << "Ingrese la opcion deseada: ";
         cin >> opc;
         system ("cls");

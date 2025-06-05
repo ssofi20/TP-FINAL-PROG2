@@ -37,7 +37,7 @@ void TipoMuestraManager::opcion1(){
     else {
         cout << "No se ha podido guardar :(" << endl;
     }
-    system("pasuse");
+    system("pause");
 }
 
 ///Dar de baja un tipo de muestra
@@ -64,7 +64,7 @@ void TipoMuestraManager::opcion2(){
 
     if(!encontrado){
         cout << "El ID ingresado no existe en el archivo" << endl;
-        system("pasuse");
+        system("pause");
         return;
     }
 
@@ -78,7 +78,7 @@ void TipoMuestraManager::opcion2(){
 void TipoMuestraManager::opcion3(){
 
     int IDTipo;
-    cout << "Ingrese el ID de tipo de muestra que desea dar de baja: ";
+    cout << "Ingrese el ID de tipo de muestra que desea modificar: ";
     cin >> IDTipo;
 
     int cant = _archivo.cantidadRegistros();
@@ -89,11 +89,17 @@ void TipoMuestraManager::opcion3(){
 
     for(int i = 0; i < cant; i++){
         registro = _archivo.leer(i);
-        if(registro.getIDMuestra() == IDTipo){
+        if(registro.getIDMuestra() == IDTipo && registro.getEstado()){
             encontrado = true;
             posicion = i;
             break;
         }
+    }
+
+    if(!encontrado){
+        cout << "El ID ingresado no existe en el archivo" << endl;
+        system("pause");
+        return;
     }
 
     char newNombre[35];
@@ -120,11 +126,12 @@ void TipoMuestraManager::opcion4(){
     for(int i = 0; i < cantidad; i++){
 
         registro = _archivo.leer(i);
-
-        cout << "------------------------" << endl;
-        cout << "ID Tipo Muestra: " << registro.getIDMuestra() << endl;
-        cout << "Nombre: " << registro.getNombre() << endl;
-        cout << "------------------------" << endl;
+        if(registro.getEstado()){
+            cout << "------------------------" << endl;
+            cout << "ID Tipo Muestra: " << registro.getIDMuestra() << endl;
+            cout << "Nombre: " << registro.getNombre() << endl;
+            cout << "------------------------" << endl;
+        }
     }
     system("pause");
 }
