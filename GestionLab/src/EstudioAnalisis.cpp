@@ -4,18 +4,18 @@
 using namespace std;
 
 EstudioAnalisis::EstudioAnalisis(){
-    
+
     strcpy(_IDEstudio, "0");
     _IDAnalisis = 0;
     _estado = true;
-    
+
 }
 EstudioAnalisis::EstudioAnalisis(const char *IDEstudio, int IDAnalisis){
     setIDEstudio(IDEstudio);
     setIDAnalisis(IDAnalisis);
     setEstado(true);
 }
-        
+
 //SETTERS
 void EstudioAnalisis::setIDEstudio(const char *IDEstudio){
     strcpy(_IDEstudio, IDEstudio);
@@ -47,5 +47,5 @@ void EstudioAnalisis::cargar(){
     cout << "ID Analisis: ";
     cin >> _IDAnalisis;
     _estado = true;
-    
+
 }

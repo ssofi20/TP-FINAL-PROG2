@@ -5,11 +5,16 @@
 #include "EstudioAnalisisArchivo.h"
 #include "TipoAnalisis.h"
 #include "TipoAnalisisArchivo.h"
+#include "TipoMuestraArchivo.h"
 
 class EstudioManager
 {
 private:
+
     EstudioArchivo _archivo;
+    EstudioAnalisisArchivo _archivoIntermedio;
+    TipoAnalisisArchivo _archivoAnalisis;
+    TipoMuestraArchivo _archivoMuestra;
 
 public:
 

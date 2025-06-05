@@ -5,6 +5,22 @@ void EstudioManager::opcion1()
 {
     Estudio obj;
     obj.cargar();
+
+    int idAnalisis = 1;
+    while(idAnalisis != 0){
+        cout << "ID del analisis: ";
+        cin >> idAnalisis;
+
+        EstudioAnalisis reg;
+
+        reg.setIDAnalisis(idAnalisis);
+        reg.setIDEstudio(obj.getIDEstudio());
+        reg.setEstado(true);
+        if(!_archivoIntermedio.guardar(reg)){
+            cout << "No se pudo guardar" << endl;
+        }
+    }
+
     if (_archivo.guardar(obj))
     {
         cout << "Se ha registrado exitosamente!" << endl;
@@ -162,8 +178,21 @@ void EstudioManager::opcion4()
     Estudio registro = _archivo.leer(pos);
 
     registro.mostrar();
+
+    int cant = _archivoIntermedio.cantidadRegistros();
+    int cantAnalisis = _archivoAnalisis.cantidadRegistros();
+
+    for(int i = 0; i < cant; i++){
+        EstudioAnalisis reg = _archivoIntermedio.leer(i);
+        if(strcmp(reg.getIDEstudio(), idEstudio) == 0){
+            ///Tipo Analisis
+            cout << "Analisis Realizados: " << endl;
+            int pos = _archivoAnalisis.buscar(reg.getIDAnalisis());
+            TipoAnalisis obj = _archivoAnalisis.leer(pos);
+            cout << obj.getNombre() << endl;
+        }
+    }
     system("pause");
-    //Pensar solucion de como mostrar los analisis realizados
 }
 
 ///Listado de estudios
