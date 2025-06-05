@@ -77,9 +77,43 @@ void TipoMuestraManager::opcion2(){
 ///Modificar un tipo de muestra
 void TipoMuestraManager::opcion3(){
 
+    int IDTipo;
+    cout << "Ingrese el ID de tipo de muestra que desea dar de baja: ";
+    cin >> IDTipo;
+
+    int cant = _archivo.cantidadRegistros();
+
+    bool encontrado = false;
+    int posicion;
+    TipoMuestra registro;
+
+    for(int i = 0; i < cant; i++){
+        registro = _archivo.leer(i);
+        if(registro.getIDMuestra() == IDTipo){
+            encontrado = true;
+            posicion = i;
+            break;
+        }
+    }
+
+    //DATOS A MODIFICAR
+
 }
 
 ///Listar todos los tipos de muestras
 void TipoMuestraManager::opcion4(){
 
+    int cantidad = _archivo.cantidadRegistros();
+    TipoMuestra registro;
+
+    for(int i = 0; i < cantidad; i++){
+
+        registro = _archivo.leer(i);
+
+        cout << "------------------------" << endl;
+        cout << "ID Tipo Muestra: " << registro.getIDMuestra() << endl;
+        cout << "Nombre: " << registro.getNombre() << endl;
+        cout << "------------------------" << endl;
+    }
+    system("pause");
 }
