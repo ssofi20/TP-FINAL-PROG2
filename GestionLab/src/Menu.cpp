@@ -1,7 +1,6 @@
 #include "Menu.h"
 #include <iostream>
 
-
 using namespace std;
 
 void Menu::menuGestionPacientes()
@@ -152,6 +151,70 @@ void Menu::menuGestionEstudios()
     }
 }
 
+void Menu::menuGestionDatosSistema(){
+
+    int opc;
+
+    //TipoAnalisisManager mTipoAnalisis;
+    TipoMuestraManager mTipoMuestra;
+
+    while(true){
+
+        system("cls");
+        cout << "Menu Gestion Datos del Sistema" << endl;
+        cout << "-------------------------------------" << endl;
+        cout << "Tipos de Muestras" << endl;
+        cout << "   1. Agregar tipo de muestra" << endl;
+        cout << "   2. Eliminar un tipo de muestra" << endl;
+        cout << "   3. Modificar un tipo de muestra" << endl;
+        cout << "   4. Listar todos los tipos de muestras" << endl;
+        cout << "-------------------------------------" << endl;
+        cout << "   5. Agregar tipo de analisis" << endl;
+        cout << "   6. Eliminar un tipo de analisis" << endl;
+        cout << "   7. Modificar un tipo de analisis" << endl;
+        cout << "   8. Listar todos los tipos de analisis" << endl;
+        cout << "0. Volver al menu anterior  " << endl;
+        cout << "-------------------------------------" << endl;
+        cout << "Ingrese la opcion deseada: ";
+        cin >> opc;
+        system ("cls");
+
+        switch(opc){
+            case 1:
+                mTipoMuestra.opcion1();
+                break;
+            case 2:
+                mTipoMuestra.opcion2();
+                break;
+            case 3:
+                mTipoMuestra.opcion3();
+                break;
+            case 4:
+                mTipoMuestra.opcion4();
+                break;
+            case 5:
+                //mTipoAnalisis.opcion1();
+                break;
+            case 6:
+                //mTipoAnalisis.opcion2();
+                break;
+            case 7:
+                //mTipoAnalisis.opcion3();
+                break;
+            case 8:
+                //mTipoAnalisis.opcion3();
+                break;
+            case 0:
+                return;
+            default:
+                cout << "Opcion incorrecta! Intente nuevamente" << endl;
+                system("pause");
+                break;
+        }
+
+    }
+}
+
 void Menu::menuGestiones()
 {
     int opc;
@@ -181,7 +244,7 @@ void Menu::menuGestiones()
             menuGestionEstudios();
             break;
         case 4:
-            //menuGestionDatosSistema();
+            menuGestionDatosSistema();
             break;
         case 0:
             return;

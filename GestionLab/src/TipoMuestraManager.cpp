@@ -96,8 +96,19 @@ void TipoMuestraManager::opcion3(){
         }
     }
 
-    //DATOS A MODIFICAR
+    char newNombre[35];
+    cout << "Ingrese el nuevo nombre ";
+    cargarCadena(newNombre, 34);
 
+    registro.setNombre(newNombre);
+
+    if(_archivo.guardar(registro, posicion)){
+        cout << "El registro fue modificado exitosamente!" << endl;
+    }
+    else {
+        cout << "El registro no pudo ser modificado" << endl;
+    }
+    system("pause");
 }
 
 ///Listar todos los tipos de muestras
