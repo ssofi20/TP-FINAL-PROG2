@@ -169,39 +169,6 @@ void EstudioManager::opcion4()
 ///Listado de estudios
 void EstudioManager::opcion5()
 {
-    char IDEstudio [11];
-
-    cout << "Ingresar el ID del estudio a listar: " << endl;
-    cargarCadena(IDEstudio, 10);
-
-    system ("pause");
-
-    int cant = _archivo.cantidadRegistros();
-
-    int pos = _archivo.buscar(IDEstudio);
-    if (pos < 0)
-    {
-        cout << "No se encontro el ID de estudio en el archivo. " << endl;
-        return ;
-    }
-
-
-    for (int i = 0; i < cant; i ++)
-    {
-        EstudioAnalisis obj;
-        EstudioAnalisisArchivo reg;
-        obj = reg.leer(i);
-
-        if (strcmp(obj.getIDEstudio(),IDEstudio))
-        {
-            TipoAnalisis objeto;
-            TipoAnalisisArchivo registro;
-            objeto = registro.leer(i);
-            objeto.getNombre();
-        }
-    }
-
-    /*
     int cantidad = _archivo.cantidadRegistros();
     cout << "Listado de estudios" << endl << endl;
 
@@ -215,6 +182,8 @@ void EstudioManager::opcion5()
             cout << "-------------------------" << endl << endl;
         }
     }
-    system("pause");*/
+    system("pause");
+
+    //Pensar como mostrar todos los analisis realizados
 }
 
