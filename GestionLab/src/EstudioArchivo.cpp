@@ -56,7 +56,7 @@ int EstudioArchivo::buscar(const char* IDEstudio)
     int cantidad = cantidadRegistros();
     for(int i = 0; i < cantidad; i++){
         estudio = leer(i);
-        if ( strcmp(estudio.getIDEstudio(), IDEstudio))
+        if (strcmp(estudio.getIDEstudio(), IDEstudio) == 0)
         {
             return i;
         }

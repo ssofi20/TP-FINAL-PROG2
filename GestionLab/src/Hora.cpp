@@ -24,6 +24,9 @@ void Hora::setHora (int hora)
     if (hora < 25)
     {
         _hora = hora;
+    } 
+    else {
+        _hora = 0;
     }
 }
 
@@ -32,6 +35,9 @@ void Hora::setMinuto(int minuto)
     if (minuto < 61)
     {
         _minuto = minuto;
+    }
+    else {
+        _minuto = 0;
     }
 }
 
@@ -52,13 +58,18 @@ int Hora::getMinuto()
 
 void Hora::cargar(){
 
-    cin >> _hora;
-    cout << ":";
-    cin >> _minuto;
+    int hora, minutos;
+
+    cout << "Hora: ";
+    cin >> hora;
+    setHora(hora);
+    cout << "Minutos: ";
+    cin >> minutos;
+    setMinuto(minutos);
     
 }
 
 std::string Hora::toString()
 {
-    return std::to_string(_hora) + "/" + std::to_string(_minuto);
+    return std::to_string(_hora) + ":" + std::to_string(_minuto);
 }

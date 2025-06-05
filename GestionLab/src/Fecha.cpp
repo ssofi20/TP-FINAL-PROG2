@@ -62,25 +62,19 @@ void Fecha::setMes(int mes){
     if(mes <= 12 && mes >= 1){
         if(_dia == 31){
             switch(_mes){
-                case 1:
-                case 3:
-                case 5:
-                case 7:
-                case 8:
-                case 10:
-                case 12:
+                case 1: case 3: case 5: case 7: case 8: case 10: case 12:
                     _mes = _mes;
                     break;
-                case 4:
-                case 6:
-                case 9:
-                case 11:
+                default:
                     _mes = 0;
                     break;
             }
         }
-        else if(_dia < 30 && mes == 2){
-            _mes = mes;
+        else if(_dia == 30 && mes == 2){
+            _mes = 0;
+        }
+        else if(_dia == 29 && mes == 2 && !esBisiesto()){
+            _mes = 0;
         }
         else {
             _mes = mes;
@@ -92,8 +86,10 @@ void Fecha::setMes(int mes){
 }
 
 void Fecha::setAnio(int anio){
-    _anio = anio;
-    if((_anio <= 1900) or (_dia == 29 && _mes == 2 && !esBisiesto())){
+    if(anio >= 1900){
+        _anio = anio;
+    }     
+    else {
         _anio = 0;
     }
 }
@@ -108,12 +104,17 @@ void Fecha::setFechaActual(){
 
 void Fecha::cargar(){
     
+    int dia, mes, anio;
+    
     cout << "Dia: ";
-    cin >> _dia;
+    cin >> dia;
+    setDia(dia);
     cout << "Mes: ";
-    cin >> _mes;
+    cin >> mes;
+    setMes(mes);
     cout << "Anio: ";
-    cin >> _anio;
+    cin >> anio;
+    setAnio(anio);
 
 }
 

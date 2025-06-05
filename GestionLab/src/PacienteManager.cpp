@@ -42,7 +42,7 @@ void PacienteManager::opcion3()
     int dni;
     cout << "Ingrese el DNI del paciente a modificar: ";
     cin >> dni;
-    
+
     int pos = _archivo.buscar(dni);
     if(pos < 0)
     {
@@ -50,15 +50,15 @@ void PacienteManager::opcion3()
         system("pause");
         return;
     }
-    
+
     Paciente obj;
-    
+
     obj = _archivo.leer(pos);
-    
+
     system("cls");
     cout << "Datos del paciente buscado" << endl;
     obj.mostrar();
-    
+
     int opc;
     cout<<"Ingrese la opcion del dato que quiere modificar: " << endl << endl;
     cout<<"1- Modificar DNI." << endl;
@@ -71,7 +71,7 @@ void PacienteManager::opcion3()
     cout<<"9- Modificar fecha de nacimiento." << endl;
     cout <<"0- Volver al menu anterior." << endl;
     cin >> opc;
-    
+
     switch(opc)
     {
     case 1:
@@ -191,7 +191,6 @@ void PacienteManager::opcion3()
         }
     }
 }
-
 
 //Dar de baja un paciente
 void PacienteManager::opcion4(){

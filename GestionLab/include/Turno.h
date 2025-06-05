@@ -38,6 +38,6 @@ class Turno
         
         ///Metodos de la clase
         void cargar();
-        std::string toString();
+        void mostrar();
 };
 

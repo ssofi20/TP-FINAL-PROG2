@@ -27,7 +27,7 @@ Estudio::Estudio(const char *IDEstudio, int dni, int estEstudio, const char *sal
 
 /// Setters
 
-void Estudio::setIDEstudio (const char *idEstudio)
+void Estudio::setIDEstudio(const char *idEstudio)
 {
     strcpy(_IDEstudio, idEstudio);
 }
@@ -92,25 +92,50 @@ bool Estudio::getEstado()
 //METODOS CARGAR Y MOSTRAR
 void Estudio::cargar()
 {
-    cout << "ID del estudio: ";
-    cargarCadena(_IDEstudio, 11);
+    char IDEstudio[11];
+    char sala[6];
+    int dni, IDTurno;
+    
+    cout << "ID del estudio: "; 
+    cargarCadena(IDEstudio, 10);
+    setIDEstudio(IDEstudio);
+    
     cout << "DNI: ";
-    cin >> _DNI;
-     cout << "Estado del estudio: ";
-    cin >> _estadoEstudio;
+    cin >> dni;
+    setDNI(dni);
+    
     cout << "Sala: ";
-    cargarCadena(_sala, 5);
+    cargarCadena(sala, 5);
+    setSala(sala);
+    
     cout << "ID turno: ";
-   cin >> _IDTurno;
+    cin >> _IDTurno;
+    setIDTurno(IDTurno);
+    
     _estado = true;
+    _estadoEstudio = 1;
 }
 
 void Estudio::mostrar()
 {
     cout << "ID ESTUDIO: " << _IDEstudio << endl;
     cout << "DNI: " << _DNI << endl;
-    cout << "ESTADO DEL ESTUDIO: " << _estadoEstudio << endl;
     cout << "SALA: " << _sala << endl;
     cout << "ID TURNO: " << _IDTurno << endl;
+    cout << "ESTADO DEL ESTUDIO: ";
+    switch(_estadoEstudio){
+    case 1:
+        cout << "En proceso" << endl;
+        break;
+    case 2:
+        cout << "Esperando resultados" << endl;    
+        break;
+    case 3:
+        cout << "Resultados listos" << endl;
+        break;
+    case 4:
+        cout << "Anulado" << endl;
+        break;
+    }
 }
 

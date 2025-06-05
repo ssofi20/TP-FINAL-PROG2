@@ -1,32 +1,31 @@
 #pragma once
 #include "PacienteManager.h"
+#include "TurnoManager.h"
+#include "EstudioManager.h"
 
-class Menu
-{
-private:
+class Menu {
+    
+    private:
+    //FUNCIONES MENU PRINCIPAL
+        void menuGestionPacientes();
+        void menuGestionTurnos();
+        void menuGestionEstudios();
+        void menuGestionDatosSistema();
 
-//FUNCIONES MENU PRINCIPAL
-    void menuGestionPacientes();
-    void menuGestionTurnos();
-    void menuGestionEstudios();
-    void menuGestionDatosSistema();
+    //FUNCIONES MENU INFORMES
+        void informe1();
+        void informe2();
+        void informe3();
+        void informe4();
+        void informe5();
 
-//FUNCIONES MENU INFORMES
-    void informe1();
-    void informe2();
-    void informe3();
-    void informe4();
-    void informe5();
+    //FUNCIONES MENU CONFIGURACION
+        void copiaSeguridad();
+        void restaurarCopiaSeguridad();
 
-//FUNCIONES MENU CONFIGURACION
-    void copiaSeguridad();
-    void restaurarCopiaSeguridad();
-
-public:
-    void menuGestiones();
-    void menuInformes();
-    void menuConfiguraciones();
-
-
+    public:
+        void menuGestiones();
+        void menuInformes();
+        void menuConfiguraciones();
 };
 
