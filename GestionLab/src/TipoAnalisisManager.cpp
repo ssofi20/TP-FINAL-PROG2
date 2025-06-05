@@ -23,6 +23,7 @@ void TipoAnalisisManager::opcion1()
         else
         {
             cout << "El ID ingresado no es valido." << endl;
+            system("pause");
         }
     }
 
@@ -34,9 +35,9 @@ void TipoAnalisisManager::opcion1()
     {
         cout << "Ingrese el ID del analisis: " << endl;
         cin >> IDAnalisis;
-        if (200<IDAnalisis  && IDAnalisis <100)
+        if (IDAnalisis > 100  && IDAnalisis < 200)
         {
-            return;
+            registro.setIDAnalisis(IDAnalisis);
         }
         else
         {
@@ -52,9 +53,9 @@ void TipoAnalisisManager::opcion1()
     {
         cout << "Ingrese el ID del analisis: " << endl;
         cin >> IDAnalisis;
-        if (300<IDAnalisis  && IDAnalisis <200)
+        if (IDAnalisis > 200  && IDAnalisis < 300)
         {
-            return;
+            registro.setIDAnalisis(IDAnalisis);
         }
         else
         {
@@ -71,9 +72,9 @@ void TipoAnalisisManager::opcion1()
     {
         cout << "Ingrese el ID del analisis: " << endl;
         cin >> IDAnalisis;
-        if (400<IDAnalisis  && IDAnalisis <300)
+        if (IDAnalisis > 300  && IDAnalisis < 400)
         {
-            return;
+            registro.setIDAnalisis(IDAnalisis);
         }
         else
         {
@@ -90,9 +91,9 @@ void TipoAnalisisManager::opcion1()
     {
         cout << "Ingrese el ID del analisis: " << endl;
         cin >> IDAnalisis;
-        if (500<IDAnalisis  && IDAnalisis <400)
+        if (IDAnalisis > 400  && IDAnalisis < 500)
         {
-            return;
+            registro.setIDAnalisis(IDAnalisis);
         }
         else
         {
@@ -109,9 +110,9 @@ void TipoAnalisisManager::opcion1()
     {
         cout << "Ingrese el ID del analisis: " << endl;
         cin >> IDAnalisis;
-        if (600<IDAnalisis  && IDAnalisis <500)
+        if (IDAnalisis > 500  && IDAnalisis < 600)
         {
-            return;
+            registro.setIDAnalisis(IDAnalisis);
         }
         else
         {
@@ -125,27 +126,23 @@ void TipoAnalisisManager::opcion1()
     break;
     }
 
-    registro.setIDAnalisis(IDAnalisis);
-
     cout << "Ingrese el nombre del analisis: " << endl;
     cargarCadena(nombre, 59);
 
     registro.setNombre(nombre);
 
-    bool estado = true;
-    registro.setEstado(estado);
+    registro.setEstado(true);
 
     if (_archivo.guardar(registro))
     {
         cout << "El nuevo analisis se registro de forma existosa." << endl;
+        system("pause");
     }
     else
     {
         cout << "El analisis no pudo ser registrado en archivo." << endl;
         system("pause");
-        return;
     }
-
 }
 
 ///Dar de baja un tipo de análisis
@@ -203,7 +200,7 @@ void TipoAnalisisManager::opcion3()
 
     int pos = _archivo.buscar(idAnalisis);
 
-     if(pos < 0)
+    if(pos < 0)
     {
         cout << "No se encontro un analisis con ese ID en el archivo" << endl;
         system("pause");
@@ -230,7 +227,7 @@ void TipoAnalisisManager::opcion3()
 
     registro.setNombre(nombre);
 
-    if (_archivo.guardar(registro))
+    if (_archivo.guardar(registro, pos))
     {
         cout << "El nuevo nombre se guardo exitosamente. " << endl;
         return;

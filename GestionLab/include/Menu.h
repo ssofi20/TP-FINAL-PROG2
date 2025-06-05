@@ -3,7 +3,7 @@
 #include "TurnoManager.h"
 #include "EstudioManager.h"
 #include "TipoMuestraManager.h"
-///#include "TipoAnalisisManager.h"
+#include "TipoAnalisisManager.h"
 
 class Menu {
 

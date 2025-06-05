@@ -155,7 +155,7 @@ void Menu::menuGestionDatosSistema(){
 
     int opc;
 
-    //TipoAnalisisManager mTipoAnalisis;
+    TipoAnalisisManager mTipoAnalisis;
     TipoMuestraManager mTipoMuestra;
 
     while(true){
@@ -193,16 +193,16 @@ void Menu::menuGestionDatosSistema(){
                 mTipoMuestra.opcion4();
                 break;
             case 5:
-                //mTipoAnalisis.opcion1();
+                mTipoAnalisis.opcion1();
                 break;
             case 6:
-                //mTipoAnalisis.opcion2();
+                mTipoAnalisis.opcion2();
                 break;
             case 7:
-                //mTipoAnalisis.opcion3();
+                mTipoAnalisis.opcion3();
                 break;
             case 8:
-                //mTipoAnalisis.opcion3();
+                mTipoAnalisis.opcion4();
                 break;
             case 0:
                 return;
