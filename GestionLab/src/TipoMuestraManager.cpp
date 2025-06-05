@@ -37,10 +37,40 @@ void TipoMuestraManager::opcion1(){
     else {
         cout << "No se ha podido guardar :(" << endl;
     }
+    system("pasuse");
 }
 
 ///Dar de baja un tipo de muestra
 void TipoMuestraManager::opcion2(){
+
+    int IDTipo;
+    cout << "Ingrese el ID de tipo de muestra que desea dar de baja: ";
+    cin >> IDTipo;
+
+    int cant = _archivo.cantidadRegistros();
+
+    bool encontrado = false;
+    int posicion;
+    TipoMuestra registro;
+
+    for(int i = 0; i < cant; i++){
+        registro = _archivo.leer(i);
+        if(registro.getIDMuestra() == IDTipo){
+            encontrado = true;
+            posicion = i;
+            break;
+        }
+    }
+
+    if(!encontrado){
+        cout << "El ID ingresado no existe en el archivo" << endl;
+        system("pasuse");
+        return;
+    }
+
+    registro = _archivo.leer(posicion);
+    registro.setEstado(false);
+    _archivo.guardar(registro, posicion);
 
 }
 
