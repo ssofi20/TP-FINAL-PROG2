@@ -51,6 +51,7 @@
 		<Unit filename="include/TipoAnalisisArchivo.h" />
 		<Unit filename="include/TipoMuestra.h" />
 		<Unit filename="include/TipoMuestraArchivo.h" />
+		<Unit filename="include/TipoMuestraManager.h" />
 		<Unit filename="include/Turno.h" />
 		<Unit filename="include/TurnoArchivo.h" />
 		<Unit filename="include/TurnoManager.h" />
@@ -72,6 +73,7 @@
 		<Unit filename="src/TipoAnalisisArchivo.cpp" />
 		<Unit filename="src/TipoMuestra.cpp" />
 		<Unit filename="src/TipoMuestraArchivo.cpp" />
+		<Unit filename="src/TipoMuestraManager.cpp" />
 		<Unit filename="src/Turno.cpp" />
 		<Unit filename="src/TurnoArchivo.cpp" />
 		<Unit filename="src/TurnoManager.cpp" />
