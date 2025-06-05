@@ -49,6 +49,7 @@
 		<Unit filename="include/PacienteManager.h" />
 		<Unit filename="include/TipoAnalisis.h" />
 		<Unit filename="include/TipoAnalisisArchivo.h" />
+		<Unit filename="include/TipoAnalisisManager.h" />
 		<Unit filename="include/TipoMuestra.h" />
 		<Unit filename="include/TipoMuestraArchivo.h" />
 		<Unit filename="include/TipoMuestraManager.h" />
@@ -71,6 +72,7 @@
 		<Unit filename="src/PacienteManager.cpp" />
 		<Unit filename="src/TipoAnalisis.cpp" />
 		<Unit filename="src/TipoAnalisisArchivo.cpp" />
+		<Unit filename="src/TipoAnalisisManager.cpp" />
 		<Unit filename="src/TipoMuestra.cpp" />
 		<Unit filename="src/TipoMuestraArchivo.cpp" />
 		<Unit filename="src/TipoMuestraManager.cpp" />
