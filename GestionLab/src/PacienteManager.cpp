@@ -275,6 +275,10 @@ void PacienteManager::opcion6(){
     cout << "Listado de pacientes" << endl;
     int cant = _archivo.cantidadRegistros();
 
+    if(cant <= 0){
+        return;
+    }
+
     Paciente *vecRegistros = new Paciente[cant];
     if(vecRegistros == nullptr){
         cout << "Error al pedir memoria" << endl;
