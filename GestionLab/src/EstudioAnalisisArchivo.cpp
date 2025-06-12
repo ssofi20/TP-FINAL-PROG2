@@ -34,7 +34,7 @@ EstudioAnalisis EstudioAnalisisArchivo::leer(int posicion){
 
 bool EstudioAnalisisArchivo::guardar(EstudioAnalisis registro){
 
-    FILE *pFile = fopen(_nombreArchivo.c_str(), "rb");
+    FILE *pFile = fopen(_nombreArchivo.c_str(), "ab");
     if(pFile == nullptr){
         return false;
     }

@@ -1,7 +1,9 @@
 #pragma once
+#include <cstring>
 #include "Turno.h"
 #include "FuncionesGlobales.h"
-#include <cstring>
+#include "EstudioAnalisis.h"
+#include "EstudioAnalisisArchivo.h"
 
 class Estudio
 {

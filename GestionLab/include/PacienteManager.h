@@ -6,8 +6,8 @@
 
 class PacienteManager
 {
-    private:  
-        
+    private:
+
     PacienteArchivo _archivo;
 
     public:
@@ -15,7 +15,7 @@ class PacienteManager
         void opcion1();
         ///Buscar un paciente por DNI
         void opcion2();
-        ///Editar informaciÃ³n de un paciente segun DNI
+        ///Editar información de un paciente segun DNI
         void opcion3();
 
         void opcion4();

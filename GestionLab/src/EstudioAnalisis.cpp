@@ -49,3 +49,24 @@ void EstudioAnalisis::cargar(){
     _estado = true;
 
 }
+
+void EstudioAnalisis::mostrar(){
+
+
+    TipoAnalisisArchivo obj;
+    TipoAnalisis registro;
+
+    int cant = obj.cantidadRegistros();
+    for (int i=0; i < cant; i++)
+    {
+        registro = obj.leer(i);
+        if (registro.getIDAnalisis()==_IDAnalisis)
+        {
+
+            cout << "ID Analisis: " << _IDAnalisis << endl;
+            cout << "NOMBRE DEL ANALISIS: " << registro.getNombre() << endl;
+
+        }
+    }
+
+}

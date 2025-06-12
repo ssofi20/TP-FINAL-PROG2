@@ -6,21 +6,6 @@ void EstudioManager::opcion1()
     Estudio obj;
     obj.cargar();
 
-    int idAnalisis = 1;
-    while(idAnalisis != 0){
-        cout << "ID del analisis: ";
-        cin >> idAnalisis;
-
-        EstudioAnalisis reg;
-
-        reg.setIDAnalisis(idAnalisis);
-        reg.setIDEstudio(obj.getIDEstudio());
-        reg.setEstado(true);
-        if(!_archivoIntermedio.guardar(reg)){
-            cout << "No se pudo guardar" << endl;
-        }
-    }
-
     if (_archivo.guardar(obj))
     {
         cout << "Se ha registrado exitosamente!" << endl;
@@ -47,7 +32,7 @@ void EstudioManager::opcion2()
     for(int i = 0; i < cantidadReg; i++)
     {
         registro = _archivo.leer(i);
-        if (strcmp(registro.getIDEstudio(), idEstudio))
+        if (strcmp(registro.getIDEstudio(), idEstudio) == 0)
         {
             encontrado = true;
             pos = i;
@@ -125,13 +110,47 @@ void EstudioManager::opcion3()
     break;
     case 2:
     {
-        //Pensar solucion
+        int idAnalisis;
+        int newId;
+        cout << "Ingrese el ID del analisis a modificar: " ;
+        cin >> idAnalisis;
+
+        EstudioAnalisis reg;
+        EstudioAnalisisArchivo arch;
+        int cant = arch.cantidadRegistros();
+
+        for (int x=0; x < cant; x++)
+        {
+            reg = arch.leer(x);
+            if (strcmp(reg.getIDEstudio(), idEstudio)==0)
+            {
+                if (reg.getIDAnalisis() == idAnalisis)
+                {
+                    cout << "Ingrese el nuevo ID del analisis: " << endl;
+                    cin >> newId;
+                    reg.setIDAnalisis(newId);
+                    if (arch.guardar(reg, x))
+                    {
+                        cout << "El ID fue modificado correctamente. " << endl;
+                    }
+                    else
+                    {
+                        cout << "No se pudo modificar el ID.";
+                    }
+                }
+            }
+            else
+            {
+                cout << "No se encontro el ID del analisis.";
+            }
+        }
     }
     break;
     case 3:
     {
         int newEstado;
         cout << "Seleccione segun corresponda: " << endl;
+        cout << "1. En proceso" << endl;
         cout << "2. Esperando resultados" << endl;
         cout << "3. Resultados listos" << endl;
         cout << "4. Anulado" << endl;
@@ -212,7 +231,5 @@ void EstudioManager::opcion5()
         }
     }
     system("pause");
-
-    //Pensar como mostrar todos los analisis realizados
 }
 
