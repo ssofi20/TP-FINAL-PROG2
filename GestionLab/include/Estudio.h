@@ -14,6 +14,7 @@ class Estudio
         int _estadoEstudio;
         char _sala[6];
         int _IDTurno;
+        float _precio;
         bool _estado;
 
     public:
@@ -21,7 +22,7 @@ class Estudio
         /// Constructores
 
         Estudio();
-        Estudio(const char *IDEstudio, int dni, int estEstudio, const char *sala, int IDTurno);
+        Estudio(const char *IDEstudio, int dni, int estEstudio, const char *sala, int IDTurno, float precio);
 
         /// Setters
 
@@ -30,6 +31,7 @@ class Estudio
         void setEstadoEstudio(int estadoEstudio);
         void setSala (const char *sala);
         void setIDTurno(int IDturno);
+        void setPrecio(float precio);
         void setEstado(bool estado);
 
         /// Getters
@@ -39,6 +41,7 @@ class Estudio
         int getEstadoEstudio();
         const char *getSala();
         int getIDTurno();
+        float getPrecio();
         bool getEstado();
 
         ///METODOS CARGAR Y MOSTRAR
