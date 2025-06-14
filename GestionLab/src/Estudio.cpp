@@ -12,10 +12,11 @@ Estudio::Estudio()
     _estadoEstudio = 0;
     strcpy(_sala, "SIN SALA");
     _IDTurno = 0;
+    _precio = 0;
     _estado = true;
 }
 
-Estudio::Estudio(const char *IDEstudio, int dni, int estEstudio, const char *sala, int IDTurno)
+Estudio::Estudio(const char *IDEstudio, int dni, int estEstudio, const char *sala, int IDTurno, float precio)
 {
     setIDEstudio(IDEstudio);
     setDNI(dni);
@@ -52,6 +53,14 @@ void Estudio::setIDTurno(int IDTurno)
     _IDTurno = IDTurno;
 }
 
+void Estudio::setPrecio(float precio)
+{
+    if(precio > 0)
+    {
+        _precio = precio;
+    }
+}
+
 void Estudio::setEstado(bool estado)
 {
     _estado = estado;
@@ -84,6 +93,11 @@ int Estudio::getIDTurno()
     return _IDTurno;
 }
 
+float Estudio::getPrecio()
+{
+    return _precio;
+}
+
 bool Estudio::getEstado()
 {
     return _estado;
@@ -95,6 +109,7 @@ void Estudio::cargar()
     char IDEstudio[11];
     char sala[6];
     int dni, IDTurno;
+    float precio;
 
     cout << "ID del estudio: ";
     cargarCadena(IDEstudio, 10);
@@ -111,6 +126,10 @@ void Estudio::cargar()
     cout << "ID turno: ";
     cin >> IDTurno;
     setIDTurno(IDTurno);
+    
+    cout << "Precio: ";
+    cin >> precio;
+    setPrecio(precio);
 
     _estado = true;
     _estadoEstudio = 1;
@@ -152,6 +171,7 @@ void Estudio::mostrar()
     cout << "DNI: " << _DNI << endl;
     cout << "SALA: " << _sala << endl;
     cout << "ID TURNO: " << _IDTurno << endl;
+    cout << "PRECIO: $" << _precio << endl;
     cout << "ESTADO DEL ESTUDIO: ";
     switch(_estadoEstudio){
     case 1:
