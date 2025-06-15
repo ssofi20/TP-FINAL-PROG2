@@ -301,6 +301,49 @@ void Menu::menuInformes()
     }
 }
 
+void Menu::copiaSeguridad()
+{
+    int opcion;
+    
+    cout << "¨Esta seguro que desea realizar una copia de seguridad de todos los archivos?" << endl;
+    cout << "1 - SI" << endl;
+    cout << "0 - NO" << endl;
+    cout << "Seleccion: ";
+    cin >> opcion;
+    
+    if(!opcion)
+    {
+        cout << "No se han realizado la copia de seguridad" << endl;
+        return;
+    }
+    
+    //Pacientes
+    
+    PacienteArchivo backUpPacientes("archivos/pacientes.bkp");
+    int cantidad = backUpPacientes.cantidadRegistros();
+    for(int i = 0; i < cantidad; i++)
+    {
+        //leer el archivo original
+        //escribir en el archivo nuevo
+    }
+    
+    //Turnos
+    
+    //Estudios
+    
+    //TiposAnalisis
+    
+    //TiposMuestra
+    
+    //EstudiosAnalisis
+    
+}
+
+void Menu::restaurarCopiaSeguridad()
+{
+    
+}
+
 void Menu::menuConfiguraciones()
 {
     int opc;
@@ -319,10 +362,12 @@ void Menu::menuConfiguraciones()
         switch (opc)
         {
         case 1:
-            ///copiaSeguridad();
+            copiaSeguridad();
+            system("pause");
             break;
         case 2:
-            ///restaurarCopiaSeguridad();
+            restaurarCopiaSeguridad();
+            system("pause");
             break;
         case 0:
             return;
