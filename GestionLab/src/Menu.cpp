@@ -256,6 +256,61 @@ void Menu::menuGestiones()
     }
 }
 
+void Menu::informe4()
+{
+    ///Listar pacientes alfab‚ticamente
+    cout << "PACIENTES" << endl;
+    
+    PacienteArchivo archivo;
+    
+    int cant = archivo.cantidadRegistros();
+    
+    for (int i = 0; i < cant; i++)
+    {
+        Paciente registroActual = archivo.leer(i);
+        
+        for (int j = 0; j < cant; j++)
+        {
+            Paciente registroCompare = archivo.leer(j);
+        }
+        
+    }
+}
+
+void Menu::informe5()
+{
+    ///Mostrar historial de un paciente (todos los estudios realizados por el paciente).
+
+    int dniPaciente;
+    
+    cout << "Ingrese el DNI del paciente: ";
+    cin >> dniPaciente;
+    
+    PacienteArchivo archivo;
+    
+    int pos = archivo.buscar(dniPaciente);
+    
+    Paciente registro = archivo.leer(pos);
+    
+    cout << "Estudios realizados por " << registro.getNombre() << " " << registro.getApellido() << endl << endl;
+    
+    EstudioArchivo archivoEstudios;
+    
+    int cant = archivoEstudios.cantidadRegistros();
+    
+    for (int i = 0; i < cant; i++)
+    {
+        Estudio estudio = archivoEstudios.leer(i);
+        
+        if(estudio.getDNI() == dniPaciente)
+        {
+            cout << "---------------" << endl;
+            estudio.mostrar();
+            cout << "---------------" << endl;
+        }
+    }
+}
+
 void Menu::menuInformes()
 {
     int opc;
@@ -286,10 +341,11 @@ void Menu::menuInformes()
             ///informe3();
             break;
         case 4:
-            ///informe4();
+            informe4();
             break;
         case 5:
-            ///informe5();
+            informe5();
+            system("pause");
             break;
         case 0:
             return;
