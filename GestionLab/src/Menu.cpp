@@ -1,6 +1,5 @@
 #include "Menu.h"
 #include <iostream>
-
 using namespace std;
 
 void Menu::menuGestionPacientes()
@@ -256,30 +255,61 @@ void Menu::menuGestiones()
     }
 }
 
+///Listar pacientes alfab‚ticamente
 void Menu::informe4()
 {
-    ///Listar pacientes alfab‚ticamente
-    cout << "PACIENTES" << endl;
+    cout << "PACIENTES ORDENADOS ALFABETICAMENTE" << endl;
     
     PacienteArchivo archivo;
     
     int cant = archivo.cantidadRegistros();
     
+    Paciente *vRegistros = new Paciente[cant];
+    
+    if(vRegistros == nullptr)
+    {
+        cout << "Error al pedir memoria y leer el archivo" << endl;
+        return;
+    }
+    
+    archivo.leer(cant, vRegistros);
+    
     for (int i = 0; i < cant; i++)
     {
-        Paciente registroActual = archivo.leer(i);
-        
-        for (int j = 0; j < cant; j++)
+        for (int j = i + 1; j < cant; j++)
         {
-            Paciente registroCompare = archivo.leer(j);
+            
+            //Hay que poner todas las cadenas en minusculas o mayusculas antes de
+            //compararlas.
+            
+            char apellidoI[40], apellidoJ[40];
+            strcpy(apellidoI, vRegistros[i].getApellido());
+            strcpy(apellidoJ, vRegistros[j].getApellido());
+            
+            toLowerWord(apellidoI);
+            toLowerWord(apellidoJ);
+            
+            if(strcmp(apellidoI, apellidoJ) > 0)
+            {
+                swap(vRegistros[i], vRegistros[j]);
+            }
         }
-        
     }
+    
+    //Mostrar por pantalla
+    for(int i = 0; i < cant; i++)
+    {
+        cout << endl;
+        vRegistros[i].mostrar();
+        cout << endl;
+    }
+    
+    delete[] vRegistros;
 }
 
+///Mostrar historial de un paciente (todos los estudios realizados por el paciente).
 void Menu::informe5()
 {
-    ///Mostrar historial de un paciente (todos los estudios realizados por el paciente).
 
     int dniPaciente;
     
@@ -342,6 +372,7 @@ void Menu::menuInformes()
             break;
         case 4:
             informe4();
+            system("pause");
             break;
         case 5:
             informe5();
