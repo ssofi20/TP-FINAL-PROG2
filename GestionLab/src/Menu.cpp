@@ -317,26 +317,23 @@ void Menu::copiaSeguridad()
         return;
     }
     
-    //Pacientes
+    ///Pacientes
+    //PacienteArchivo.copiaSeguridad();
     
-    PacienteArchivo backUpPacientes("archivos/pacientes.bkp");
-    int cantidad = backUpPacientes.cantidadRegistros();
-    for(int i = 0; i < cantidad; i++)
-    {
-        //leer el archivo original
-        //escribir en el archivo nuevo
-    }
+    ///Turnos
+    //TurnoArchivo.copiaSeguridad();
     
-    //Turnos
+    ///Estudios
+    //EstudioArchivo.copiaSeguridad();
     
-    //Estudios
+    ///TiposAnalisis
+    //TipoAnalisisArchivo.copiaSeguridad();
     
-    //TiposAnalisis
+    ///TiposMuestra
+    //TipoMuestraArchivo.copiaSeguridad();
     
-    //TiposMuestra
-    
-    //EstudiosAnalisis
-    
+    ///EstudiosAnalisis
+    //EstudioAnalisisArchivo.copiaSeguridad();
 }
 
 void Menu::restaurarCopiaSeguridad()

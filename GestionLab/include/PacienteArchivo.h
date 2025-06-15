@@ -12,6 +12,7 @@ class PacienteArchivo
         bool guardar(Paciente paciente, int posicion);
         Paciente leer(int posicion);
         void leer(int cantidadRegistros, Paciente *vecPaciente);
+        bool copiaSeguridad();
 
 
     private:

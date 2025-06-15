@@ -89,3 +89,17 @@ bool PacienteArchivo::guardar(Paciente paciente, int posicion){
     fclose(pFile);
     return escribio;
 }
+
+bool PacienteArchivo::copiaSeguridad()
+{
+    Paciente paciente;
+    
+    PacienteArchivo archivoBKP;
+    
+    FILE pFileBkp = fopen("archivos/pacientes.bkp", "wb");
+
+    if(pFileBkp == nullptr){return false;}
+    
+    
+    
+}
