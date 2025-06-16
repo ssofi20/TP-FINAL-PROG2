@@ -88,3 +88,23 @@ bool EstudioArchivo::guardar(Estudio registro, int posicion)
     return escribio;
 }
 
+bool EstudioArchivo::copiaSeguridad()
+{
+    Estudio estudio;
+    
+    FILE *pFileBkp = fopen("archivos/Estudios.bkp", "wb");
+
+    if(pFileBkp == nullptr){return false;}
+    
+    int cant = cantidadRegistros();
+    
+    for(int i = 0; i < cant; i++)
+    {
+        estudio = leer(i);
+        fwrite(&estudio, sizeof (Estudio), 1, pFileBkp);
+    }
+    
+    fclose(pFileBkp);
+    
+    return true;
+}

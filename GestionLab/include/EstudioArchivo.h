@@ -6,18 +6,19 @@
 
 class EstudioArchivo
 {
-private:
-std::string _nombreArchivo;
+    private:
+        std::string _nombreArchivo;
 
-public:
+    public:
 
-EstudioArchivo(std::string nombreArchivo = "archivos/Estudios.dat");
-int cantidadRegistros();
-Estudio leer(int posicion);
-void leer(int cantidadRegistros, Estudio *vec);
-int buscar(const char* IDEstudio);
-bool guardar(Estudio registro);
-bool guardar(Estudio registro, int posicion);
+        EstudioArchivo(std::string nombreArchivo = "archivos/Estudios.dat");
+        int cantidadRegistros();
+        Estudio leer(int posicion);
+        void leer(int cantidadRegistros, Estudio *vec);
+        int buscar(const char* IDEstudio);
+        bool guardar(Estudio registro);
+        bool guardar(Estudio registro, int posicion);
+        bool copiaSeguridad();
 
 };
 

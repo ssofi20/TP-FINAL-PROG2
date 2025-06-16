@@ -322,10 +322,13 @@ void Menu::copiaSeguridad()
     pacienteArchivo.copiaSeguridad();
     
     ///Turnos
-    //TurnoArchivo.copiaSeguridad();
+    TurnoArchivo turnoArchivo;
+    turnoArchivo.copiaSeguridad();
     
     ///Estudios
-    //EstudioArchivo.copiaSeguridad();
+    EstudioArchivo estudioArchivo;
+    estudioArchivo.copiaSeguridad();
+    
     
     ///TiposAnalisis
     //TipoAnalisisArchivo.copiaSeguridad();
