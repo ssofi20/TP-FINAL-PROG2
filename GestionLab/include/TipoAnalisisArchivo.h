@@ -13,6 +13,7 @@ public:
     int buscar(int IDAnalisis);
     bool guardar(TipoAnalisis registro);
     bool guardar(TipoAnalisis registro, int posicion);
+    bool copiaSeguridad();
 
 private:
     std::string _nombreArchivo;

@@ -317,27 +317,44 @@ void Menu::copiaSeguridad()
         return;
     }
     
-    ///Pacientes
+    //Pacientes
     PacienteArchivo pacienteArchivo;
-    pacienteArchivo.copiaSeguridad();
-    
-    ///Turnos
+    //Turnos
     TurnoArchivo turnoArchivo;
-    turnoArchivo.copiaSeguridad();
-    
-    ///Estudios
+    //Estudios
     EstudioArchivo estudioArchivo;
-    estudioArchivo.copiaSeguridad();
+    //TiposAnalisis
+    TipoAnalisisArchivo tipoAnalisisArchivo;
+    //TiposMuestra
+    TipoMuestraArchivo tipoMuestraArchivo;
+    //EstudiosAnalisis
+    EstudioAnalisisArchivo estudioAnalisisArchivo;
     
-    
-    ///TiposAnalisis
-    //TipoAnalisisArchivo.copiaSeguridad();
-    
-    ///TiposMuestra
-    //TipoMuestraArchivo.copiaSeguridad();
-    
-    ///EstudiosAnalisis
-    //EstudioAnalisisArchivo.copiaSeguridad();
+    if(pacienteArchivo.copiaSeguridad()){
+        if(turnoArchivo.copiaSeguridad()){
+            if(estudioArchivo.copiaSeguridad()){
+                if(tipoAnalisisArchivo.copiaSeguridad()){
+                    if(tipoMuestraArchivo.copiaSeguridad()){
+                        if(estudioAnalisisArchivo.copiaSeguridad()){
+                            cout << "La copia de seguridad de todos los archivos se realizo con exito!" << endl;
+                        } else {
+                            cout << "Error con la copia de seguridad de Analisis de estudios" << endl;
+                        }
+                    } else {
+                        cout << "Error con la copia de seguridad de Tipos de Muestras" << endl;
+                    }
+                } else {
+                    cout << "Error con la copia de seguridad de Tipos de Analisis" << endl;
+                }
+            } else {
+                cout << "Error con la copia de seguridad de Estudios" << endl;
+            }
+       } else {
+           cout << "Error con la copia de seguridad de Turnos" << endl;
+       }
+    } else {
+        cout << "Error con la copia de seguridad de Pacientes" << endl;
+    }
 }
 
 void Menu::restaurarCopiaSeguridad()

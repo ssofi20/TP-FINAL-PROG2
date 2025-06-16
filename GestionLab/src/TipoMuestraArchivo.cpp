@@ -92,3 +92,24 @@ bool TipoMuestraArchivo::guardar(TipoMuestra registro, int posicion)
     return escribio;
 
 }
+
+bool TipoMuestraArchivo::copiaSeguridad()
+{
+    TipoMuestra tipoMuestra;
+    
+    FILE *pFileBkp = fopen("TiposMuestra.bkp", "wb");
+    
+    if(pFileBkp == nullptr){return false;}
+    
+    int cant = cantidadRegistros();
+    
+    for(int i = 0; i < cant; i++)
+    {
+        tipoMuestra = leer(i);
+        fwrite(&tipoMuestra, sizeof(TipoMuestra), 1, pFileBkp);
+    }
+    
+    fclose(pFileBkp);
+    
+    return true;
+}

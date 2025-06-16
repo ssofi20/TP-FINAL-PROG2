@@ -100,3 +100,24 @@ bool TipoAnalisisArchivo::guardar(TipoAnalisis registro, int posicion)
     return escribio;
 }
 
+bool TipoAnalisisArchivo::copiaSeguridad()
+{
+    TipoAnalisis tipoAnalisis;
+    
+    FILE *pFileBkp = fopen("archivos/TiposAnalisis.bkp", "wb");
+
+    if(pFileBkp == nullptr){return false;}
+    
+    int cant = cantidadRegistros();
+    
+    for(int i = 0; i < cant; i++)
+    {
+        tipoAnalisis = leer(i);
+        fwrite(&tipoAnalisis, sizeof (TipoAnalisis), 1, pFileBkp);
+    }
+    
+    fclose(pFileBkp);
+    
+    return true;
+}
+
