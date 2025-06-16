@@ -14,3 +14,11 @@ void cargarCadena(char *palabra, int tamano){
     palabra[i] = '\0';
     fflush(stdin);
 }
+
+void toLowerWord(char *palabra){
+    
+    for (int i = 0; palabra[i]; i++) {
+        palabra[i] = tolower(palabra[i]);
+    }
+    
+}

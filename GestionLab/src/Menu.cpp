@@ -1,6 +1,5 @@
 #include "Menu.h"
 #include <iostream>
-
 using namespace std;
 
 void Menu::menuGestionPacientes()
@@ -262,6 +261,92 @@ void Menu::menuGestiones()
     }
 }
 
+///Listar pacientes alfab‚ticamente
+void Menu::informe4()
+{
+    cout << "PACIENTES ORDENADOS ALFABETICAMENTE" << endl;
+    
+    PacienteArchivo archivo;
+    
+    int cant = archivo.cantidadRegistros();
+    
+    Paciente *vRegistros = new Paciente[cant];
+    
+    if(vRegistros == nullptr)
+    {
+        cout << "Error al pedir memoria y leer el archivo" << endl;
+        return;
+    }
+    
+    archivo.leer(cant, vRegistros);
+    
+    for (int i = 0; i < cant; i++)
+    {
+        for (int j = i + 1; j < cant; j++)
+        {
+            
+            //Hay que poner todas las cadenas en minusculas o mayusculas antes de
+            //compararlas.
+            
+            char apellidoI[40], apellidoJ[40];
+            strcpy(apellidoI, vRegistros[i].getApellido());
+            strcpy(apellidoJ, vRegistros[j].getApellido());
+            
+            toLowerWord(apellidoI);
+            toLowerWord(apellidoJ);
+            
+            if(strcmp(apellidoI, apellidoJ) > 0)
+            {
+                swap(vRegistros[i], vRegistros[j]);
+            }
+        }
+    }
+    
+    //Mostrar por pantalla
+    for(int i = 0; i < cant; i++)
+    {
+        cout << endl;
+        vRegistros[i].mostrar();
+        cout << endl;
+    }
+    
+    delete[] vRegistros;
+}
+
+///Mostrar historial de un paciente (todos los estudios realizados por el paciente).
+void Menu::informe5()
+{
+
+    int dniPaciente;
+    
+    cout << "Ingrese el DNI del paciente: ";
+    cin >> dniPaciente;
+    
+    PacienteArchivo archivo;
+    
+    int pos = archivo.buscar(dniPaciente);
+    
+    Paciente registro = archivo.leer(pos);
+    
+    cout << "Estudios realizados por " << registro.getNombre() << " " << registro.getApellido() << endl << endl;
+    
+    EstudioArchivo archivoEstudios;
+    
+    int cant = archivoEstudios.cantidadRegistros();
+    
+    for (int i = 0; i < cant; i++)
+    {
+        Estudio estudio = archivoEstudios.leer(i);
+        
+        if(estudio.getDNI() == dniPaciente)
+        {
+            cout << "---------------" << endl;
+            estudio.mostrar();
+            cout << "---------------" << endl;
+        }
+    }
+}
+
 void Menu::informe1()
 {
     PacienteArchivo arcPaci;
@@ -308,8 +393,6 @@ void Menu::informe1()
                 contador = 0;
             }
         }
-    }
-
     Paciente obj;
     int pos = arcPaci.buscar(dniMax);
     obj = arcPaci.leer(pos);
@@ -327,6 +410,7 @@ void Menu::informe1()
     cout << "CANTIDAD DE ANALISIS REALIZADOS: " << contador2 << endl;
     return;
 
+    }
 }
 
 void Menu::informe2()
@@ -441,86 +525,86 @@ void Menu::informe3()
 
 }
 
-    void Menu::menuInformes()
-    {
-        int opc;
-        while (true)
-        {
-            system("cls");
-            cout << "Menu Informes" << endl;
-            cout << "-------------------------------------" << endl;
-            cout << "1. Paciente con mayor cantidad de estudios realizados.  " << endl;
-            cout << "2. Recaudacion por tipo de estudio. " << endl;
-            cout << "3. Recaudacion anual por mes. " << endl;
-            cout << "4. Listar pacientes en orden alfabetico.  " << endl;
-            cout << "5. Mostrar historial de un paciente.  " << endl;
-            cout << "0. Volver a atras " << endl;
-            cout << "-------------------------------------" << endl;
-            cout << "Ingrese la opcion deseada: ";
-            cin >> opc;
-            system ("cls");
-            switch (opc)
-            {
-            case 1:
-                informe1();
-                system("pause");
-                break;
-            case 2:
-                informe2();
-                system("pause");
-                break;
-            case 3:
-                informe3();
-                system("pause");
-                break;
-            case 4:
-                ///informe4();
-                break;
-            case 5:
-                ///informe5();
-                break;
-            case 0:
-                return;
-            default:
-                cout << "Opcion incorrecta! Intente nuevamente" << endl;
-                system("pause");
-                break;
-            }
+void Menu::menuInformes()
+{
+    int opc;
+    while (true) {
+        system("cls");
+        cout << "Menu Informes" << endl;
+        cout << "-------------------------------------" << endl;
+        cout << "1. Paciente con mayor cantidad de estudios realizados.  " << endl;
+        cout << "2. Recaudacion por tipo de estudio. " << endl;
+        cout << "3. Recaudacion anual por mes. " << endl;
+        cout << "4. Listar pacientes en orden alfabetico.  " << endl;
+        cout << "5. Mostrar historial de un paciente.  " << endl;
+        cout << "0. Volver a atras " << endl;
+        cout << "-------------------------------------" << endl;
+        cout << "Ingrese la opcion deseada: ";
+        cin >> opc;
+        system ("cls");
+        switch (opc) {
+        case 1:
+            informe1();
+            system("pause");
+            break;
+        case 2:
+            informe2();
+            system("pause");
+            break;
+        case 3:
+            informe3();
+            system("pause");
+            break;
+        case 4:
+            informe4();
+            system("pause");
+            break;
+        case 5:
+            informe5();
+            system("pause");
+            break;
+        case 0:
+            return;
+        default:
+            cout << "Opcion incorrecta! Intente nuevamente" << endl;
+            system("pause");
+            break;
         }
     }
+}
 
-    void Menu::menuConfiguraciones()
+void Menu::menuConfiguraciones()
+{
+    int opc;
+    while (true)
     {
-        int opc;
-        while (true)
+        system("cls");
+        cout << "Menu de Configuraciones" << endl;
+        cout << "-------------------------------------" << endl;
+        cout << "1. Copias de Seguridad" << endl;
+        cout << "2. Restaurar copias de Seguridad" << endl;
+        cout << "0. Volver a atras" << endl;
+        cout << "-------------------------------------" << endl;
+        cout << "Ingrese la opcion deseada: ";
+        cin >> opc;
+        system ("cls");
+        switch (opc)
         {
-            system("cls");
-            cout << "Menu de Configuraciones" << endl;
-            cout << "-------------------------------------" << endl;
-            cout << "1. Copias de Seguridad" << endl;
-            cout << "2. Restaurar copias de Seguridad" << endl;
-            cout << "0. Volver a atras" << endl;
-            cout << "-------------------------------------" << endl;
-            cout << "Ingrese la opcion deseada: ";
-            cin >> opc;
-            system ("cls");
-            switch (opc)
-            {
-            case 1:
-                ///copiaSeguridad();
-                break;
-            case 2:
-                ///restaurarCopiaSeguridad();
-                break;
-            case 0:
-                return;
-            default:
-                cout << "Opcion incorrecta! Intente nuevamente" << endl;
-                system("pause");
-                break;
-            }
+        case 1:
+            ///copiaSeguridad();
+            system("pause");
+            break;
+        case 2:
+            ///restaurarCopiaSeguridad();
+            system("pause");
+            break;
+        case 0:
+            return;
+        default:
+            cout << "Opcion incorrecta! Intente nuevamente" << endl;
+            system("pause");
+            break;
         }
     }
-
-
+}
 
