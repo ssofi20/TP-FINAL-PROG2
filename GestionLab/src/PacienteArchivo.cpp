@@ -94,7 +94,7 @@ bool PacienteArchivo::copiaSeguridad()
 {
     Paciente paciente;
     
-    FILE *pFileBkp = fopen("archivos/pacientes.bkp", "wb");
+    FILE *pFileBkp = fopen("archivos/Pacientes.bkp", "wb");
 
     if(pFileBkp == nullptr){return false;}
     
