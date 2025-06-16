@@ -19,6 +19,7 @@ class EstudioArchivo
         bool guardar(Estudio registro);
         bool guardar(Estudio registro, int posicion);
         bool copiaSeguridad();
+        bool restaurarCopia();
 
 };
 

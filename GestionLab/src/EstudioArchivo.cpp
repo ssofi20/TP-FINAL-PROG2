@@ -108,3 +108,25 @@ bool EstudioArchivo::copiaSeguridad()
     
     return true;
 }
+
+bool EstudioArchivo::restaurarCopia()
+{
+    Estudio estudio;
+    
+    EstudioArchivo archivoBKP("archivosBKP/Estudios.bkp");
+    
+    int cant = archivoBKP.cantidadRegistros();
+    
+    FILE *pFile = fopen(_nombreArchivo.c_str(), "wb");
+    if(pFile == nullptr){return false;}
+    
+    for(int i = 0; i < cant; i++)
+    {
+        estudio = archivoBKP.leer(i);
+        fwrite(&estudio, sizeof(Estudio), 1, pFile);
+    }
+    
+    fclose(pFile);
+    
+    return true;
+}
