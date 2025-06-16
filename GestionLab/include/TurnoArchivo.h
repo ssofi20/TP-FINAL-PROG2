@@ -13,6 +13,7 @@ class TurnoArchivo
         bool guardar(Turno registro);
         bool guardar(Turno registro, int posicion);
         bool copiaSeguridad();
+        bool restaurarCopia();
 
     private:
         

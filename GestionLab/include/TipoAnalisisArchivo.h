@@ -14,6 +14,7 @@ public:
     bool guardar(TipoAnalisis registro);
     bool guardar(TipoAnalisis registro, int posicion);
     bool copiaSeguridad();
+    bool restaurarCopia();
 
 private:
     std::string _nombreArchivo;

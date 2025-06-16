@@ -168,7 +168,6 @@ void PacienteManager::opcion3()
     case 8:
         {
         Fecha fechaNac;
-        int dia, mes, anio;
         cout<<"Ingrese la nueva fecha de nacimiento del paciente: " << endl;
         fechaNac.cargar();
         obj.setDateB(fechaNac);

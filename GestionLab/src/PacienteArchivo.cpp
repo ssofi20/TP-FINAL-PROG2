@@ -110,3 +110,25 @@ bool PacienteArchivo::copiaSeguridad()
     
     return true;
 }
+
+bool PacienteArchivo::restaurarCopia()
+{
+    Paciente paciente;
+    
+    PacienteArchivo archivoBKP("archivosBKP/Pacientes.bkp");
+    
+    int cant = archivoBKP.cantidadRegistros();
+    
+    FILE *pFile = fopen(_fileName.c_str(), "wb");
+    if(pFile == nullptr){return false;}
+    
+    for(int i = 0; i < cant; i++)
+    {
+        paciente = archivoBKP.leer(i);
+        fwrite(&paciente, sizeof(Paciente), 1, pFile);
+    }
+    
+    fclose(pFile);
+    
+    return true;
+}
