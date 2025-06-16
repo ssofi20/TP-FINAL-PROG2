@@ -318,7 +318,7 @@ void Menu::copiaSeguridad()
     }
     
     ///Pacientes
-    //PacienteArchivo.copiaSeguridad();
+    PacienteArchivo arch.copiaSeguridad();
     
     ///Turnos
     //TurnoArchivo.copiaSeguridad();
