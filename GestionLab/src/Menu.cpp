@@ -421,12 +421,18 @@ void Menu::informe3()
     for (int i=0; i < cantEstudios; i++)
     {
         objEst = archivoEst.leer(i);
-        for (int x; x < cantTurnos; x++)
+        for (int x = 0; x < cantTurnos; x++)
         {
             objTurno = archivoTurno.leer(x);
-            if (anio == objTurno.getFechaProgramada().getAnio())
+            if(objEst.getIDTurno() == objTurno.getIDTurno())
             {
-                aux += objEst.getPrecio();
+                cout << objTurno.getFechaProgramada().getAnio() << endl;
+                if (anio == objTurno.getFechaProgramada().getAnio())
+                {
+                    cout << aux << endl;
+                    aux += objEst.getPrecio();
+                    cout << aux << endl;
+                }
             }
         }
     }
