@@ -29,6 +29,7 @@ void PacienteManager::opcion2()
     if (pos < 0)
     {
         cout << "El nro. de DNI no existe en el archivo. " << endl;
+        system("pause");
         return;
     }
     Paciente obj = _archivo.leer(pos);
@@ -276,12 +277,13 @@ void PacienteManager::opcion6(){
     int cant = _archivo.cantidadRegistros();
 
     if(cant <= 0){
-        return;
+        return ;
     }
 
     Paciente *vecRegistros = new Paciente[cant];
     if(vecRegistros == nullptr){
         cout << "Error al pedir memoria" << endl;
+        system("pause");
         return;
     }
     _archivo.leer(cant,vecRegistros);

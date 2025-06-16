@@ -61,7 +61,6 @@ int PacienteArchivo::buscar(int DNI){
         }
     }
     return -1;
-
 }
 
 //GUARDA AL FINAL DE ARCHIVO UN REGISTRO

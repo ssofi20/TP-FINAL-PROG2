@@ -9,7 +9,8 @@ void Menu::menuGestionPacientes()
     PacienteManager manager;
 
     int opc;
-    while(true){
+    while(true)
+    {
 
         system("cls");
         cout << "Menu Pacientes" << endl;
@@ -61,7 +62,8 @@ void Menu::menuGestionTurnos()
     TurnoManager manager;
 
     int opc;
-    while(true){
+    while(true)
+    {
 
         system("cls");
         cout << "Menu Turnos" << endl;
@@ -109,7 +111,8 @@ void Menu::menuGestionEstudios()
     EstudioManager manager;
 
     int opc;
-    while(true){
+    while(true)
+    {
 
         system("cls");
         cout << "Menu Estudios" << endl;
@@ -151,14 +154,16 @@ void Menu::menuGestionEstudios()
     }
 }
 
-void Menu::menuGestionDatosSistema(){
+void Menu::menuGestionDatosSistema()
+{
 
     int opc;
 
     TipoAnalisisManager mTipoAnalisis;
     TipoMuestraManager mTipoMuestra;
 
-    while(true){
+    while(true)
+    {
 
         system("cls");
         cout << "Menu Gestion Datos del Sistema" << endl;
@@ -179,37 +184,38 @@ void Menu::menuGestionDatosSistema(){
         cin >> opc;
         system ("cls");
 
-        switch(opc){
-            case 1:
-                mTipoMuestra.opcion1();
-                break;
-            case 2:
-                mTipoMuestra.opcion2();
-                break;
-            case 3:
-                mTipoMuestra.opcion3();
-                break;
-            case 4:
-                mTipoMuestra.opcion4();
-                break;
-            case 5:
-                mTipoAnalisis.opcion1();
-                break;
-            case 6:
-                mTipoAnalisis.opcion2();
-                break;
-            case 7:
-                mTipoAnalisis.opcion3();
-                break;
-            case 8:
-                mTipoAnalisis.opcion4();
-                break;
-            case 0:
-                return;
-            default:
-                cout << "Opcion incorrecta! Intente nuevamente" << endl;
-                system("pause");
-                break;
+        switch(opc)
+        {
+        case 1:
+            mTipoMuestra.opcion1();
+            break;
+        case 2:
+            mTipoMuestra.opcion2();
+            break;
+        case 3:
+            mTipoMuestra.opcion3();
+            break;
+        case 4:
+            mTipoMuestra.opcion4();
+            break;
+        case 5:
+            mTipoAnalisis.opcion1();
+            break;
+        case 6:
+            mTipoAnalisis.opcion2();
+            break;
+        case 7:
+            mTipoAnalisis.opcion3();
+            break;
+        case 8:
+            mTipoAnalisis.opcion4();
+            break;
+        case 0:
+            return;
+        default:
+            cout << "Opcion incorrecta! Intente nuevamente" << endl;
+            system("pause");
+            break;
         }
 
     }
@@ -256,6 +262,109 @@ void Menu::menuGestiones()
     }
 }
 
+void Menu::informe1()
+{
+    PacienteArchivo arcPaci;
+    EstudioArchivo arcEst;
+
+    int dniMax;
+    int contador = 0;
+    int contador2 = 0;
+    int cantidad = arcPaci.cantidadRegistros();
+    int cantReg = arcEst.cantidadRegistros();
+    for (int i = 0; i < cantidad; i++)/// Recorre los pacientes
+    {
+        Paciente reg = arcPaci.leer(i);
+        if (i==0)
+        {
+            dniMax = reg.getDNI();
+            for (int x = 0; x < cantReg; i++)///recorre los estudios
+            {
+                Estudio regEst = arcEst.leer(x);
+                if (dniMax == regEst.getDNI())
+                {
+                    contador++;
+                    cout << contador << endl;
+                }
+                cout << "2do IF" << endl;
+            }
+                cout << i << endl;
+                cout << "2do FOR" << endl;
+            contador2 = contador;
+            contador = 0;
+            cout << "1ER IF" << endl;
+        }
+        else
+        {
+            for (int j = 0; j < cantReg; j++)
+            {
+                Estudio regEst = arcEst.leer(j);
+                if (reg.getDNI() == regEst.getDNI())
+                {
+                    contador++;
+                }
+                    cout << "3er if" << endl;
+                if (contador2 < contador)
+                {
+                    dniMax = reg.getDNI();
+                    contador2 = contador;
+                    contador = 0;
+                }
+                    cout << "4to if" << endl;
+            }
+                cout << "3er FOR" << endl;
+        }
+            cout << "1er else" << endl;
+    }
+        cout << "FINALIZA FOR 1" << endl;
+
+    Paciente obj;
+    int pos = arcPaci.buscar(dniMax);
+    obj = arcPaci.leer(pos);
+
+    cout << "PACIENTE CON MAS ESTUDIOS REALIZADOS: " << endl;
+
+    cout << "DNI PACIENTE: " << obj.getDNI() << endl;
+    cout << "NOMBRE Y APELLIDO: " << obj.getNombre() << obj.getApellido() << endl;
+    cout << "FECHA DE NACIMEINTO: " << obj.getDateB().getDia() << "/" << obj.getDateB().getMes() << "/" << obj.getDateB().getAnio() << endl;
+
+}
+
+void Menu::informe2()
+{ /// Recaudación por tipo de estudio.
+
+    PacienteArchivo archivo;
+    Paciente obj;
+
+    Estudio objEst;
+    EstudioArchivo archivoEst;
+
+    EstudioAnalisisArchivo archivoEstAnalisis;
+    EstudioAnalisis objetoEstAnalisis;
+
+    float auxSangre = 0;
+    float auxOrina =0;
+    float auxHeces = 0;
+    float auxSec = 0;
+    float auxBiopsias = 0;
+
+
+    int cantReg = archivo.cantidadRegistros();
+    int cantidad = archivoEst.cantidadRegistros();
+
+    for (int i = 0; i < cantReg; i++)
+    {
+            obj = archivo.leer(i);
+
+
+    }
+
+
+}
+
+
+
+
 void Menu::menuInformes()
 {
     int opc;
@@ -277,7 +386,7 @@ void Menu::menuInformes()
         switch (opc)
         {
         case 1:
-            ///informe1();
+            informe1();
             break;
         case 2:
             ///informe2();
