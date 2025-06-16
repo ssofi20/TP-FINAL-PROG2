@@ -94,12 +94,19 @@ bool PacienteArchivo::copiaSeguridad()
 {
     Paciente paciente;
     
-    PacienteArchivo archivoBKP;
-    
-    FILE pFileBkp = fopen("archivos/pacientes.bkp", "wb");
+    FILE *pFileBkp = fopen("archivos/pacientes.bkp", "wb");
 
     if(pFileBkp == nullptr){return false;}
     
+    int cant = cantidadRegistros();
     
+    for(int i = 0; i < cant; i++)
+    {
+        paciente = leer(i);
+        fwrite(&paciente, sizeof (Paciente), 1, pFileBkp);
+    }
     
+    fclose(pFileBkp);
+    
+    return true;
 }
