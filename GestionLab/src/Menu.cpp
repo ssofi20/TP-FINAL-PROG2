@@ -272,24 +272,22 @@ void Menu::informe1()
     int contador2 = 0;
     int cantidad = arcPaci.cantidadRegistros();
     int cantReg = arcEst.cantidadRegistros();
-    
+
     for (int i = 0; i < cantidad; i++)/// Recorre los pacientes
     {
         Paciente reg = arcPaci.leer(i);
-        
+
         if (i==0)
         {
             dniMax = reg.getDNI();
             for (int x = 0; x < cantReg; x++)///recorre los estudios
             {
                 Estudio regEst = arcEst.leer(x);
-                regEst.mostrar();
                 if (dniMax == regEst.getDNI())
                 {
                     contador++;
                 }
             }
-            cout << i << endl;
             contador2 = contador;
             contador = 0;
         }
@@ -302,20 +300,15 @@ void Menu::informe1()
                 {
                     contador++;
                 }
-                    cout << "3er if" << endl;
                 if (contador2 < contador)
                 {
                     dniMax = reg.getDNI();
                     contador2 = contador;
                     contador = 0;
                 }
-                    cout << "4to if" << endl;
             }
-                cout << "3er FOR" << endl;
         }
-            cout << "1er else" << endl;
     }
-        cout << "FINALIZA FOR 1" << endl;
 
     Paciente obj;
     int pos = arcPaci.buscar(dniMax);
@@ -323,9 +316,16 @@ void Menu::informe1()
 
     cout << "PACIENTE CON MAS ESTUDIOS REALIZADOS: " << endl;
 
+    cout << endl;
+
     cout << "DNI PACIENTE: " << obj.getDNI() << endl;
     cout << "NOMBRE Y APELLIDO: " << obj.getNombre() << obj.getApellido() << endl;
     cout << "FECHA DE NACIMEINTO: " << obj.getDateB().getDia() << "/" << obj.getDateB().getMes() << "/" << obj.getDateB().getAnio() << endl;
+
+    cout << endl;
+
+    cout << "CANTIDAD DE ANALISIS REALIZADOS: " << contador2 << endl;
+    return;
 
 }
 
