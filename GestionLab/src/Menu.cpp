@@ -300,12 +300,12 @@ void Menu::informe1()
                 {
                     contador++;
                 }
-                if (contador2 < contador)
-                {
-                    dniMax = reg.getDNI();
-                    contador2 = contador;
-                    contador = 0;
-                }
+            }
+            if (contador2 < contador)
+            {
+                dniMax = reg.getDNI();
+                contador2 = contador;
+                contador = 0;
             }
         }
     }
