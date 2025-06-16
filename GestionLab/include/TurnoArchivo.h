@@ -12,6 +12,7 @@ class TurnoArchivo
         int buscar(int IDTurno);
         bool guardar(Turno registro);
         bool guardar(Turno registro, int posicion);
+        bool copiaSeguridad();
 
     private:
         
