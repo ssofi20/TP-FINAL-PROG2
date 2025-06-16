@@ -369,7 +369,7 @@ void Menu::restaurarCopiaSeguridad()
     
     if(!opcion)
     {
-        cout << "No se han realizado la copia de seguridad" << endl;
+        cout << "No se ha restaurado la copia de seguridad" << endl;
         return;
     } 
     
