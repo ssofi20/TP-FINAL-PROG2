@@ -356,9 +356,10 @@ void Menu::informe2()
 
         for (int x = 0; x < cantAnalisis; x++)
         {
+            objEstAnalisis = archivoEstAnalisis.leer(x);
+
             if (strcmp(objEst.getIDEstudio(),objEstAnalisis.getIDEstudio())==0)
             {
-
                 int pos = archivoAnalisis.buscar(objEstAnalisis.getIDAnalisis());
                 objAnalisis = archivoAnalisis.leer(pos);
 
@@ -400,7 +401,39 @@ void Menu::informe2()
     return;
 }
 
+void Menu::informe3()
+{
+    int anio;
+    cout << "Ingrese el anio: " << endl;
+    cin >> anio;
 
+    EstudioArchivo archivoEst;
+    Estudio objEst;
+
+    TurnoArchivo archivoTurno;
+    Turno objTurno;
+
+    float aux = 0;
+
+    int cantEstudios = archivoEst.cantidadRegistros();
+    int cantTurnos = archivoTurno.cantidadRegistros();
+
+    for (int i=0; i < cantEstudios; i++)
+    {
+        objEst = archivoEst.leer(i);
+        for (int x; x < cantTurnos; x++)
+        {
+            objTurno = archivoTurno.leer(x);
+            if (anio == objTurno.getFechaProgramada().getAnio())
+            {
+                aux += objEst.getPrecio();
+            }
+        }
+    }
+
+    cout << "RECAUDACION DEL ANIO  " << anio  << ": " <<  "$"  << aux << endl;
+
+}
 
     void Menu::menuInformes()
     {
@@ -429,10 +462,10 @@ void Menu::informe2()
             case 2:
                 informe2();
                 system("pause");
-
                 break;
             case 3:
-                ///informe3();
+                informe3();
+                system("pause");
                 break;
             case 4:
                 ///informe4();
