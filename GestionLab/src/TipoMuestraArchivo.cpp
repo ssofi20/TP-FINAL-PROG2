@@ -92,3 +92,46 @@ bool TipoMuestraArchivo::guardar(TipoMuestra registro, int posicion)
     return escribio;
 
 }
+
+bool TipoMuestraArchivo::copiaSeguridad()
+{
+    TipoMuestra tipoMuestra;
+    
+    FILE *pFileBkp = fopen("archivosBKP/TiposMuestra.bkp", "wb");
+    
+    if(pFileBkp == nullptr){return false;}
+    
+    int cant = cantidadRegistros();
+    
+    for(int i = 0; i < cant; i++)
+    {
+        tipoMuestra = leer(i);
+        fwrite(&tipoMuestra, sizeof(TipoMuestra), 1, pFileBkp);
+    }
+    
+    fclose(pFileBkp);
+    
+    return true;
+}
+
+bool TipoMuestraArchivo::restaurarCopia()
+{
+    TipoMuestra tipoMuestra;
+    
+    TipoMuestraArchivo archivoBKP("archivosBKP/TiposMuestra.bkp");
+    
+    int cant = archivoBKP.cantidadRegistros();
+    
+    FILE *pFile = fopen(_nombreArchivo.c_str(), "wb");
+    if(pFile == nullptr){return false;}
+    
+    for(int i = 0; i < cant; i++)
+    {
+        tipoMuestra = archivoBKP.leer(i);
+        fwrite(&tipoMuestra, sizeof(TipoMuestra), 1, pFile);
+    }
+    
+    fclose(pFile);
+    
+    return true;
+}

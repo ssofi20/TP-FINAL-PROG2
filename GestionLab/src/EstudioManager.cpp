@@ -68,8 +68,6 @@ void EstudioManager::opcion3()
     cout << "Ingrese el ID del estudio que desea modificar: ";
     cargarCadena(idEstudio, 10);
 
-    int cantidadReg = _archivo.cantidadRegistros();
-
     int pos = _archivo.buscar(idEstudio);
 
     if(pos < 0)
@@ -183,8 +181,6 @@ void EstudioManager::opcion4()
     cout << "Ingrese el ID del estudio: ";
     cargarCadena(idEstudio, 10);
 
-    int cantidadReg = _archivo.cantidadRegistros();
-
     int pos = _archivo.buscar(idEstudio);
 
     if(pos < 0)
@@ -199,7 +195,6 @@ void EstudioManager::opcion4()
     registro.mostrar();
 
     int cant = _archivoIntermedio.cantidadRegistros();
-    int cantAnalisis = _archivoAnalisis.cantidadRegistros();
 
     for(int i = 0; i < cant; i++){
         EstudioAnalisis reg = _archivoIntermedio.leer(i);

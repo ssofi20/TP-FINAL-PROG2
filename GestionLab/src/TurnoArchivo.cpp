@@ -65,6 +65,7 @@ bool TurnoArchivo::guardar(Turno registro){
     return escribio;
     
 }
+
 bool TurnoArchivo::guardar(Turno registro, int posicion){
     
     FILE *pFile = fopen(_nombreArchivo.c_str(), "rb+");
@@ -76,4 +77,47 @@ bool TurnoArchivo::guardar(Turno registro, int posicion){
     bool escribio = fwrite(&registro, sizeof(Turno), 1, pFile);
     fclose(pFile);
     return escribio;
+}
+
+bool TurnoArchivo::copiaSeguridad()
+{
+    Turno turno;
+    
+    FILE *pFileBkp = fopen("archivosBKP/Turnos.bkp", "wb");
+
+    if(pFileBkp == nullptr){return false;}
+    
+    int cant = cantidadRegistros();
+    
+    for(int i = 0; i < cant; i++)
+    {
+        turno = leer(i);
+        fwrite(&turno, sizeof (Turno), 1, pFileBkp);
+    }
+    
+    fclose(pFileBkp);
+    
+    return true;
+}
+
+bool TurnoArchivo::restaurarCopia()
+{
+    Turno turno;
+    
+    TurnoArchivo archivoBKP("archivosBKP/Turnos.bkp");
+    
+    int cant = archivoBKP.cantidadRegistros();
+    
+    FILE *pFile = fopen(_nombreArchivo.c_str(), "wb");
+    if(pFile == nullptr){return false;}
+    
+    for(int i = 0; i < cant; i++)
+    {
+        turno = archivoBKP.leer(i);
+        fwrite(&turno, sizeof(Turno), 1, pFile);
+    }
+    
+    fclose(pFile);
+    
+    return true;
 }

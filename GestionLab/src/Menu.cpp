@@ -573,6 +573,118 @@ void Menu::menuInformes()
     }
 }
 
+void Menu::copiaSeguridad()
+{
+    int opcion;
+    
+    cout << "¨Esta seguro que desea realizar una copia de seguridad de todos los archivos?" << endl;
+    cout << "1 - SI" << endl;
+    cout << "0 - NO" << endl;
+    cout << "Seleccion: ";
+    cin >> opcion;
+    
+    if(!opcion)
+    {
+        cout << "No se han realizado la copia de seguridad" << endl;
+        return;
+    }
+    
+    //Pacientes
+    PacienteArchivo pacienteArchivo;
+    //Turnos
+    TurnoArchivo turnoArchivo;
+    //Estudios
+    EstudioArchivo estudioArchivo;
+    //TiposAnalisis
+    TipoAnalisisArchivo tipoAnalisisArchivo;
+    //TiposMuestra
+    TipoMuestraArchivo tipoMuestraArchivo;
+    //EstudiosAnalisis
+    EstudioAnalisisArchivo estudioAnalisisArchivo;
+    
+    if(pacienteArchivo.copiaSeguridad()){
+        if(turnoArchivo.copiaSeguridad()){
+            if(estudioArchivo.copiaSeguridad()){
+                if(tipoAnalisisArchivo.copiaSeguridad()){
+                    if(tipoMuestraArchivo.copiaSeguridad()){
+                        if(estudioAnalisisArchivo.copiaSeguridad()){
+                            cout << "La copia de seguridad de todos los archivos se realizo con exito!" << endl;
+                        } else {
+                            cout << "Error con la copia de seguridad de Analisis de estudios" << endl;
+                        }
+                    } else {
+                        cout << "Error con la copia de seguridad de Tipos de Muestras" << endl;
+                    }
+                } else {
+                    cout << "Error con la copia de seguridad de Tipos de Analisis" << endl;
+                }
+            } else {
+                cout << "Error con la copia de seguridad de Estudios" << endl;
+            }
+       } else {
+           cout << "Error con la copia de seguridad de Turnos" << endl;
+       }
+    } else {
+        cout << "Error con la copia de seguridad de Pacientes" << endl;
+    }
+}
+
+void Menu::restaurarCopiaSeguridad()
+{
+   int opcion;
+    
+    cout << "¨Esta seguro que desea realizar restaurar copia de seguridad de todos los archivos?" << endl;
+    cout << "1 - SI" << endl;
+    cout << "0 - NO" << endl;
+    cout << "Seleccion: ";
+    cin >> opcion;
+    
+    if(!opcion)
+    {
+        cout << "No se ha restaurado la copia de seguridad" << endl;
+        return;
+    } 
+    
+    //Pacientes
+    PacienteArchivo pacienteArchivo;
+    //Turnos
+    TurnoArchivo turnoArchivo;
+    //Estudios
+    EstudioArchivo estudioArchivo;
+    //TiposAnalisis
+    TipoAnalisisArchivo tipoAnalisisArchivo;
+    //TiposMuestra
+    TipoMuestraArchivo tipoMuestraArchivo;
+    //EstudiosAnalisis
+    EstudioAnalisisArchivo estudioAnalisisArchivo;
+    
+    if(pacienteArchivo.restaurarCopia()){
+        if(turnoArchivo.restaurarCopia()){
+            if(estudioArchivo.restaurarCopia()){
+                if(tipoAnalisisArchivo.restaurarCopia()){
+                    if(tipoMuestraArchivo.restaurarCopia()){
+                        if(estudioAnalisisArchivo.restaurarCopia()){
+                            cout << "La copia de seguridad de todos los archivos se restauro con exito!" << endl;
+                        } else {
+                            cout << "Error con la restauracion de la copia de seguridad de Analisis de estudios" << endl;
+                        }
+                    } else {
+                        cout << "Error con la restauracion de la copia de seguridad de Tipos de Muestras" << endl;
+                    }
+                } else {
+                    cout << "Error con la restauracion de la copia de seguridad de Tipos de Analisis" << endl;
+                }
+            } else {
+                cout << "Error con la restauracion de la copia de seguridad de Estudios" << endl;
+            }
+       } else {
+           cout << "Error con la restauracion de la copia de seguridad de Turnos" << endl;
+       }
+    } else {
+        cout << "Error con la restauracion de la copia de seguridad de Pacientes" << endl;
+    }
+}
+
 void Menu::menuConfiguraciones()
 {
     int opc;
@@ -591,11 +703,11 @@ void Menu::menuConfiguraciones()
         switch (opc)
         {
         case 1:
-            ///copiaSeguridad();
+            copiaSeguridad();
             system("pause");
             break;
         case 2:
-            ///restaurarCopiaSeguridad();
+            restaurarCopiaSeguridad();
             system("pause");
             break;
         case 0:

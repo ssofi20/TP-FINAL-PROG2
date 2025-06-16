@@ -88,3 +88,46 @@ bool PacienteArchivo::guardar(Paciente paciente, int posicion){
     fclose(pFile);
     return escribio;
 }
+
+bool PacienteArchivo::copiaSeguridad()
+{
+    Paciente paciente;
+    
+    FILE *pFileBkp = fopen("archivosBKP/Pacientes.bkp", "wb");
+
+    if(pFileBkp == nullptr){return false;}
+    
+    int cant = cantidadRegistros();
+    
+    for(int i = 0; i < cant; i++)
+    {
+        paciente = leer(i);
+        fwrite(&paciente, sizeof (Paciente), 1, pFileBkp);
+    }
+    
+    fclose(pFileBkp);
+    
+    return true;
+}
+
+bool PacienteArchivo::restaurarCopia()
+{
+    Paciente paciente;
+    
+    PacienteArchivo archivoBKP("archivosBKP/Pacientes.bkp");
+    
+    int cant = archivoBKP.cantidadRegistros();
+    
+    FILE *pFile = fopen(_fileName.c_str(), "wb");
+    if(pFile == nullptr){return false;}
+    
+    for(int i = 0; i < cant; i++)
+    {
+        paciente = archivoBKP.leer(i);
+        fwrite(&paciente, sizeof(Paciente), 1, pFile);
+    }
+    
+    fclose(pFile);
+    
+    return true;
+}

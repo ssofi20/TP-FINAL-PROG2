@@ -57,3 +57,46 @@ bool EstudioAnalisisArchivo::guardar(EstudioAnalisis registro, int posicion){
     return escribio;
 
 }
+
+bool EstudioAnalisisArchivo::copiaSeguridad()
+{
+    EstudioAnalisis estudioAnalisis;
+    
+    FILE *pFileBkp = fopen("archivosBKP/EstudioAnalisis.bkp", "wb");
+    
+    if(pFileBkp == nullptr){return false;}
+    
+    int cant = cantidadRegistros();
+    
+    for(int i = 0; i < cant; i++)
+    {
+        estudioAnalisis = leer(i);
+        fwrite(&estudioAnalisis, sizeof(EstudioAnalisis), 1, pFileBkp);
+    }
+    
+    fclose(pFileBkp);
+    
+    return true;
+}
+
+bool EstudioAnalisisArchivo::restaurarCopia()
+{
+    EstudioAnalisis estudioAnalisis;
+    
+    EstudioAnalisisArchivo archivoBKP("archivosBKP/EstudioAnalisis.bkp");
+    
+    int cant = archivoBKP.cantidadRegistros();
+    
+    FILE *pFile = fopen(_nombreArchivo.c_str(), "wb");
+    if(pFile == nullptr){return false;}
+    
+    for(int i = 0; i < cant; i++)
+    {
+        estudioAnalisis = archivoBKP.leer(i);
+        fwrite(&estudioAnalisis, sizeof(EstudioAnalisis), 1, pFile);
+    }
+    
+    fclose(pFile);
+    
+    return true;
+}

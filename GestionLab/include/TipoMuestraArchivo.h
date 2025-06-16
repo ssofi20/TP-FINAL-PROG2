@@ -14,6 +14,8 @@ public:
     int buscar(int IDMuestra);
     bool guardar(TipoMuestra registro);
     bool guardar(TipoMuestra registro, int posicion);
+    bool copiaSeguridad();
+    bool restaurarCopia();
 
 private:
     std::string _nombreArchivo;
