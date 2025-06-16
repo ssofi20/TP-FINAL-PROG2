@@ -121,3 +121,24 @@ bool TipoAnalisisArchivo::copiaSeguridad()
     return true;
 }
 
+bool TipoAnalisisArchivo::restaurarCopia()
+{
+    TipoAnalisis tipoAnalisis;
+    
+    TipoAnalisisArchivo archivoBKP("archivosBKP/TiposAnalisis.bkp");
+    
+    int cant = archivoBKP.cantidadRegistros();
+    
+    FILE *pFile = fopen(_nombreArchivo.c_str(), "wb");
+    if(pFile == nullptr){return false;}
+    
+    for(int i = 0; i < cant; i++)
+    {
+        tipoAnalisis = archivoBKP.leer(i);
+        fwrite(&tipoAnalisis, sizeof(TipoAnalisis), 1, pFile);
+    }
+    
+    fclose(pFile);
+    
+    return true;
+}
