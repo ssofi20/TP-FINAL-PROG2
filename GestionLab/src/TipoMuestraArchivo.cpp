@@ -113,3 +113,25 @@ bool TipoMuestraArchivo::copiaSeguridad()
     
     return true;
 }
+
+bool TipoMuestraArchivo::restaurarCopia()
+{
+    TipoMuestra tipoMuestra;
+    
+    TipoMuestraArchivo archivoBKP("archivosBKP/TiposMuestra.bkp");
+    
+    int cant = archivoBKP.cantidadRegistros();
+    
+    FILE *pFile = fopen(_nombreArchivo.c_str(), "wb");
+    if(pFile == nullptr){return false;}
+    
+    for(int i = 0; i < cant; i++)
+    {
+        tipoMuestra = archivoBKP.leer(i);
+        fwrite(&tipoMuestra, sizeof(TipoMuestra), 1, pFile);
+    }
+    
+    fclose(pFile);
+    
+    return true;
+}

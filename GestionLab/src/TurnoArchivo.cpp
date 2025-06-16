@@ -99,3 +99,25 @@ bool TurnoArchivo::copiaSeguridad()
     
     return true;
 }
+
+bool TurnoArchivo::restaurarCopia()
+{
+    Turno turno;
+    
+    TurnoArchivo archivoBKP("archivosBKP/Turnos.bkp");
+    
+    int cant = archivoBKP.cantidadRegistros();
+    
+    FILE *pFile = fopen(_nombreArchivo.c_str(), "wb");
+    if(pFile == nullptr){return false;}
+    
+    for(int i = 0; i < cant; i++)
+    {
+        turno = archivoBKP.leer(i);
+        fwrite(&turno, sizeof(Turno), 1, pFile);
+    }
+    
+    fclose(pFile);
+    
+    return true;
+}
