@@ -272,27 +272,26 @@ void Menu::informe1()
     int contador2 = 0;
     int cantidad = arcPaci.cantidadRegistros();
     int cantReg = arcEst.cantidadRegistros();
+    
     for (int i = 0; i < cantidad; i++)/// Recorre los pacientes
     {
         Paciente reg = arcPaci.leer(i);
+        
         if (i==0)
         {
             dniMax = reg.getDNI();
-            for (int x = 0; x < cantReg; i++)///recorre los estudios
+            for (int x = 0; x < cantReg; x++)///recorre los estudios
             {
                 Estudio regEst = arcEst.leer(x);
+                regEst.mostrar();
                 if (dniMax == regEst.getDNI())
                 {
                     contador++;
-                    cout << contador << endl;
                 }
-                cout << "2do IF" << endl;
             }
-                cout << i << endl;
-                cout << "2do FOR" << endl;
+            cout << i << endl;
             contador2 = contador;
             contador = 0;
-            cout << "1ER IF" << endl;
         }
         else
         {
@@ -387,6 +386,7 @@ void Menu::menuInformes()
         {
         case 1:
             informe1();
+            system("pause");
             break;
         case 2:
             ///informe2();
