@@ -97,7 +97,7 @@ bool TipoMuestraArchivo::copiaSeguridad()
 {
     TipoMuestra tipoMuestra;
     
-    FILE *pFileBkp = fopen("TiposMuestra.bkp", "wb");
+    FILE *pFileBkp = fopen("archivosBKP/TiposMuestra.bkp", "wb");
     
     if(pFileBkp == nullptr){return false;}
     

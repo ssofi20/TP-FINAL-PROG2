@@ -12,6 +12,7 @@ class EstudioAnalisisArchivo
         bool guardar(EstudioAnalisis registro);
         bool guardar(EstudioAnalisis registro, int posicion);
         bool copiaSeguridad();
+        bool restaurarCopia();
 
     private:
 

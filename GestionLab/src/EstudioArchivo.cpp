@@ -92,7 +92,7 @@ bool EstudioArchivo::copiaSeguridad()
 {
     Estudio estudio;
     
-    FILE *pFileBkp = fopen("archivos/Estudios.bkp", "wb");
+    FILE *pFileBkp = fopen("archivosBKP/Estudios.bkp", "wb");
 
     if(pFileBkp == nullptr){return false;}
     

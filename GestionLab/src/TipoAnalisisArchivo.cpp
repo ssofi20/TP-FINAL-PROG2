@@ -104,7 +104,7 @@ bool TipoAnalisisArchivo::copiaSeguridad()
 {
     TipoAnalisis tipoAnalisis;
     
-    FILE *pFileBkp = fopen("archivos/TiposAnalisis.bkp", "wb");
+    FILE *pFileBkp = fopen("archivosBKP/TiposAnalisis.bkp", "wb");
 
     if(pFileBkp == nullptr){return false;}
     

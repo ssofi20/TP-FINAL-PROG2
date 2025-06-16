@@ -359,6 +359,20 @@ void Menu::copiaSeguridad()
 
 void Menu::restaurarCopiaSeguridad()
 {
+   int opcion;
+    
+    cout << "¨Esta seguro que desea realizar restaurar copia de seguridad de todos los archivos?" << endl;
+    cout << "1 - SI" << endl;
+    cout << "0 - NO" << endl;
+    cout << "Seleccion: ";
+    cin >> opcion;
+    
+    if(!opcion)
+    {
+        cout << "No se han realizado la copia de seguridad" << endl;
+        return;
+    } 
+    
     
 }
 

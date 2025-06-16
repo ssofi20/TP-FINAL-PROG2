@@ -83,7 +83,7 @@ bool TurnoArchivo::copiaSeguridad()
 {
     Turno turno;
     
-    FILE *pFileBkp = fopen("archivos/Turnos.bkp", "wb");
+    FILE *pFileBkp = fopen("archivosBKP/Turnos.bkp", "wb");
 
     if(pFileBkp == nullptr){return false;}
     
