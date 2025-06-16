@@ -373,7 +373,44 @@ void Menu::restaurarCopiaSeguridad()
         return;
     } 
     
+    //Pacientes
+    PacienteArchivo pacienteArchivo;
+    //Turnos
+    TurnoArchivo turnoArchivo;
+    //Estudios
+    EstudioArchivo estudioArchivo;
+    //TiposAnalisis
+    TipoAnalisisArchivo tipoAnalisisArchivo;
+    //TiposMuestra
+    TipoMuestraArchivo tipoMuestraArchivo;
+    //EstudiosAnalisis
+    EstudioAnalisisArchivo estudioAnalisisArchivo;
     
+    if(pacienteArchivo.restaurarCopia()){
+        if(turnoArchivo.restaurarCopia()){
+            if(estudioArchivo.restaurarCopia()){
+                if(tipoAnalisisArchivo.restaurarCopia()){
+                    if(tipoMuestraArchivo.restaurarCopia()){
+                        if(estudioAnalisisArchivo.restaurarCopia()){
+                            cout << "La copia de seguridad de todos los archivos se restauro con exito!" << endl;
+                        } else {
+                            cout << "Error con la restauracion de la copia de seguridad de Analisis de estudios" << endl;
+                        }
+                    } else {
+                        cout << "Error con la restauracion de la copia de seguridad de Tipos de Muestras" << endl;
+                    }
+                } else {
+                    cout << "Error con la restauracion de la copia de seguridad de Tipos de Analisis" << endl;
+                }
+            } else {
+                cout << "Error con la restauracion de la copia de seguridad de Estudios" << endl;
+            }
+       } else {
+           cout << "Error con la restauracion de la copia de seguridad de Turnos" << endl;
+       }
+    } else {
+        cout << "Error con la restauracion de la copia de seguridad de Pacientes" << endl;
+    }
 }
 
 void Menu::menuConfiguraciones()
