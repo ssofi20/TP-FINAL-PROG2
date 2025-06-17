@@ -56,6 +56,7 @@
 		<Unit filename="include/Turno.h" />
 		<Unit filename="include/TurnoArchivo.h" />
 		<Unit filename="include/TurnoManager.h" />
+		<Unit filename="include/rlutil.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/AppManager.cpp" />
 		<Unit filename="src/Estudio.cpp" />
