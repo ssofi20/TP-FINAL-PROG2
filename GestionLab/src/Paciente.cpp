@@ -91,7 +91,7 @@ bool Paciente::getEstado() const{
 }
 
 void Paciente::cargar(){
-
+    
     cout << "DNI: ";
     cin >> _DNI;
     cout << "Nombre/s: ";
@@ -102,7 +102,7 @@ void Paciente::cargar(){
     cargarCadena(_telefono, 10);
     cout << "Email: ";
     cargarCadena(_email, 59);
-    cout << "Obra Social: ";
+    cout << "Nombre Obra Social: ";
     cargarCadena(_obraSocial, 59);
     cout << "Numero Afiliado: ";
     cargarCadena(_numeroAfiliado, 19);

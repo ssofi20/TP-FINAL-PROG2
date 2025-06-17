@@ -7,7 +7,38 @@ using namespace std;
 void PacienteManager::opcion1()
 {
     Paciente obj;
-    obj.cargar();
+    bool yaExiste = true;
+    
+    while (yaExiste)
+    {
+        obj.cargar();
+        
+        int band = 0;
+        
+        int pos = _archivo.buscar(obj.getDNI());
+        
+        if(pos >= 0)
+        {
+            cout << "Ya existe un paciente con ese DNI. Intente nuevamente" << endl;
+            band ++;
+            system("pause");
+        }
+        
+        Paciente paciente = _archivo.leer(pos);
+        if(strcmp(paciente.getNumeroAfiliado(), obj.getNumeroAfiliado()) == 0)
+        {
+            cout << "Ya existe un paciente con ese numero de afiliado. Intente nuevamente" << endl;
+            band ++;
+        }
+        
+        if(band == 0)
+        {
+            yaExiste = false;
+        }
+        
+        system("cls");
+    }
+    
     if (_archivo.guardar(obj))
     {
         cout << "Se pudo guardar el paciente exitosamente!" << endl;
@@ -80,6 +111,15 @@ void PacienteManager::opcion3()
         int dniNuevo;
         cout<<"Ingrese el nuevo DNI del paciente: "<< endl;
         cin >> dniNuevo;
+        
+        int pos = _archivo.buscar(dniNuevo);
+        
+        if(pos >= 0)
+        {
+            cout << "No se puede modificar. Un paciente registrado ya posee ese DNI." << endl;
+            return;
+        }
+        
         obj.setDNI(dniNuevo);
         if(_archivo.guardar(obj, pos)){
             cout << "Se actualizaron correctamente los datos del paciente" << endl;
@@ -158,6 +198,18 @@ void PacienteManager::opcion3()
         char nroAfiliado [11];
         cout<<"Ingrese el nuevo nro. de afiliado del paciente: "<< endl;
         cargarCadena(nroAfiliado, 10);
+        
+        int cant = _archivo.cantidadRegistros();
+        for(int i = 0; i < cant; i++)
+        {
+            Paciente paciente = _archivo.leer(i);
+            if(strcmp(paciente.getNumeroAfiliado(), nroAfiliado) == 0)
+            {
+                cout << "No se puede modificar. Un paciente registrado ya posee ese numero de afiliado" << endl;
+                return;
+            }
+        }
+
         obj.setNumeroAfiliado(nroAfiliado);
         if(_archivo.guardar(obj, pos)){
             cout << "Se actualizaron correctamente los datos del paciente" << endl;
