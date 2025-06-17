@@ -15,9 +15,12 @@ void AppManager::menuInicio(){
         rlutil::hidecursor();
         
         //Titulo principal centrado
-        rlutil::locate((consola_ancho - 11) / 2, 10);
+        rlutil::locate((consola_ancho - 10) / 2, 9);
         cout << "MENU INICIO";
+        rlutil::locate((consola_ancho - 20) / 2, 10);
+        cout << "---------------------" << endl;
         
+        //Opciones del menu
         showItem("MENU GESTIONES", (consola_ancho - 14) / 2, 12, y == 0);
         showItem("MENU REPORTES", (consola_ancho - 13) / 2, 14, y == 2);
         showItem("MENU CONFIGURACION", (consola_ancho - 18) / 2, 16, y == 4);

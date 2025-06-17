@@ -14,7 +14,7 @@ int main()
 
     app.menuInicio();
     
-    rlutil::msleep(3000);
+    rlutil::msleep(2000);
     
     rlutil::locate(1, 28);
     return 0;
