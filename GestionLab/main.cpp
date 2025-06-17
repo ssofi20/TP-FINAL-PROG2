@@ -6,7 +6,8 @@ using namespace std;
 int main()
 {
 
-    rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+    rlutil::setBackgroundColor(rlutil::COLOR::WHITE);
+    rlutil::setColor(rlutil::COLOR::GREEN);
     rlutil::setConsoleTitle("LABORATORIO ANALISIS CLINICOS");
     rlutil::cls();
 
