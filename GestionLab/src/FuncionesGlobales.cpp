@@ -22,3 +22,18 @@ void toLowerWord(char *palabra){
     }
     
 }
+
+void showItem(const char *texto, int posx, int posy, bool selected)
+{
+    if(selected){
+        rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+    }
+    else {
+        rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+    }
+    rlutil::locate(posx,posy);
+    cout << texto << endl;
+
+    rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+}
+

@@ -6,11 +6,16 @@ using namespace std;
 int main()
 {
 
+    rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+    rlutil::setConsoleTitle("LABORATORIO ANALISIS CLINICOS");
+    rlutil::cls();
+
     AppManager app;
 
     app.menuInicio();
-
-    system("pause");
-
+    
+    rlutil::msleep(3000);
+    
+    rlutil::locate(1, 28);
     return 0;
 }
