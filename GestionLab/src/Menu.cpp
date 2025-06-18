@@ -105,46 +105,94 @@ void Menu::menuGestionTurnos()
 {
 
     TurnoManager manager;
+    
+    int y = 0;
+    int consola_ancho = 100;
 
     int opc;
     while(true)
     {
 
-        system("cls");
-        cout << "Menu Turnos" << endl;
-        cout << "-------------------------------------" << endl;
-        cout << "1. Agendar nuevo turno " << endl;
-        cout << "2. Reprogramar turno " << endl;
-        cout << "3. Modificar estado de un turno " << endl;
-        cout << "4. Buscar turnos de un paciente  " << endl;
-        cout << "5. Mostrar lista de turnos  " << endl;
-        cout << "0. Volver al menu anterior  " << endl;
-        cout << "-------------------------------------" << endl;
-        cout << "Ingrese la opcion deseada: ";
-        cin >> opc;
-        system ("cls");
-        switch (opc)
+        rlutil::cls();  
+        
+        //Titulo principal centrado
+        string titulo = "MENU TURNOS";
+        string linea = "-------------------------------------";
+        
+        rlutil::locate((consola_ancho - titulo.length()) / 2, 9);
+        cout << titulo << endl;
+        rlutil::locate((consola_ancho - linea.length()) / 2, 10);
+        cout << linea << endl;
+        
+        //Opciones del menu
+        
+        const char* opciones[] = {
+            "AGENDAR NUEVO TURNO", 
+            "REPROGRAMAR TURNO", 
+            "MODIFICAR ESTADO DE UN TURNO", 
+            "BUSCAR TURNOS DE UN PACIENTE",
+            "MOSTRAR LISTA DE TURNOS", 
+            "VOLVER AL MENU ANTERIOR"
+        };
+        
+        showItem(opciones[0], 12, y == 0);
+        showItem(opciones[1], 14, y == 2);
+        showItem(opciones[2], 16, y == 4);
+        showItem(opciones[3], 18, y == 6);
+        showItem(opciones[4], 20, y == 8);
+        showItem(opciones[5], 22, y == 10);
+        
+        int largoTexto = strlen(opciones[y / 2]);
+        rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 12 + y);
+        cout << (char)175;
+        
+        int key = rlutil::getkey();
+        
+        switch(key)
         {
-        case 1:
-            manager.opcion1();
-            break;
-        case 2:
-            manager.opcion2();
-            break;
-        case 3:
-            manager.opcion3();
-            break;
-        case 4:
-            manager.opcion4();
-            break;
-        case 5:
-            manager.opcion5();
-            break;
-        case 0:
-            return;
-        default:
-            cout << "Opcion incorrecta! Intente nuevamente" << endl;
-            system("pause");
+            case 14: //UP
+                largoTexto = strlen(opciones[y / 2]);
+                rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 12 + y);
+                cout << " " << endl;
+                y = y - 2;
+                if(y < 0){
+                    y = 0;
+                }
+                break;
+            case 15: //DOWN
+                largoTexto = strlen(opciones[y / 2]);
+                rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 12 + y);
+                cout << " " << endl;
+                y = y + 2;
+                if(y > 10){
+                    y = 10;
+                }
+                break;
+            case 1: //ENTER
+                switch (opc)
+                {
+                    case 1:
+                        manager.opcion1();
+                        break;
+                    case 2:
+                        manager.opcion2();
+                        break;
+                    case 3:
+                        manager.opcion3();
+                        break;
+                    case 4:
+                        manager.opcion4();
+                        break;
+                    case 5:
+                        manager.opcion5();
+                        break;
+                    case 0:
+                        return;
+                    default:
+                        cout << "Opcion incorrecta! Intente nuevamente" << endl;
+                        system("pause");
+                        break;
+                }
             break;
         }
     }
