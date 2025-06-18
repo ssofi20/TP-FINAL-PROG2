@@ -141,25 +141,41 @@ void Estudio::cargar()
     - No se pueden repetir registros (IDAnalisis - IDEstudio)
     */
 
-    int IDAnalisis = 1;
     EstudioAnalisisArchivo archivo;
+    TipoAnalisisArchivo archivoAnalisis;
     EstudioAnalisis registro;
-    while(IDAnalisis != 0){
+    
+    int IDAnalisis = 1;
+        
+    while(IDAnalisis!=0){
+        
+        bool yaExiste = true;
+        
+        while(yaExiste){
+        
+            cout << "ID Analisis a realizar: ";
+            cin >> IDAnalisis;
 
-        cout << "ID Analisis a realizar: ";
-        cin >> IDAnalisis;
+            int pos = archivoAnalisis.buscar(IDAnalisis);
 
-        if(IDAnalisis < 700 && IDAnalisis > 100){
-            registro.setIDAnalisis(IDAnalisis);
-            registro.setIDEstudio(IDEstudio);
-            registro.setEstado(true);
-            if(archivo.guardar(registro)){
-                cout << "El analisis se registro exitosamente!" << endl;
-            }
-            else {
-                cout << "No se pudo registrar el analisis :(" << endl;
+            if(pos < 0) {
+                cout << "El tipo de analisis no existe en el sistema. Intente nuevamente" << endl;
+            } else {
+                yaExiste = false;
             }
         }
+        
+        registro.setIDAnalisis(IDAnalisis);
+        registro.setIDEstudio(IDEstudio);
+        registro.setEstado(true);
+        
+        if(archivo.guardar(registro)){
+            cout << "El analisis se registro exitosamente!" << endl;
+        }
+        else {
+            cout << "No se pudo registrar el analisis :(" << endl;
+        }
+        
         cout << "Desea registrar otro analisis? 1-SI  0-NO" << endl;
         cin >> IDAnalisis;
     }

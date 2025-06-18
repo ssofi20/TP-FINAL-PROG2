@@ -3,149 +3,51 @@
 
 using namespace std;
 
-///Dar de alta un tipo de análisis
+///Dar de alta un tipo de analisis
 void TipoAnalisisManager::opcion1()
 {
-    TipoAnalisis registro;
-    int IDAnalisis;
+    TipoAnalisis registro, objeto;
+    
     int IDMuestra;
+    int IDAnalisis;
     char nombre[60];
-    bool aux = true;
-
-    while (aux)
-    {
-        cout << "Ingrese el ID del tipo de muestra: " << endl;
-        cin >> IDMuestra;
-        if (0<IDMuestra && IDMuestra <6)
-        {
-            aux = false;
-        }
-        else
-        {
-            cout << "El ID ingresado no es valido." << endl;
-            system("pause");
-        }
-    }
-
+    
+    cout << "Ingrese el ID del tipo de muestra: " << endl;
+    cin >> IDMuestra;
     registro.setIDMuestra(IDMuestra);
-
-    switch (IDMuestra)
+    
+    cout << "Ingrese el ID del analisis: " << endl;
+    cin >> IDAnalisis;
+    registro.setIDAnalisis(IDAnalisis);
+    
+    int cant = _archivo.cantidadRegistros();
+    for(int i = 0; i < cant; i++)
     {
-    case 1:
-    {
-        cout << "Ingrese el ID del analisis: " << endl;
-        cin >> IDAnalisis;
-        if (IDAnalisis > 100  && IDAnalisis < 200)
+        objeto = _archivo.leer(i);
+        if(objeto.getIDAnalisis() == IDAnalisis && objeto.getEstado())
         {
-            registro.setIDAnalisis(IDAnalisis);
-        }
-        else
-        {
-
-            cout << "El ID ingresado no concuerda con el tipo de muestra anteriormente indicado." << endl;
+            cout << "Ese ID ya existe en el archivo!." << endl;
             system("pause");
             return;
         }
-    }
-    break;
-
-    case 2:
-    {
-        cout << "Ingrese el ID del analisis: " << endl;
-        cin >> IDAnalisis;
-        if (IDAnalisis > 200  && IDAnalisis < 300)
-        {
-            registro.setIDAnalisis(IDAnalisis);
-        }
-        else
-        {
-
-            cout << "El ID ingresado no concuerda con el tipo de muestra anteriormente indicado." << endl;
-            system("pause");
-
-            return;
-        }
-    }
-    break;
-
-    case 3:
-    {
-        cout << "Ingrese el ID del analisis: " << endl;
-        cin >> IDAnalisis;
-        if (IDAnalisis > 300  && IDAnalisis < 400)
-        {
-            registro.setIDAnalisis(IDAnalisis);
-        }
-        else
-        {
-
-            cout << "El ID ingresado no concuerda con el tipo de muestra anteriormente indicado." << endl;
-            system("pause");
-
-            return;
-        }
-    }
-    break;
-
-    case 4:
-    {
-        cout << "Ingrese el ID del analisis: " << endl;
-        cin >> IDAnalisis;
-        if (IDAnalisis > 400  && IDAnalisis < 500)
-        {
-            registro.setIDAnalisis(IDAnalisis);
-        }
-        else
-        {
-
-            cout << "El ID ingresado no concuerda con el tipo de muestra anteriormente indicado." << endl;
-            system("pause");
-
-            return;
-        }
-    }
-    break;
-
-    case 5:
-    {
-        cout << "Ingrese el ID del analisis: " << endl;
-        cin >> IDAnalisis;
-        if (IDAnalisis > 500  && IDAnalisis < 600)
-        {
-            registro.setIDAnalisis(IDAnalisis);
-        }
-        else
-        {
-
-            cout << "El ID ingresado no concuerda con el tipo de muestra anteriormente indicado." << endl;
-            system("pause");
-
-            return;
-        }
-    }
-    break;
     }
 
     cout << "Ingrese el nombre del analisis: " << endl;
     cargarCadena(nombre, 59);
-
     registro.setNombre(nombre);
 
     registro.setEstado(true);
 
-    if (_archivo.guardar(registro))
-    {
+    if (_archivo.guardar(registro)) {
         cout << "El nuevo analisis se registro de forma existosa." << endl;
         system("pause");
-    }
-    else
-    {
+    } else {
         cout << "El analisis no pudo ser registrado en archivo." << endl;
         system("pause");
     }
 }
 
-///Dar de baja un tipo de análisis
+///Dar de baja un tipo de analisis
 void TipoAnalisisManager::opcion2()
 {
 
@@ -190,7 +92,7 @@ void TipoAnalisisManager::opcion2()
 
 }
 
-///Modificar un tipo de análisis
+///Modificar un tipo de analisis
 void TipoAnalisisManager::opcion3()
 {
     int idAnalisis;
@@ -231,17 +133,18 @@ void TipoAnalisisManager::opcion3()
     {
         cout << "El nuevo nombre se guardo exitosamente. " << endl;
         return;
-    }else {
-    cout << "No se pudo modificar el nombre del analisis en archivo. " << endl;
-    system("pause");
-    return;
+    } 
+    else {
+        cout << "No se pudo modificar el nombre del analisis en archivo. " << endl;
+        system("pause");
+        return;
     }
 }
 
-/// Listar todos los tipos de análisis
+/// Listar todos los tipos de analisis
 void TipoAnalisisManager::opcion4()
 {
-     int cantidad = _archivo.cantidadRegistros();
+    int cantidad = _archivo.cantidadRegistros();
     cout << "Listado de analisis" << endl << endl;
 
     for (int i = 0; i < cantidad; i++)

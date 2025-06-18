@@ -4,7 +4,61 @@
 void EstudioManager::opcion1()
 {
     Estudio obj;
-    obj.cargar();
+    
+    bool yaExiste = true;
+    
+    while (yaExiste)
+    {
+        obj.cargar();
+        
+        int band = 0;
+        
+        int pos = _archivo.buscar(obj.getIDEstudio());
+        
+        if(pos >= 0)
+        {
+            cout << "Ya existe un estudio con ese ID. Intente nuevamente" << endl;
+            band ++;
+            system("pause");
+        }
+        
+        PacienteArchivo archivoPaciente;
+        
+        pos = archivoPaciente.buscar(obj.getDNI());
+        
+        if(pos < 0)
+        {
+            cout << "No existe un paciente registrado en el sistema con ese DNI." << endl;
+            band ++;
+            system("pause");
+        }
+        
+        TurnoArchivo archivoTurno;
+        
+        pos = archivoTurno.buscar(obj.getIDTurno());
+        
+        Turno turno = archivoTurno.leer(pos);
+        
+        if(turno.getDNIPaciente() != obj.getDNI())
+        {
+            cout << "Este ID de turno no esta registrado al nombre de este paciente." << endl;
+            band ++;
+            system("pause");
+        } 
+        else if (pos < 0)
+        {
+            cout << "No existe un turno registrado en el sistema con ese ID." << endl;
+            band ++;
+            system("pause");
+        }
+        
+        if(band == 0)
+        {
+            yaExiste = false;
+        }
+        
+        system("cls");
+    }
 
     if (_archivo.guardar(obj))
     {

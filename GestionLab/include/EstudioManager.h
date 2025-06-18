@@ -6,6 +6,8 @@
 #include "TipoAnalisis.h"
 #include "TipoAnalisisArchivo.h"
 #include "TipoMuestraArchivo.h"
+#include "PacienteArchivo.h"
+#include "TurnoArchivo.h"
 
 class EstudioManager
 {
