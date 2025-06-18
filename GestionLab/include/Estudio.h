@@ -4,6 +4,7 @@
 #include "FuncionesGlobales.h"
 #include "EstudioAnalisis.h"
 #include "EstudioAnalisisArchivo.h"
+#include "TipoAnalisisArchivo.h"
 
 class Estudio
 {

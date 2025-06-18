@@ -126,7 +126,7 @@ void Estudio::cargar()
     cout << "ID turno: ";
     cin >> IDTurno;
     setIDTurno(IDTurno);
-    
+
     cout << "Precio: ";
     cin >> precio;
     setPrecio(precio);
@@ -144,19 +144,25 @@ void Estudio::cargar()
     int IDAnalisis = 1;
     EstudioAnalisisArchivo archivo;
     EstudioAnalisis registro;
-    while(IDAnalisis != 0){
 
+    TipoAnalisisArchivo archivoAnalisis;
+    while(IDAnalisis != 0)
+    {
         cout << "ID Analisis a realizar: ";
         cin >> IDAnalisis;
 
-        if(IDAnalisis < 700 && IDAnalisis > 100){
+        if(IDAnalisis < 700 && IDAnalisis > 100)
+        {
             registro.setIDAnalisis(IDAnalisis);
             registro.setIDEstudio(IDEstudio);
             registro.setEstado(true);
-            if(archivo.guardar(registro)){
+
+            if(archivo.guardar(registro))
+            {
                 cout << "El analisis se registro exitosamente!" << endl;
             }
-            else {
+            else
+            {
                 cout << "No se pudo registrar el analisis :(" << endl;
             }
         }
@@ -173,7 +179,8 @@ void Estudio::mostrar()
     cout << "ID TURNO: " << _IDTurno << endl;
     cout << "PRECIO: $" << _precio << endl;
     cout << "ESTADO DEL ESTUDIO: ";
-    switch(_estadoEstudio){
+    switch(_estadoEstudio)
+    {
     case 1:
         cout << "En proceso" << endl;
         break;
