@@ -6,13 +6,15 @@ using namespace std;
 
 void AppManager::menuInicio(){
 
-    int opcion, y = 0;
+    int y = 0;
     int consola_ancho = 100;
     
     Menu menu;
 
     do {
+
         rlutil::hidecursor();
+        rlutil::cls();
         
         //Titulo principal centrado
         rlutil::locate((consola_ancho - 10) / 2, 9);
@@ -21,10 +23,10 @@ void AppManager::menuInicio(){
         cout << "---------------------" << endl;
         
         //Opciones del menu
-        showItem("MENU GESTIONES", (consola_ancho - 14) / 2, 12, y == 0);
-        showItem("MENU REPORTES", (consola_ancho - 13) / 2, 14, y == 2);
-        showItem("MENU CONFIGURACION", (consola_ancho - 18) / 2, 16, y == 4);
-        showItem("SALIR DEL PROGRAMA", (consola_ancho - 18) / 2, 18, y == 6);
+        showItem("MENU GESTIONES", 12, y == 0);
+        showItem("MENU REPORTES", 14, y == 2);
+        showItem("MENU CONFIGURACION", 16, y == 4);
+        showItem("SALIR DEL PROGRAMA", 18, y == 6);
         
         rlutil::locate((consola_ancho - 25) / 2, 12 + y);
         cout << (char)175 << endl;
@@ -50,25 +52,26 @@ void AppManager::menuInicio(){
                 }
                 break;
             case 1: //ENTER
-                switch(y) {
-                case 0:
-                    menu.menuGestiones();
+                switch(y) 
+                {
+                    case 0:
+                        menu.menuGestiones();
                     break;
-                case 2:
-                    menu.menuInformes();
+                    case 2:
+                        menu.menuInformes();
                     break;
-                case 4:
-                    menu.menuConfiguraciones();
+                    case 4:
+                        menu.menuConfiguraciones();
                     break;
-                case 6:
-                    rlutil::cls();
-                    rlutil::locate((consola_ancho - 39) / 2, 15);
-                    cout << "Gracias por utilizar nuestro programa!!" << endl;
-                    return;
+                    case 6:
+                        rlutil::cls();
+                        rlutil::locate((consola_ancho - 39) / 2, 15);
+                        cout << "Gracias por utilizar nuestro programa!!" << endl;
+                        return;
                     break;
-                default:
-                    cout << "Opcion incorrecta! Intente nuevamente" << endl;
-                    system("pause");
+                    default:
+                        cout << "Opcion incorrecta! Intente nuevamente" << endl;
+                        system("pause");
                     break;
                 }
             break;

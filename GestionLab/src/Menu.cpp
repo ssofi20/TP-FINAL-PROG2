@@ -6,50 +6,80 @@ void Menu::menuGestionPacientes()
 {
 
     PacienteManager manager;
+    
+    int y = 0;
+    int consola_ancho = 100;
 
-    int opc;
     while(true)
     {
+        
+        //Titulo principal centrado
+        rlutil::locate((consola_ancho - 10) / 2, 9);
+        cout << "MENU PACIENTES";
+        rlutil::locate((consola_ancho - 30) / 2, 10);
+        cout << "----------------------------------------" << endl;
 
-        system("cls");
-        cout << "Menu Pacientes" << endl;
-        cout << "-------------------------------------" << endl;
-        cout << "1. Registrar nuevo paciente " << endl;
-        cout << "2. Buscar un paciente " << endl;
-        cout << "3. Editar información de un paciente " << endl;
-        cout << "4. Dar de baja un paciente  " << endl;
-        cout << "5. Restaurar un paciente  " << endl;
-        cout << "6. Mostrar lista de pacientes  " << endl;
-        cout << "0. Volver al menu anterior  " << endl;
-        cout << "-------------------------------------" << endl;
-        cout << "Ingrese la opcion deseada: ";
-        cin >> opc;
-        system ("cls");
-        switch (opc)
+        //Opciones del menu
+        
+        showItem("REGISTRAR NUEVO PACIENTE", 12, y == 0);
+        showItem("BUSCAR UN PACIENTE", 14, y == 2);
+        showItem("EDITAR INFORMACION DE UN PACIENTE", 16, y == 4);
+        showItem("DAR DE BAJA UN PACIENTE", 18, y == 6);
+        showItem("RESTAURAR UN PACIENTE", 20, y == 8);
+        showItem("MOSTRAR LISTADO DE PACIENTES", 22, y == 10);
+        showItem("VOLVER AL MENU ANTERIOR", 24, y == 12);
+        
+        rlutil::locate((consola_ancho - 38) / 2, 12 + y);
+        cout << (char)175 << endl;
+        
+        int key = rlutil::getkey();
+        
+        switch(key)
         {
-        case 1:
-            manager.opcion1();
-            break;
-        case 2:
-            manager.opcion2();
-            break;
-        case 3:
-            manager.opcion3();
-            break;
-        case 4:
-            manager.opcion4();
-            break;
-        case 5:
-            manager.opcion5();
-            break;
-        case 6:
-            manager.opcion6();
-            break;
-        case 0:
-            return;
-        default:
-            cout << "Opcion incorrecta! Intente nuevamente" << endl;
-            system("pause");
+            case 14: //UP
+                rlutil::locate((consola_ancho - 38) / 2, 12 + y);
+                cout << " " << endl;
+                y = y - 2;
+                if(y < 0){
+                    y = 0;
+                }
+                break;
+            case 15: //DOWN
+                rlutil::locate((consola_ancho - 38) / 2, 12 + y);
+                cout << " " << endl;
+                y = y + 2;
+                if(y > 12){
+                    y = 12;
+                }
+                break;
+            case 1: //ENTER
+                switch (y)
+                {
+                    case 0:
+                        manager.opcion1();
+                        break;
+                    case 2:
+                        manager.opcion2();
+                        break;
+                    case 4:
+                        manager.opcion3();
+                        break;
+                    case 6:
+                        manager.opcion4();
+                        break;
+                    case 8:
+                        manager.opcion5();
+                        break;
+                    case 10:
+                        manager.opcion6();
+                        break;
+                    case 12:
+                        return;
+                    default:
+                        cout << "Opcion incorrecta! Intente nuevamente" << endl;
+                        system("pause");
+                        break;
+                }
             break;
         }
     }
@@ -222,40 +252,74 @@ void Menu::menuGestionDatosSistema()
 
 void Menu::menuGestiones()
 {
-    int opc;
+    int y = 0;
+    int consola_ancho = 100;
+    
     while (true)
     {
-        system("cls");
-        cout << "Menu Gestiones" << endl;
-        cout << "-------------------------------------" << endl;
-        cout << "1. Gestion de Pacientes " << endl;
-        cout << "2. Gestion de Turnos " << endl;
-        cout << "3. Gestion de Estudios " << endl;
-        cout << "4. Gestion de datos del sistema " << endl;
-        cout << "0. Volver a atras " << endl;
-        cout << "-------------------------------------" << endl;
-        cout << "Ingrese la opcion deseada: ";
-        cin >> opc;
-        system ("cls");
-        switch (opc)
+        
+        rlutil::cls();
+        
+        //Titulo principal centrado
+        rlutil::locate((consola_ancho - 10) / 2, 9);
+        cout << "MENU GESTIONES";
+        rlutil::locate((consola_ancho - 30) / 2, 10);
+        cout << "---------------------------" << endl;
+
+        //Opciones del menu
+        
+        showItem("PACIENTES", 12, y == 0);
+        showItem("TURNOS", 14, y == 2);
+        showItem("ESTUDIOS", 16, y == 4);
+        showItem("DATOS DEL SISTEMA", 18, y == 6);
+        showItem("VOLVER A ATRAS", 20, y == 8);
+        
+        rlutil::locate((consola_ancho - 25) / 2, 12 + y);
+        cout << (char)175 << endl;
+        
+        int key = rlutil::getkey();
+        
+        switch(key)
         {
-        case 1:
-            menuGestionPacientes();
-            break;
-        case 2:
-            menuGestionTurnos();
-            break;
-        case 3:
-            menuGestionEstudios();
-            break;
-        case 4:
-            menuGestionDatosSistema();
-            break;
-        case 0:
-            return;
-        default:
-            cout << "Opcion incorrecta! Intente nuevamente" << endl;
-            system("pause");
+            case 14: //UP
+                rlutil::locate((consola_ancho - 25) / 2, 12 + y);
+                cout << " " << endl;
+                y = y - 2;
+                if(y < 0){
+                    y = 0;
+                }
+                break;
+            case 15: //DOWN
+                rlutil::locate((consola_ancho - 25) / 2, 12 + y);
+                cout << " " << endl;
+                y = y + 2;
+                if(y > 8){
+                    y = 8;
+                }
+                break;
+            case 1: //ENTER
+                
+                switch (y)
+                {
+                    case 0:
+                        menuGestionPacientes();
+                        break;
+                    case 2:
+                        menuGestionTurnos();
+                        break;
+                    case 4:
+                        menuGestionEstudios();
+                        break;
+                    case 6:
+                        menuGestionDatosSistema();
+                        break;
+                    case 8:
+                        return;
+                    default:
+                        cout << "Opcion incorrecta! Intente nuevamente" << endl;
+                        system("pause");
+                    break;
+                }
             break;
         }
     }
