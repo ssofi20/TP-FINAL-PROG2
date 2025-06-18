@@ -17,26 +17,39 @@ void AppManager::menuInicio(){
         rlutil::cls();
         
         //Titulo principal centrado
-        rlutil::locate((consola_ancho - 10) / 2, 9);
-        cout << "MENU INICIO";
-        rlutil::locate((consola_ancho - 20) / 2, 10);
-        cout << "---------------------" << endl;
+        string titulo = "MENU INICIO";
+        string linea = "---------------------";
+        
+        rlutil::locate((consola_ancho - titulo.length()) / 2, 9);
+        cout << titulo << endl;
+        rlutil::locate((consola_ancho - linea.length()) / 2, 10);
+        cout << linea << endl;
         
         //Opciones del menu
-        showItem("MENU GESTIONES", 12, y == 0);
-        showItem("MENU REPORTES", 14, y == 2);
-        showItem("MENU CONFIGURACION", 16, y == 4);
-        showItem("SALIR DEL PROGRAMA", 18, y == 6);
         
-        rlutil::locate((consola_ancho - 25) / 2, 12 + y);
-        cout << (char)175 << endl;
+        const char* opciones[] = {
+            "MENU GESTIONES", 
+            "MENU REPORTES", 
+            "MENU CONFIGURACION", 
+            "SALIR DEL PROGRAMA"
+        };
+        
+        showItem(opciones[0], 12, y == 0);
+        showItem(opciones[1], 14, y == 2);
+        showItem(opciones[2], 16, y == 4);
+        showItem(opciones[3], 18, y == 6);
+        
+        int largoTexto = strlen(opciones[y / 2]);
+        rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 12 + y);
+        cout << (char)175;
         
         int key = rlutil::getkey();
         
         switch(key)
         {
             case 14: //UP
-                rlutil::locate((consola_ancho - 25) / 2, 12 + y);
+                largoTexto = strlen(opciones[y / 2]);
+                rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 12 + y);
                 cout << " " << endl;
                 y = y - 2;
                 if(y < 0){
@@ -44,7 +57,8 @@ void AppManager::menuInicio(){
                 }
                 break;
             case 15: //DOWN
-                rlutil::locate((consola_ancho - 25) / 2, 12 + y);
+                largoTexto = strlen(opciones[y / 2]);
+                rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 12 + y);
                 cout << " " << endl;
                 y = y + 2;
                 if(y > 6){

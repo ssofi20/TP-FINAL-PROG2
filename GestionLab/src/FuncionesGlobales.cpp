@@ -33,7 +33,7 @@ void showItem(const char *texto, int posy, bool selected)
     else {
         rlutil::setBackgroundColor(rlutil::COLOR::WHITE);
     }
-    rlutil::locate((100 - strlen(texto)) / 2, posy);
+    rlutil::locate((tamConsola - strlen(texto)) / 2, posy);
     cout << texto << endl;
 
     rlutil::setBackgroundColor(rlutil::COLOR::WHITE);
