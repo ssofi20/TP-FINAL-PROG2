@@ -81,9 +81,6 @@ void Turno::cargar(){
     
     bool invalido = true;
     
-    cout << "ID Turno: "; 
-    cin >> _IDTurno;
-    
     cout << "DNI Paciente: ";
     cin >> _DNIPaciente;
     
@@ -105,7 +102,7 @@ void Turno::cargar(){
             
         cout << "Hora programada: " << endl;
         _horaProgramada.cargar();
-        if(_horaProgramada.getHora() == 0 || _horaProgramada.getMinuto() == 0){
+        if(_horaProgramada.getHora() == 0){
             cout << "Hora invalida! Pruebe nuevamente" << endl;
         }
         else {

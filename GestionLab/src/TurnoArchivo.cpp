@@ -7,7 +7,7 @@ TurnoArchivo::TurnoArchivo(std::string nombreArchivo)
  
 int TurnoArchivo::cantidadRegistros(){
     
-    FILE *pFile = fopen(_nombreArchivo.c_str(), "rb");
+    FILE *pFile = fopen(_nombreArchivo.c_str(), "ab+");
     if(pFile == nullptr){
         return -1;
     }
@@ -120,4 +120,9 @@ bool TurnoArchivo::restaurarCopia()
     fclose(pFile);
     
     return true;
+}
+
+int TurnoArchivo::getID()
+{
+    return cantidadRegistros() + 1;
 }

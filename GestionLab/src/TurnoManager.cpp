@@ -7,7 +7,33 @@ using namespace std;
 void TurnoManager::opcion1(){
 
     Turno registro;
-    registro.cargar();
+    
+    cout << _archivo.cantidadRegistros() << endl;
+    
+    registro.setIDTurno(_archivo.getID());
+    cout << "ID Turno: " << registro.getIDTurno() << endl; 
+    
+    bool yaExiste = true;
+    
+    while (yaExiste)
+    {
+        registro.cargar();
+
+        PacienteArchivo archivo;
+        
+        int pos = archivo.buscar(registro.getDNIPaciente());
+        
+        if(pos < 0)
+        {
+            cout << "Ese DNI no existe en el archivo. Inte nuevamente o registre al paciente" << endl;
+            system("pause");
+            system("cls");
+        }
+        else 
+        {
+            yaExiste = false;
+        }
+    }
     
     if(_archivo.guardar(registro)){
         cout << "El Turno se registro correctamente" << endl;

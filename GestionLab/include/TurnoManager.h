@@ -1,6 +1,7 @@
 #pragma once
 #include "Turno.h"
 #include "TurnoArchivo.h"
+#include "PacienteArchivo.h"
 
 class TurnoManager
 {
