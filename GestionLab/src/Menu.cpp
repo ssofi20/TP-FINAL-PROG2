@@ -169,24 +169,24 @@ void Menu::menuGestionTurnos()
                 }
                 break;
             case 1: //ENTER
-                switch (opc)
+                switch (y)
                 {
-                    case 1:
+                    case 0:
                         manager.opcion1();
                         break;
                     case 2:
                         manager.opcion2();
                         break;
-                    case 3:
+                    case 4:
                         manager.opcion3();
                         break;
-                    case 4:
+                    case 6:
                         manager.opcion4();
                         break;
-                    case 5:
+                    case 8:
                         manager.opcion5();
                         break;
-                    case 0:
+                    case 10:
                         return;
                     default:
                         cout << "Opcion incorrecta! Intente nuevamente" << endl;
@@ -202,46 +202,93 @@ void Menu::menuGestionEstudios()
 {
 
     EstudioManager manager;
+    
+    int y = 0;
+    int consola_ancho = 100;
 
-    int opc;
     while(true)
     {
+        
+        rlutil::cls();
+        
+        //Titulo principal centrado
+        string titulo = "MENU ESTUDIOS";
+        string linea = "-------------------------------------";
+        
+        rlutil::locate((consola_ancho - titulo.length()) / 2, 9);
+        cout << titulo << endl;
+        rlutil::locate((consola_ancho - linea.length()) / 2, 10);
+        cout << linea << endl;
 
-        system("cls");
-        cout << "Menu Estudios" << endl;
-        cout << "-------------------------------------" << endl;
-        cout << "1. Registrar nuevo estudio" << endl;
-        cout << "2. Eliminar estudio" << endl;
-        cout << "3. Modificar un estudio" << endl;
-        cout << "4. Buscar un estudio" << endl;
-        cout << "5. Listar todos los estudios" << endl;
-        cout << "0. Volver al menu anterior  " << endl;
-        cout << "-------------------------------------" << endl;
-        cout << "Ingrese la opcion deseada: ";
-        cin >> opc;
-        system ("cls");
-        switch (opc)
+        //Opciones del menu
+        
+        const char* opciones[] = {
+            "REGISTRAR UN NUEVO ESTUDIO", 
+            "ELIMINAR UN ESTUDIO", 
+            "MODIFICAR UN ESTUDIO", 
+            "BUSCAR UN ESTUDIO", 
+            "LISTAR TODOS LOS ESTUDIOS",
+            "VOLVER AL MENU ANTERIOR"
+        };
+        
+        showItem(opciones[0], 12, y == 0);
+        showItem(opciones[1], 14, y == 2);
+        showItem(opciones[2], 16, y == 4);
+        showItem(opciones[3], 18, y == 6);
+        showItem(opciones[4], 20, y == 8);
+        showItem(opciones[5], 22, y == 10);
+        
+        int largoTexto = strlen(opciones[y / 2]);
+        rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 12 + y);
+        cout << (char)175;
+        
+        int key = rlutil::getkey();
+        
+        switch(key)
         {
-        case 1:
-            manager.opcion1();
-            break;
-        case 2:
-            manager.opcion2();
-            break;
-        case 3:
-            manager.opcion3();
-            break;
-        case 4:
-            manager.opcion4();
-            break;
-        case 5:
-            manager.opcion5();
-            break;
-        case 0:
-            return;
-        default:
-            cout << "Opcion incorrecta! Intente nuevamente" << endl;
-            system("pause");
+            case 14: //UP
+                largoTexto = strlen(opciones[y / 2]);
+                rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 12 + y);
+                cout << " " << endl;
+                y = y - 2;
+                if(y < 0){
+                    y = 0;
+                }
+                break;
+            case 15: //DOWN
+                largoTexto = strlen(opciones[y / 2]);
+                rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 12 + y);
+                cout << " " << endl;
+                y = y + 2;
+                if(y > 10){
+                    y = 10;
+                }
+                break;
+            case 1: //ENTER
+                switch (y)
+                {
+                case 0:
+                    manager.opcion1();
+                    break;
+                case 2:
+                    manager.opcion2();
+                    break;
+                case 4:
+                    manager.opcion3();
+                    break;
+                case 6:
+                    manager.opcion4();
+                    break;
+                case 8:
+                    manager.opcion5();
+                    break;
+                case 10:
+                    return;
+                default:
+                    cout << "Opcion incorrecta! Intente nuevamente" << endl;
+                    system("pause");
+                    break;
+                }
             break;
         }
     }
@@ -250,67 +297,124 @@ void Menu::menuGestionEstudios()
 void Menu::menuGestionDatosSistema()
 {
 
-    int opc;
-
     TipoAnalisisManager mTipoAnalisis;
     TipoMuestraManager mTipoMuestra;
+    
+    int y = 0;
+    int consola_ancho = 100;
 
     while(true)
     {
 
-        system("cls");
-        cout << "Menu Gestion Datos del Sistema" << endl;
-        cout << "-------------------------------------" << endl;
-        cout << "Tipos de Muestras" << endl;
-        cout << "   1. Agregar tipo de muestra" << endl;
-        cout << "   2. Eliminar un tipo de muestra" << endl;
-        cout << "   3. Modificar un tipo de muestra" << endl;
-        cout << "   4. Listar todos los tipos de muestras" << endl;
-        cout << "-------------------------------------" << endl;
-        cout << "   5. Agregar tipo de analisis" << endl;
-        cout << "   6. Eliminar un tipo de analisis" << endl;
-        cout << "   7. Modificar un tipo de analisis" << endl;
-        cout << "   8. Listar todos los tipos de analisis" << endl;
-        cout << "-------------------------------------" << endl;
-        cout << "0. Volver al menu anterior  " << endl;
-        cout << "Ingrese la opcion deseada: ";
-        cin >> opc;
-        system ("cls");
+        rlutil::cls();
+        
+        //Titulo principal centrado
+        string titulo = "GESTION DE DATOS DEL SISTEMA";
+        string linea = "-------------------------------------";
+        
+        rlutil::locate((consola_ancho - titulo.length()) / 2, 3);
+        cout << titulo << endl;
+        rlutil::locate((consola_ancho - linea.length()) / 2, 4);
+        cout << linea << endl;
+        
+        const char* opciones[] = {
+            "AGREGAR TIPO DE MUESTRA", 
+            "ELIMINAR TIPO DE MUESTRA", 
+            "MODIFICAR TIPO DE MUESTRA", 
+            "LISTAR TODOS LOS TIPOS DE MUESTRAS",
+            "AGREGAR TIPO DE ANALISIS",
+            "ELIMINAR TIPO DE ANALISIS", 
+            "MODIFICAR TIPO DE ANALISIS",
+            "LISTAR TODOS LOS TIPOS DE ANALISIS",
+            "VOLVER AL MENU ANTERIOR"
+        };
+        
+        string subtitulo1 = "TIPOS DE MUESTRAS";
+        
+        rlutil::locate((consola_ancho - titulo.length()) / 2, 6);
+        cout << subtitulo1 << endl;
+        
+        showItem(opciones[0], 8, y == 0);
+        showItem(opciones[1], 10, y == 2);
+        showItem(opciones[2], 12, y == 4);
+        showItem(opciones[3], 14, y == 6);
+        
+        cout << endl;
+        
+        string subtitulo2 = "TIPOS DE ANALISIS";
+        
+        rlutil::locate((consola_ancho - titulo.length()) / 2, 16);
+        cout << subtitulo2 << endl;
+        
+        showItem(opciones[4], 18, y == 8);
+        showItem(opciones[5], 20, y == 10);
+        showItem(opciones[6], 22, y == 12);
+        showItem(opciones[7], 24, y == 14);
+        
+        showItem(opciones[8], 26, y == 16);
+        
+        const int filas[] = {
+            8, 10, 12, 14, 18, 20, 22, 24, 26
+        };
+        
+        int largoTexto = strlen(opciones[y / 2]);
+        rlutil::locate((consola_ancho - largoTexto) / 2 - 3, filas[y/2]);
+        cout << (char)175;
+        
+        int key = rlutil::getkey();
 
-        switch(opc)
+        switch(key)
         {
-        case 1:
-            mTipoMuestra.opcion1();
-            break;
-        case 2:
-            mTipoMuestra.opcion2();
-            break;
-        case 3:
-            mTipoMuestra.opcion3();
-            break;
-        case 4:
-            mTipoMuestra.opcion4();
-            break;
-        case 5:
-            mTipoAnalisis.opcion1();
-            break;
-        case 6:
-            mTipoAnalisis.opcion2();
-            break;
-        case 7:
-            mTipoAnalisis.opcion3();
-            break;
-        case 8:
-            mTipoAnalisis.opcion4();
-            break;
-        case 0:
-            return;
-        default:
-            cout << "Opcion incorrecta! Intente nuevamente" << endl;
-            system("pause");
+            case 14: //UP
+                largoTexto = strlen(opciones[y / 2]);
+                rlutil::locate((consola_ancho - largoTexto) / 2 - 3, filas[y/2]);
+                cout << " " << endl;
+                y = y - 2;
+                if(y < 0){
+                    y = 0;
+                }
+                break;
+            case 15: //DOWN
+                largoTexto = strlen(opciones[y / 2]);
+                rlutil::locate((consola_ancho - largoTexto) / 2 - 3, filas[y/2]);
+                cout << " " << endl;
+                y = y + 2;
+                if(y > 16){
+                    y = 16;
+                }
+                break;
+            case 1: //ENTER
+                switch(y)
+                {
+                case 0:
+                    mTipoMuestra.opcion1();
+                    break;
+                case 2:
+                    mTipoMuestra.opcion2();
+                    break;
+                case 4:
+                    mTipoMuestra.opcion3();
+                    break;
+                case 6:
+                    mTipoMuestra.opcion4();
+                    break;
+                case 8:
+                    mTipoAnalisis.opcion1();
+                    break;
+                case 10:
+                    mTipoAnalisis.opcion2();
+                    break;
+                case 12:
+                    mTipoAnalisis.opcion3();
+                    break;
+                case 14:
+                    mTipoAnalisis.opcion4();
+                    break;
+                case 16:
+                    return;
+                }
             break;
         }
-
     }
 }
 
