@@ -126,7 +126,7 @@ void Estudio::cargar()
     cout << "ID turno: ";
     cin >> IDTurno;
     setIDTurno(IDTurno);
-    
+
     cout << "Precio: ";
     cin >> precio;
     setPrecio(precio);
@@ -189,7 +189,8 @@ void Estudio::mostrar()
     cout << "ID TURNO: " << _IDTurno << endl;
     cout << "PRECIO: $" << _precio << endl;
     cout << "ESTADO DEL ESTUDIO: ";
-    switch(_estadoEstudio){
+    switch(_estadoEstudio)
+    {
     case 1:
         cout << "En proceso" << endl;
         break;

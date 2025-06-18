@@ -4,44 +4,50 @@
 using namespace std;
 
 ///Dar de alta un tipo de muestra
-void TipoMuestraManager::opcion1(){
-
+void TipoMuestraManager::opcion1()
+{
     TipoMuestra registro;
 
     int IDTipo;
+    char nombre[35];
+
     bool invalido = true;
-    while(invalido){
+
+    while(invalido)
+    {
         cout << "Ingrese el ID: ";
         cin >> IDTipo;
-        if(IDTipo < 6 && IDTipo > 0){
+
+        int pos = _archivo.buscar(IDTipo);
+        if (pos >=0)
+        {
+            cout << "Ya existe un tipo de muestra con este ID. Intente nuevamente." << endl;
+            system("pause");
+        }else
+        {
             invalido = false;
         }
-        else {
-            cout << "No existe ese tipo de ID. Ingrese una opcion del 1 al 5" << endl;
-        }
     }
+        cout << "Ingrese el nombre del tipo de muestra: " << endl;
+        cargarCadena(nombre, 34);
+        registro.setIDMuestra(IDTipo);
+        registro.setNombre(nombre);
+        registro.setEstado(true);
 
-    registro.setIDMuestra(IDTipo);
-
-    char nombre[35];
-    cout << "Ingrese el nombre del tipo de muestra: " << endl;
-    cargarCadena(nombre, 34);
-
-    registro.setNombre(nombre);
-
-    registro.setEstado(true);
-
-    if(_archivo.guardar(registro)){
+    if(_archivo.guardar(registro))
+    {
         cout << "Se ha guardado con exito!" << endl;
     }
-    else {
+    else
+    {
         cout << "No se ha podido guardar :(" << endl;
     }
     system("pause");
 }
 
 ///Dar de baja un tipo de muestra
-void TipoMuestraManager::opcion2(){
+void TipoMuestraManager::opcion2()
+{
 
     int IDTipo;
     cout << "Ingrese el ID de tipo de muestra que desea dar de baja: ";
@@ -53,16 +59,19 @@ void TipoMuestraManager::opcion2(){
     int posicion;
     TipoMuestra registro;
 
-    for(int i = 0; i < cant; i++){
+    for(int i = 0; i < cant; i++)
+    {
         registro = _archivo.leer(i);
-        if(registro.getIDMuestra() == IDTipo){
+        if(registro.getIDMuestra() == IDTipo)
+        {
             encontrado = true;
             posicion = i;
             break;
         }
     }
 
-    if(!encontrado){
+    if(!encontrado)
+    {
         cout << "El ID ingresado no existe en el archivo" << endl;
         system("pause");
         return;
@@ -75,7 +84,8 @@ void TipoMuestraManager::opcion2(){
 }
 
 ///Modificar un tipo de muestra
-void TipoMuestraManager::opcion3(){
+void TipoMuestraManager::opcion3()
+{
 
     int IDTipo;
     cout << "Ingrese el ID de tipo de muestra que desea modificar: ";
@@ -87,16 +97,19 @@ void TipoMuestraManager::opcion3(){
     int posicion;
     TipoMuestra registro;
 
-    for(int i = 0; i < cant; i++){
+    for(int i = 0; i < cant; i++)
+    {
         registro = _archivo.leer(i);
-        if(registro.getIDMuestra() == IDTipo && registro.getEstado()){
+        if(registro.getIDMuestra() == IDTipo && registro.getEstado())
+        {
             encontrado = true;
             posicion = i;
             break;
         }
     }
 
-    if(!encontrado){
+    if(!encontrado)
+    {
         cout << "El ID ingresado no existe en el archivo" << endl;
         system("pause");
         return;
@@ -108,25 +121,30 @@ void TipoMuestraManager::opcion3(){
 
     registro.setNombre(newNombre);
 
-    if(_archivo.guardar(registro, posicion)){
+    if(_archivo.guardar(registro, posicion))
+    {
         cout << "El registro fue modificado exitosamente!" << endl;
     }
-    else {
+    else
+    {
         cout << "El registro no pudo ser modificado" << endl;
     }
     system("pause");
 }
 
 ///Listar todos los tipos de muestras
-void TipoMuestraManager::opcion4(){
+void TipoMuestraManager::opcion4()
+{
 
     int cantidad = _archivo.cantidadRegistros();
     TipoMuestra registro;
 
-    for(int i = 0; i < cantidad; i++){
+    for(int i = 0; i < cantidad; i++)
+    {
 
         registro = _archivo.leer(i);
-        if(registro.getEstado()){
+        if(registro.getEstado())
+        {
             cout << "------------------------" << endl;
             cout << "ID Tipo Muestra: " << registro.getIDMuestra() << endl;
             cout << "Nombre: " << registro.getNombre() << endl;
