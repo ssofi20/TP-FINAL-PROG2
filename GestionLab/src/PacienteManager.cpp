@@ -361,28 +361,44 @@ void PacienteManager::opcion5()
 //Mostrar lista de pacientes
 void PacienteManager::opcion6()
 {
+    int consola_ancho = 100;
 
-    cout << "Listado de pacientes" << endl;
+    rlutil::cls();
+    string titulo = "LISTADO DE PACIENTES";
+    rlutil::locate((consola_ancho - titulo.length()) / 2, 2);
+    cout << titulo;
+
     int cant = _archivo.cantidadRegistros();
 
-    if(cant <= 0){
-        return ;
-    }
-
-    Paciente *vecRegistros = new Paciente[cant];
-    if(vecRegistros == nullptr){
-        cout << "Error al pedir memoria" << endl;
+    if (cant <= 0) {
+        rlutil::locate(30, 5);
+        cout << "No hay pacientes registrados.";
+        rlutil::locate((consola_ancho - 33) / 2, 6);
         system("pause");
         return;
     }
-    _archivo.leer(cant,vecRegistros);
-    for (int i = 0; i < cant; i++){
-        Paciente registro = _archivo.leer(i);
-        if(registro.getEstado()){
-            cout << "-------------------------" << endl;
-            registro.mostrar();
-            cout << "-------------------------" << endl << endl;
+    
+    
+    rlutil::locate(3, 4);   cout << "DNI";
+    rlutil::locate(12, 4);  cout << "Apellido";
+    rlutil::locate(30, 4);  cout << "Nombre";
+    rlutil::locate(46, 4);  cout << "Telefono";
+    rlutil::locate(58, 4);  cout << "Afiliado";
+    rlutil::locate(72, 4);  cout << "Obra Social";
+    rlutil::locate(92, 4);  cout << "Nacimiento";
+
+    rlutil::locate(3, 5);
+    cout << string(96, '-');
+
+     int y = 6;
+    for (int i = 0; i < cant; i++) {
+        Paciente reg = _archivo.leer(i);
+        if (reg.getEstado()) {
+            reg.mostrarHorizontal(y);
+            y++; 
         }
     }
+
+    rlutil::locate((consola_ancho - 35) / 2, y + 2);
     system("pause");
 }

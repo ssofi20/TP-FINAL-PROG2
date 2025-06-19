@@ -200,3 +200,29 @@ void Paciente::mostrar(){
     cout << _dateB.toString();
 
 }
+
+void Paciente::mostrarHorizontal(int y)
+{
+  
+    rlutil::locate(3, y);    
+    cout << _DNI;
+    
+    rlutil::locate(12, y);   
+    cout << _apellido;
+    
+    rlutil::locate(30, y);   
+    cout << _nombre;
+    
+    rlutil::locate(46, y);   
+    cout << _telefono;
+    
+    rlutil::locate(58, y);   
+    cout << _numeroAfiliado;
+    
+    rlutil::locate(72, y);   
+    cout << _obraSocial;
+    
+    rlutil::locate(92, y);   
+    cout << _dateB.toString();
+    
+}
