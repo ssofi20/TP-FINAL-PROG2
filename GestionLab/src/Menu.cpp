@@ -341,7 +341,7 @@ void Menu::menuGestionDatosSistema()
         
         string subtitulo1 = "TIPOS DE MUESTRAS";
         
-        rlutil::locate((consola_ancho - titulo.length()) / 2, 6);
+        rlutil::locate((consola_ancho - 60) / 2, 6);
         cout << subtitulo1 << endl;
         
         showItem(opciones[0], 8, y == 0);
@@ -353,7 +353,7 @@ void Menu::menuGestionDatosSistema()
         
         string subtitulo2 = "TIPOS DE ANALISIS";
         
-        rlutil::locate((consola_ancho - titulo.length()) / 2, 16);
+        rlutil::locate((consola_ancho - 60) / 2, 16);
         cout << subtitulo2 << endl;
         
         showItem(opciones[4], 18, y == 8);
@@ -361,10 +361,10 @@ void Menu::menuGestionDatosSistema()
         showItem(opciones[6], 22, y == 12);
         showItem(opciones[7], 24, y == 14);
         
-        showItem(opciones[8], 26, y == 16);
+        showItem(opciones[8], 28, y == 16);
         
         const int filas[] = {
-            8, 10, 12, 14, 18, 20, 22, 24, 26
+            8, 10, 12, 14, 18, 20, 22, 24, 28
         };
         
         int largoTexto = strlen(opciones[y / 2]);
