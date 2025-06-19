@@ -87,7 +87,7 @@ void PacienteManager::opcion2()
     if (pos < 0)
     {
         rlutil::cls();
-        texto = "El nro. de DNI no existe en el archivo.";
+        texto = "El numero de DNI no existe en el sistema.";
         rlutil::locate((consola_ancho - texto.length()) / 2, 15);
         cout << texto << endl;
         rlutil::locate((consola_ancho - 33) / 2, 16);
