@@ -17,6 +17,8 @@ void Menu::menuGestionPacientes()
     while(true)
     {
         
+        rlutil::cls();
+        
         //Titulo principal centrado
         string titulo = "MENU PACIENTES";
         string linea = "-----------------------------";

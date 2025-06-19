@@ -1,6 +1,7 @@
 #include "Fecha.h"
 #include <ctime>
 #include <iostream>
+#include "rlutil.h"
 
 using namespace std;
 
@@ -105,16 +106,26 @@ void Fecha::setFechaActual(){
 void Fecha::cargar(){
     
     int dia, mes, anio;
-    
+
+    const int xCampo = 55;
+    int y = 20;  
+
+    rlutil::locate(xCampo, y);
     cout << "Dia: ";
+    rlutil::locate(xCampo + 5, y++);
     cin >> dia;
     setDia(dia);
+
+    rlutil::locate(xCampo, y);
     cout << "Mes: ";
+    rlutil::locate(xCampo + 5, y++);
     cin >> mes;
     setMes(mes);
+
+    rlutil::locate(xCampo, y);
     cout << "Anio: ";
+    rlutil::locate(xCampo + 5, y++);
     cin >> anio;
     setAnio(anio);
-
 }
 

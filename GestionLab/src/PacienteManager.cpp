@@ -3,11 +3,11 @@
 
 using namespace std;
 
-
 //Registrar nuevo paciente.
 void PacienteManager::opcion1()
 {
     Paciente obj;
+    int consola_ancho = 100;
     bool yaExiste = true;
     
     while (yaExiste)
@@ -18,18 +18,29 @@ void PacienteManager::opcion1()
         
         int pos = _archivo.buscar(obj.getDNI());
         
+        string textoError;
+        
         if(pos >= 0)
         {
-            cout << "Ya existe un paciente con ese DNI. Intente nuevamente" << endl;
+            rlutil::cls();
+            textoError = "Ya existe un paciente con ese DNI. Intente nuevamente.";
+            rlutil::locate((consola_ancho - textoError.length()) / 2, 15);
+            cout << textoError << endl;
             band ++;
+            rlutil::locate((consola_ancho - 33) / 2, 16);
             system("pause");
         }
         
         Paciente paciente = _archivo.leer(pos);
         if(strcmp(paciente.getNumeroAfiliado(), obj.getNumeroAfiliado()) == 0)
         {
-            cout << "Ya existe un paciente con ese numero de afiliado. Intente nuevamente" << endl;
+            rlutil::cls();
+            textoError = "Ya existe un paciente con ese numero de afiliado. Intente nuevamente.";
+            rlutil::locate((consola_ancho - textoError.length()) / 2, 15);
+            cout << textoError << endl;
             band ++;
+            rlutil::locate((consola_ancho - 33) / 2, 16);
+            system("pause");
         }
         
         if(band == 0)
@@ -40,32 +51,55 @@ void PacienteManager::opcion1()
         system("cls");
     }
     
+    string textoMensaje;
+    
     if (_archivo.guardar(obj))
     {
-        cout << "Se pudo guardar el paciente exitosamente!" << endl;
+        rlutil::cls();
+        textoMensaje = "Se pudo guardar el paciente exitosamente!";
+        rlutil::locate((consola_ancho - textoMensaje.length()) / 2, 15);
+        cout << textoMensaje << endl;
     }
     else
     {
-        cout << "No se pudo guardar el paciente. ";
+        rlutil::cls();
+        textoMensaje = "Se no pudo guardar el paciente exitosamente!";
+        rlutil::locate((consola_ancho - textoMensaje.length()) / 2, 15);
+        cout << textoMensaje << endl;
     }
+    rlutil::locate((consola_ancho - 33) / 2, 16);
     system("pause");
 }
 
 //Buscar un paciente.
 void PacienteManager::opcion2()
 {
-    cout << "Ingrese el nro. de DNI del paciente que desea buscar: " << endl;
+    int consola_ancho = 100;
     int dni;
+    string texto = "Ingrese el numero de DNI del paciente que desea buscar: ";
+    rlutil::locate((consola_ancho - texto.length()) / 2, 6);
+    cout << texto << endl;
+    
+    rlutil::locate((consola_ancho - 8) / 2, 8);
     cin >> dni;
     int pos = _archivo.buscar(dni);
+    
     if (pos < 0)
     {
-        cout << "El nro. de DNI no existe en el archivo. " << endl;
+        rlutil::cls();
+        texto = "El nro. de DNI no existe en el archivo.";
+        rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+        cout << texto << endl;
+        rlutil::locate((consola_ancho - 33) / 2, 16);
         system("pause");
         return;
     }
+    
     Paciente obj = _archivo.leer(pos);
+    
     obj.mostrar();
+    
+    rlutil::locate((consola_ancho - 33) / 2, 26);
     system("pause");
 }
 
