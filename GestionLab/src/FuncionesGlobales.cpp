@@ -23,15 +23,17 @@ void toLowerWord(char *palabra){
     
 }
 
-void showItem(const char *texto, int posx, int posy, bool selected)
+void showItem(const char *texto, int posy, bool selected)
 {
+    int tamConsola = 100;
+    
     if(selected){
         rlutil::setBackgroundColor(rlutil::COLOR::GREY);
     }
     else {
         rlutil::setBackgroundColor(rlutil::COLOR::WHITE);
     }
-    rlutil::locate(posx,posy);
+    rlutil::locate((tamConsola - strlen(texto)) / 2, posy);
     cout << texto << endl;
 
     rlutil::setBackgroundColor(rlutil::COLOR::WHITE);

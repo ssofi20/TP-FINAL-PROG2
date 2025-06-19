@@ -6,35 +6,50 @@ using namespace std;
 
 void AppManager::menuInicio(){
 
-    int opcion, y = 0;
+    int y = 0;
     int consola_ancho = 100;
     
     Menu menu;
 
     do {
+
         rlutil::hidecursor();
+        rlutil::cls();
         
         //Titulo principal centrado
-        rlutil::locate((consola_ancho - 10) / 2, 9);
-        cout << "MENU INICIO";
-        rlutil::locate((consola_ancho - 20) / 2, 10);
-        cout << "---------------------" << endl;
+        string titulo = "MENU INICIO";
+        string linea = "---------------------";
+        
+        rlutil::locate((consola_ancho - titulo.length()) / 2, 9);
+        cout << titulo << endl;
+        rlutil::locate((consola_ancho - linea.length()) / 2, 10);
+        cout << linea << endl;
         
         //Opciones del menu
-        showItem("MENU GESTIONES", (consola_ancho - 14) / 2, 12, y == 0);
-        showItem("MENU REPORTES", (consola_ancho - 13) / 2, 14, y == 2);
-        showItem("MENU CONFIGURACION", (consola_ancho - 18) / 2, 16, y == 4);
-        showItem("SALIR DEL PROGRAMA", (consola_ancho - 18) / 2, 18, y == 6);
         
-        rlutil::locate((consola_ancho - 25) / 2, 12 + y);
-        cout << (char)175 << endl;
+        const char* opciones[] = {
+            "MENU GESTIONES", 
+            "MENU REPORTES", 
+            "MENU CONFIGURACION", 
+            "SALIR DEL PROGRAMA"
+        };
+        
+        showItem(opciones[0], 12, y == 0);
+        showItem(opciones[1], 14, y == 2);
+        showItem(opciones[2], 16, y == 4);
+        showItem(opciones[3], 18, y == 6);
+        
+        int largoTexto = strlen(opciones[y / 2]);
+        rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 12 + y);
+        cout << (char)175;
         
         int key = rlutil::getkey();
         
         switch(key)
         {
             case 14: //UP
-                rlutil::locate((consola_ancho - 25) / 2, 12 + y);
+                largoTexto = strlen(opciones[y / 2]);
+                rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 12 + y);
                 cout << " " << endl;
                 y = y - 2;
                 if(y < 0){
@@ -42,7 +57,8 @@ void AppManager::menuInicio(){
                 }
                 break;
             case 15: //DOWN
-                rlutil::locate((consola_ancho - 25) / 2, 12 + y);
+                largoTexto = strlen(opciones[y / 2]);
+                rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 12 + y);
                 cout << " " << endl;
                 y = y + 2;
                 if(y > 6){
@@ -50,25 +66,26 @@ void AppManager::menuInicio(){
                 }
                 break;
             case 1: //ENTER
-                switch(y) {
-                case 0:
-                    menu.menuGestiones();
+                switch(y) 
+                {
+                    case 0:
+                        menu.menuGestiones();
                     break;
-                case 2:
-                    menu.menuInformes();
+                    case 2:
+                        menu.menuInformes();
                     break;
-                case 4:
-                    menu.menuConfiguraciones();
+                    case 4:
+                        menu.menuConfiguraciones();
                     break;
-                case 6:
-                    rlutil::cls();
-                    rlutil::locate((consola_ancho - 39) / 2, 15);
-                    cout << "Gracias por utilizar nuestro programa!!" << endl;
-                    return;
+                    case 6:
+                        rlutil::cls();
+                        rlutil::locate((consola_ancho - 39) / 2, 15);
+                        cout << "Gracias por utilizar nuestro programa!!" << endl;
+                        return;
                     break;
-                default:
-                    cout << "Opcion incorrecta! Intente nuevamente" << endl;
-                    system("pause");
+                    default:
+                        cout << "Opcion incorrecta! Intente nuevamente" << endl;
+                        system("pause");
                     break;
                 }
             break;

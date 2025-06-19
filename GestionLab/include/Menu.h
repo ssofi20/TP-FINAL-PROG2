@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include "PacienteManager.h"
 #include "TurnoManager.h"
 #include "EstudioManager.h"
