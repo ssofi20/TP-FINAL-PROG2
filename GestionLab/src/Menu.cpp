@@ -2,13 +2,17 @@
 #include <iostream>
 using namespace std;
 
+//Variable global
+int consola_ancho = 100;
+
+///INICIO FUNCIONES MENU GESTION
+
 void Menu::menuGestionPacientes()
 {
 
     PacienteManager manager;
     
     int y = 0;
-    int consola_ancho = 100;
 
     while(true)
     {
@@ -69,6 +73,9 @@ void Menu::menuGestionPacientes()
                 }
                 break;
             case 1: //ENTER
+                
+                rlutil::cls();
+                
                 switch (y)
                 {
                     case 0:
@@ -107,7 +114,6 @@ void Menu::menuGestionTurnos()
     TurnoManager manager;
     
     int y = 0;
-    int consola_ancho = 100;
 
     int opc;
     while(true)
@@ -169,6 +175,9 @@ void Menu::menuGestionTurnos()
                 }
                 break;
             case 1: //ENTER
+                
+                rlutil::cls();
+                
                 switch (y)
                 {
                     case 0:
@@ -204,7 +213,6 @@ void Menu::menuGestionEstudios()
     EstudioManager manager;
     
     int y = 0;
-    int consola_ancho = 100;
 
     while(true)
     {
@@ -265,6 +273,9 @@ void Menu::menuGestionEstudios()
                 }
                 break;
             case 1: //ENTER
+                
+                rlutil::cls();
+                
                 switch (y)
                 {
                 case 0:
@@ -301,7 +312,6 @@ void Menu::menuGestionDatosSistema()
     TipoMuestraManager mTipoMuestra;
     
     int y = 0;
-    int consola_ancho = 100;
 
     while(true)
     {
@@ -384,6 +394,9 @@ void Menu::menuGestionDatosSistema()
                 }
                 break;
             case 1: //ENTER
+                
+                rlutil::cls();
+                
                 switch(y)
                 {
                 case 0:
@@ -418,11 +431,14 @@ void Menu::menuGestionDatosSistema()
     }
 }
 
+///FIN FUNCIONES MENU GESTION
+
+///INICIO MENU GESTION
+
 void Menu::menuGestiones()
 {
     int y = 0;
-    int consola_ancho = 100;
-    
+        
     while (true)
     {
         
@@ -507,7 +523,10 @@ void Menu::menuGestiones()
     }
 }
 
-///Listar pacientes alfab‚ticamente
+///FIN MENU GESTION
+
+///INICIO FUNCIONES MENU REPORTES
+
 void Menu::informe4()
 {
     cout << "PACIENTES ORDENADOS ALFABETICAMENTE" << endl;
@@ -559,7 +578,6 @@ void Menu::informe4()
     delete[] vRegistros;
 }
 
-///Mostrar historial de un paciente (todos los estudios realizados por el paciente).
 void Menu::informe5()
 {
 
@@ -771,6 +789,10 @@ void Menu::informe3()
 
 }
 
+///FIN FUNCIONES MENU REPORTES
+
+///INICIO MENU REPORTES
+
 void Menu::menuInformes()
 {
     int opc;
@@ -818,6 +840,10 @@ void Menu::menuInformes()
         }
     }
 }
+
+///FIN MENU REPORTES
+
+///INICIO FUNCIONES MENU CONFIGURACION
 
 void Menu::copiaSeguridad()
 {
@@ -931,6 +957,9 @@ void Menu::restaurarCopiaSeguridad()
     }
 }
 
+///FIN FUNCIONES MENU CONFIGURACION
+
+///INICIO MENU CONFIGURACION
 void Menu::menuConfiguraciones()
 {
     int opc;
@@ -966,3 +995,4 @@ void Menu::menuConfiguraciones()
     }
 }
 
+///FIN MENU CONFIGURACION
