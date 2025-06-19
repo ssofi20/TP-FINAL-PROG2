@@ -3,6 +3,7 @@
 
 using namespace std;
 
+
 //Registrar nuevo paciente.
 void PacienteManager::opcion1()
 {
@@ -245,7 +246,8 @@ void PacienteManager::opcion3()
 }
 
 //Dar de baja un paciente
-void PacienteManager::opcion4(){
+void PacienteManager::opcion4()
+{
 
     Paciente registro;
     int DNI;
@@ -283,7 +285,8 @@ void PacienteManager::opcion4(){
 }
 
 //Restaurar un paciente
-void PacienteManager::opcion5(){
+void PacienteManager::opcion5()
+{
 
     Paciente registro;
     int DNI;
@@ -322,7 +325,8 @@ void PacienteManager::opcion5(){
 }
 
 //Mostrar lista de pacientes
-void PacienteManager::opcion6(){
+void PacienteManager::opcion6()
+{
 
     cout << "Listado de pacientes" << endl;
     int cant = _archivo.cantidadRegistros();

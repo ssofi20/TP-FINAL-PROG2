@@ -1,6 +1,7 @@
 #include "FuncionesGlobales.h"
 
-void cargarCadena(char *palabra, int tamano){
+void cargarCadena(char *palabra, int tamano)
+{
     int i = 0;
     fflush(stdin);
     for (i = 0; i < tamano; i++)
@@ -15,7 +16,8 @@ void cargarCadena(char *palabra, int tamano){
     fflush(stdin);
 }
 
-void toLowerWord(char *palabra){
+void toLowerWord(char *palabra)
+{
     
     for (int i = 0; palabra[i]; i++) {
         palabra[i] = tolower(palabra[i]);
