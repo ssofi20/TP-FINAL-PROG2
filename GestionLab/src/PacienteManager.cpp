@@ -106,14 +106,26 @@ void PacienteManager::opcion2()
 //Editar informacion de un paciente por DNI
 void PacienteManager::opcion3()
 {
+    int consola_ancho = 100;
     int dni;
-    cout << "Ingrese el DNI del paciente a modificar: ";
+    string texto = "Ingrese el DNI del paciente que desea modificar datos: ";
+    rlutil::locate((consola_ancho - texto.length()) / 2, 6);
+    cout << texto << endl;
+    
+    rlutil::locate((consola_ancho - 8) / 2, 8);
     cin >> dni;
-
+    
     int pos = _archivo.buscar(dni);
+    
+    rlutil::cls();
+    
+    string textoError;
     if(pos < 0)
     {
-        cout<<"No existe un paciente con ese DNI en el archivo."<<endl;
+        textoError = "No existe un paciente con ese DNI en el archivo.";
+        rlutil::locate((consola_ancho - textoError.length()) / 2, 15);
+        cout << textoError;
+        rlutil::locate((consola_ancho - 33 / 2), 17);
         system("pause");
         return;
     }
@@ -122,21 +134,28 @@ void PacienteManager::opcion3()
 
     obj = _archivo.leer(pos);
 
-    system("cls");
-    cout << "Datos del paciente buscado" << endl;
+    texto = "Datos del paciente buscado";
+    rlutil::locate((consola_ancho - texto.length()) / 2, 6);
+    cout << texto;
     obj.mostrar();
+    
+    texto = "¨Desea modificar los datos de este paciente?";
+    rlutil::locate((consola_ancho - texto.length()) / 2, 25);
+    cout << texto;
+    
+    //Opciones SI o NO
 
     int opc;
-    cout<<"Ingrese la opcion del dato que quiere modificar: " << endl << endl;
-    cout<<"1- Modificar DNI." << endl;
-    cout<<"2- Modificar nombre." << endl;
-    cout<<"4- Modificar apellido." << endl;
-    cout<<"5- Modificar nro. de telefono." << endl;
-    cout<<"6- Modificar email." << endl;
-    cout<<"7- Modificar Obra Social." << endl;
-    cout<<"8- Modificar nro. de Afiliado." << endl;
-    cout<<"9- Modificar fecha de nacimiento." << endl;
-    cout <<"0- Volver al menu anterior." << endl;
+    cout<<"Seleccione la opcion que desea modificar: " << endl << endl;
+    //cout<<"1- Modificar DNI." << endl;
+    cout<<"Nombre" << endl;
+    cout<<"Apellido" << endl;
+    cout<<"Telefono" << endl;
+    cout<<"Email" << endl;
+    cout<<"Obra Social" << endl;
+    cout<<"Numero Afiliado" << endl;
+    cout<<"Fecha de nacimiento" << endl;
+    cout<<"Volver al menu anterior" << endl;
     cin >> opc;
 
     switch(opc)
