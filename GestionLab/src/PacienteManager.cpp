@@ -283,48 +283,66 @@ void PacienteManager::opcion3()
 void PacienteManager::opcion4()
 {
 
-    Paciente registro;
-    int DNI;
-    cout << "Ingrese le DNI del paciente a dar de baja: ";
-    cin >> DNI;
-
-    int cantidadReg = _archivo.cantidadRegistros();
+    int consola_ancho = 100;
+    int dni;
+    string texto = "Ingrese DNI del paciente a dar de baja:";
+    rlutil::locate((consola_ancho - texto.length()) / 2, 6);
+    cout << texto << endl;
+    
+    rlutil::locate((consola_ancho - 8) / 2, 8);
+    cin >> dni;
+    
+    int pos = _archivo.buscar(dni);
 
     bool encontrado = false;
-    int pos;
-    for(int i = 0; i < cantidadReg; i++){
-
-        registro = _archivo.leer(i);
-        if(registro.getDNI() == DNI){
-            encontrado = true;
-            pos = i;
-            break;
-        }
+    
+    Paciente registro;
+    
+    if(pos >= 0)
+    {
+        encontrado = true;
+        registro = _archivo.leer(pos);
     }
 
+    rlutil::cls();
+    
     if(encontrado){
+
         registro.setEstado(false);
         if(_archivo.guardar(registro, pos)){
-            cout << "Paciente dado de baja exitosamente!" << endl;
+            texto = "Paciente se ha dado de baja exitosamente!";
+            rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+            cout << texto << endl;
         }
         else{
-            cout << "Error al dar de baja el paciente" << endl;
+            texto = "Error al dar de baja al paciente";
+            rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+            cout << texto << endl;
         }
-        system("pause");
-    }
+    } 
     else {
-        cout << "No se encontro un paciente con ese DNI en el archivo" << endl;
-        system("pause");
+        texto = "No se encontro un paciente con ese DNI en el archivo";
+        rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+        cout << texto << endl;
     }
+    
+    rlutil::locate((consola_ancho - 33) / 2, 17);
+    system("pause");
 }
 
 //Restaurar un paciente
 void PacienteManager::opcion5()
 {
+    int consola_ancho = 100;
 
     Paciente registro;
+    
     int DNI;
-    cout << "Ingrese le DNI del paciente a dar de alta: ";
+    string texto = "Ingrese el DNI del paciente a dar de alta:";
+    rlutil::locate((consola_ancho - texto.length()) / 2, 6);
+    cout << texto;
+    
+    rlutil::locate((consola_ancho - 8) / 2, 8);
     cin >> DNI;
 
     int cantidadReg = _archivo.cantidadRegistros();
@@ -341,21 +359,30 @@ void PacienteManager::opcion5()
         }
     }
 
+    rlutil::cls();
+    
     if(encontrado){
 
         registro.setEstado(true);
         if(_archivo.guardar(registro, pos)){
-            cout << "Paciente se restauro exitosamente!" << endl;
-            system("pause");
+            texto = "Paciente se restauro exitosamente!";
+            rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+            cout << texto << endl;
         }
         else{
-            cout << "Error al restaurar el paciente" << endl;
-            system("pause");
+            texto = "Error al restaurar el paciente";
+            rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+            cout << texto << endl;
         }
-    } else {
-        cout << "No se encontro un paciente con ese DNI en el archivo" << endl;
-        system("pause");
+    } 
+    else {
+        texto = "No se encontro un paciente con ese DNI en el archivo";
+        rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+        cout << texto << endl;
     }
+    
+    rlutil::locate((consola_ancho - 33) / 2, 17);
+    system("pause");
 }
 
 //Mostrar lista de pacientes
