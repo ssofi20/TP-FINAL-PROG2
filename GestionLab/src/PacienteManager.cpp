@@ -379,13 +379,13 @@ void PacienteManager::opcion6()
     }
     
     
-    rlutil::locate(3, 4);   cout << "DNI";
+    rlutil::locate(2, 4);   cout << "DNI";
     rlutil::locate(12, 4);  cout << "Apellido";
-    rlutil::locate(30, 4);  cout << "Nombre";
-    rlutil::locate(46, 4);  cout << "Telefono";
-    rlutil::locate(58, 4);  cout << "Afiliado";
-    rlutil::locate(72, 4);  cout << "Obra Social";
-    rlutil::locate(92, 4);  cout << "Nacimiento";
+    rlutil::locate(28, 4);  cout << "Nombre";
+    rlutil::locate(42, 4);  cout << "Telefono";
+    rlutil::locate(56, 4);  cout << "Afiliado";
+    rlutil::locate(70, 4);  cout << "Obra Social";
+    rlutil::locate(88, 4);  cout << "Nacimiento";
 
     rlutil::locate(3, 5);
     cout << string(96, '-');
