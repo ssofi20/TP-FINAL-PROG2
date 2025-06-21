@@ -11,3 +11,5 @@ void cargarCadena(char *palabra, int tamano);
 void toLowerWord(char *palabra);
 
 void showItem(const char *texto, int posy, bool selected);
+
+void showItemHorizontal(const char *texto, int posx, int posy, bool selected);

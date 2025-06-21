@@ -153,8 +153,6 @@ void Paciente::mostrar(){
     const int xIngreso = 55;
     int y = 6;
     
-    rlutil::cls();
-
     string titulo = "INFORMACION DEL PACIENTE";
     rlutil::locate((100 - titulo.length()) / 2, y - 2);
     cout << titulo;

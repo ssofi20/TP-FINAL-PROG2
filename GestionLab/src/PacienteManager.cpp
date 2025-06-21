@@ -133,21 +133,58 @@ void PacienteManager::opcion3()
     Paciente obj;
 
     obj = _archivo.leer(pos);
-
-    texto = "Datos del paciente buscado";
-    rlutil::locate((consola_ancho - texto.length()) / 2, 6);
-    cout << texto;
-    obj.mostrar();
     
-    texto = "¨Desea modificar los datos de este paciente?";
-    rlutil::locate((consola_ancho - texto.length()) / 2, 25);
-    cout << texto;
-    
-    //Opciones SI o NO
+    int x = 0;
 
-    int opc;
+    bool salir = true;
+    
+    while(salir)
+    {
+        obj.mostrar();
+        
+        texto = "¨Desea modificar los datos de este paciente?";
+        rlutil::locate((consola_ancho - texto.length()) / 2, 25);
+        cout << texto;
+        
+        showItemHorizontal("SI", 41, 27, x == 0);
+        showItemHorizontal("NO", 49, 27, x == 1);
+        
+        int key = rlutil::getkey();
+        
+        switch(key)
+        {
+            case 16: //LEFT
+                x--;
+                if(x < 0){
+                    x = 0;
+                }
+                break;
+            case 17: //RIGTH
+                x++;
+                if(x > 1){
+                    x = 1;
+                }
+                break;
+            case 1: //ENTER
+                switch(x)
+                {
+                case 0:
+                    salir = false;
+                    break;
+                case 1:
+                    return;
+                }
+            break;
+        }
+    }
+    
+    rlutil::cls() ;
+
+    int y = 0;
+    
+    showItem("NOMBRE", 8, y == 0);
+    
     cout<<"Seleccione la opcion que desea modificar: " << endl << endl;
-    //cout<<"1- Modificar DNI." << endl;
     cout<<"Nombre" << endl;
     cout<<"Apellido" << endl;
     cout<<"Telefono" << endl;
@@ -297,6 +334,7 @@ void PacienteManager::opcion3()
         }
     }
 }
+
 
 //Dar de baja un paciente
 void PacienteManager::opcion4()
