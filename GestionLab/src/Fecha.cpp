@@ -103,28 +103,25 @@ void Fecha::setFechaActual(){
     _anio = now->tm_year + 1900;
 }
 
-void Fecha::cargar(){
+void Fecha::cargar(int x, int y){
     
     int dia, mes, anio;
 
-    const int xCampo = 55;
-    int y = 20;  
-
-    rlutil::locate(xCampo, y);
+    rlutil::locate(x, y);
     cout << "Dia: ";
-    rlutil::locate(xCampo + 5, y++);
+    rlutil::locate(x + 5, y++);
     cin >> dia;
     setDia(dia);
 
-    rlutil::locate(xCampo, y);
+    rlutil::locate(x, y);
     cout << "Mes: ";
-    rlutil::locate(xCampo + 5, y++);
+    rlutil::locate(x + 5, y++);
     cin >> mes;
     setMes(mes);
 
-    rlutil::locate(xCampo, y);
+    rlutil::locate(x, y);
     cout << "Anio: ";
-    rlutil::locate(xCampo + 5, y++);
+    rlutil::locate(x + 5, y++);
     cin >> anio;
     setAnio(anio);
 }

@@ -498,7 +498,7 @@ void Menu::menuGestiones()
                 }
                 break;
             case 1: //ENTER
-                
+                rlutil::cls();
                 switch (y)
                 {
                     case 0:

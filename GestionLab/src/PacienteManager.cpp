@@ -97,6 +97,8 @@ void PacienteManager::opcion2()
     
     Paciente obj = _archivo.leer(pos);
     
+    rlutil::cls();
+    
     obj.mostrar();
     
     rlutil::locate((consola_ancho - 33) / 2, 26);
@@ -178,163 +180,203 @@ void PacienteManager::opcion3()
         }
     }
     
-    rlutil::cls() ;
-
     int y = 0;
+        
+    rlutil::cls();
     
-    showItem("NOMBRE", 8, y == 0);
-    
-    cout<<"Seleccione la opcion que desea modificar: " << endl << endl;
-    cout<<"Nombre" << endl;
-    cout<<"Apellido" << endl;
-    cout<<"Telefono" << endl;
-    cout<<"Email" << endl;
-    cout<<"Obra Social" << endl;
-    cout<<"Numero Afiliado" << endl;
-    cout<<"Fecha de nacimiento" << endl;
-    cout<<"Volver al menu anterior" << endl;
-    cin >> opc;
-
-    switch(opc)
+    while(true)
     {
-    case 1:
-        {
-        int dniNuevo;
-        cout<<"Ingrese el nuevo DNI del paciente: "<< endl;
-        cin >> dniNuevo;
         
-        int pos = _archivo.buscar(dniNuevo);
+        texto = "SELECCIONE LA OPCION QUE DESEA MODIFICAR";
+        rlutil::locate((consola_ancho - texto.length()) / 2, 6);
+        cout << texto;
         
-        if(pos >= 0)
-        {
-            cout << "No se puede modificar. Un paciente registrado ya posee ese DNI." << endl;
-            return;
-        }
+        showItem("NOMBRE", 8, y == 0);
+        showItem("APELLIDO", 10, y == 1);
+        showItem("TELEFONO", 12, y == 2);
+        showItem("EMAIL", 14, y == 3);
+        showItem("OBRA SOCIAL", 16, y == 4);
+        showItem("NUMERO DE AFILIADO", 18, y == 5);
+        showItem("FECHA DE NACIMIENTO", 20, y == 6);
+        showItem("SALIR", 22, y == 7);
         
-        obj.setDNI(dniNuevo);
-        if(_archivo.guardar(obj, pos)){
-            cout << "Se actualizaron correctamente los datos del paciente" << endl;
-            system("pause");
-        }
-        break;
-        }
-
-    case 2:
-        {
-        char nombre [30];
-        cout<<"Ingrese el nuevo nombre del paciente: "<< endl;
-        cargarCadena(nombre, 29);
-        obj.setNombre(nombre);
-        if(_archivo.guardar(obj, pos)){
-            cout << "Se actualizaron correctamente los datos del paciente" << endl;
-            system("pause");
-        }
-        break;
-        }
-
-    case 3:
-        {
-        char apellido [40];
-        cout<<"Ingrese el nuevo apellido del paciente: "<< endl;
-        cargarCadena(apellido, 39);
-        obj.setApellido(apellido);
-        if(_archivo.guardar(obj, pos)){
-            cout << "Se actualizaron correctamente los datos del paciente" << endl;
-            system("pause");
-        }
-        break;
-        }
-
-    case 4:
-        {
-        char nroTel [11];
-        cout<<"Ingrese el nuevo nro. de telefono del paciente: "<< endl;
-        cargarCadena(nroTel, 10);
-        obj.setNombre(nroTel);
-        if(_archivo.guardar(obj, pos)){
-            cout << "Se actualizaron correctamente los datos del paciente" << endl;
-            system("pause");
-        }
-        break;
-        }
-
-    case 5:
-        {
-        char mail [60];
-        cout<<"Ingrese el nuevo correo electronico del paciente: "<< endl;
-        cargarCadena(mail, 59);
-        obj.setEmail(mail);
-        if(_archivo.guardar(obj, pos)){
-            cout << "Se actualizaron correctamente los datos del paciente" << endl;
-            system("pause");
-        }
-        break;
-        }
-
-    case 6:
-        {
-        char obraSocial [50];
-        cout<<"Ingrese la nueva obra social del paciente: "<< endl;
-        cargarCadena(obraSocial, 49);
-        obj.setObraSocial(obraSocial);
-        if(_archivo.guardar(obj, pos)){
-            cout << "Se actualizaron correctamente los datos del paciente" << endl;
-            system("pause");
-        }
-        break;
-        }
-
-    case 7:
-        {
-        char nroAfiliado [11];
-        cout<<"Ingrese el nuevo nro. de afiliado del paciente: "<< endl;
-        cargarCadena(nroAfiliado, 10);
+        int key = rlutil::getkey();
         
-        int cant = _archivo.cantidadRegistros();
-        for(int i = 0; i < cant; i++)
+        switch(key)
         {
-            Paciente paciente = _archivo.leer(i);
-            if(strcmp(paciente.getNumeroAfiliado(), nroAfiliado) == 0)
-            {
-                cout << "No se puede modificar. Un paciente registrado ya posee ese numero de afiliado" << endl;
-                return;
-            }
-        }
+            case 14: //UP
+                y--;
+                if(y < 0){
+                    y = 0;
+                }
+                break;
+            case 15: //DOWN
+                y++;
+                if(y > 7){
+                    y = 7;
+                }
+                break;
+            case 1: //ENTER
+                rlutil::cls();
+                switch(y)
+                {
+                    case 0:
+                        {
+                            char nombre [30];
+                            texto = "Ingrese el nuevo nombre del paciente: ";
+                            rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+                            cout << texto;
+                            rlutil::locate(50, 17);
+                            cargarCadena(nombre, 29);
+                            obj.setNombre(nombre);
+                            if(_archivo.guardar(obj, pos)){
+                                rlutil::cls();
+                                texto = "Se actualizaron correctamente los datos del paciente";
+                                rlutil::locate((consola_ancho - texto.length()) / 2, 14);
+                                cout << texto;
+                                rlutil::locate((consola_ancho - 33) / 2, 16);
+                                system("pause");
+                            }
+                            break;
+                        }
 
-        obj.setNumeroAfiliado(nroAfiliado);
-        if(_archivo.guardar(obj, pos)){
-            cout << "Se actualizaron correctamente los datos del paciente" << endl;
-            system("pause");
-        }
-        break;
-        }
+                    case 1:
+                        {
+                            char apellido [40];
+                            texto = "Ingrese el nuevo apellido del paciente:";
+                            rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+                            cout << texto;
+                            rlutil::locate(50, 17);
+                            cargarCadena(apellido, 39);
+                            obj.setApellido(apellido);
+                            if(_archivo.guardar(obj, pos)){
+                                rlutil::cls();
+                                texto = "Se actualizaron correctamente los datos del paciente";
+                                cout << texto;
+                                rlutil::locate((consola_ancho - 33) / 2, 16);
+                                system("pause");
+                            }
+                            break;
+                        }
 
-    case 8:
-        {
-        Fecha fechaNac;
-        cout<<"Ingrese la nueva fecha de nacimiento del paciente: " << endl;
-        fechaNac.cargar();
-        obj.setDateB(fechaNac);
-        if(_archivo.guardar(obj, pos)){
-            cout << "Se actualizaron correctamente los datos del paciente" << endl;
-            system("pause");
-        }
-        break;
-        }
+                    case 2:
+                        {
+                            char nroTel [11];
+                            texto = "Ingrese el nuevo numero de telefono:";
+                            rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+                            cout << texto;
+                            rlutil::locate(50, 17);
+                            cargarCadena(nroTel, 10);
+                            obj.setNombre(nroTel);
+                            if(_archivo.guardar(obj, pos)){
+                                rlutil::cls();
+                                texto = "Se actualizaron correctamente los datos del paciente";
+                                cout << texto;
+                                rlutil::locate((consola_ancho - 33) / 2, 16);
+                                system("pause");
+                            }
+                            break;
+                        }
 
-    case 0:
-        {
-        return;
-        }
-    default:
-        {
-        cout << "Opcion incorrecta! Intente nuevamente" << endl;
-        system("pause");
-        break;
+                    case 3:
+                        {
+                            char mail [60];
+                            texto = "Ingrese el nuevo correo electronico del paciente:";
+                            rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+                            cout << texto;
+                            rlutil::locate(50, 17);
+                            cargarCadena(mail, 59);
+                            obj.setEmail(mail);
+                            if(_archivo.guardar(obj, pos)){
+                                rlutil::cls();
+                                texto = "Se actualizaron correctamente los datos del paciente";
+                                cout << texto;
+                                rlutil::locate((consola_ancho - 33) / 2, 16);
+                                system("pause");
+                            }
+                            break;
+                        }
+
+                    case 4:
+                        {
+                            char obraSocial [50];
+                            texto = "Ingrese la nueva obra social del paciente: ";
+                            rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+                            cout << texto;
+                            rlutil::locate(50, 17);
+                            cargarCadena(obraSocial, 49);
+                            obj.setObraSocial(obraSocial);
+                            if(_archivo.guardar(obj, pos)){
+                                rlutil::cls();
+                                texto = "Se actualizaron correctamente los datos del paciente";
+                                cout << texto;
+                                rlutil::locate((consola_ancho - 33) / 2, 16);
+                                system("pause");
+                            }
+                            break;
+                        }
+
+                    case 5:
+                        {
+                            char nroAfiliado [11];
+                            texto = "Ingrese el nuevo nro. de afiliado del paciente:";
+                            rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+                            cout << texto;
+                            rlutil::locate(50, 17);
+                            cargarCadena(nroAfiliado, 10);
+                            
+                            int cant = _archivo.cantidadRegistros();
+                            for(int i = 0; i < cant; i++)
+                            {
+                                Paciente paciente = _archivo.leer(i);
+                                if(strcmp(paciente.getNumeroAfiliado(), nroAfiliado) == 0)
+                                {
+                                    rlutil::cls();
+                                    texto = "No se puede modificar. Un paciente registrado ya posee ese numero de afiliado";
+                                    cout << texto;
+                                    rlutil::locate((consola_ancho - 33) / 2, 16);
+                                    system("pause");
+                                    return;
+                                }
+                            }
+
+                            obj.setNumeroAfiliado(nroAfiliado);
+                            if(_archivo.guardar(obj, pos)){
+                                rlutil::cls();
+                                texto = "Se actualizaron correctamente los datos del paciente";
+                                cout << texto;
+                                rlutil::locate((consola_ancho - 33) / 2, 16);
+                                system("pause");
+                            }
+                            break;
+                        }
+
+                    case 6:
+                        {
+                            Fecha fechaNac;
+                            texto = "Ingrese la nueva fecha de nacimiento:";
+                            rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+                            cout << texto;
+                            fechaNac.cargar(45,17);
+                            obj.setDateB(fechaNac);
+                            if(_archivo.guardar(obj, pos)){
+                                rlutil::cls();
+                                texto = "Se actualizaron correctamente los datos del paciente";
+                                rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+                                cout << texto;
+                                rlutil::locate((consola_ancho - 33) / 2, 16);
+                                system("pause");
+                            }
+                            break;
+                        }
+                    case 7:
+                        return;
+                }
+                rlutil::cls();
+            break;
         }
     }
 }
-
 
 //Dar de baja un paciente
 void PacienteManager::opcion4()

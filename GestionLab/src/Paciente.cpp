@@ -141,7 +141,7 @@ void Paciente::cargar(){
     rlutil::locate(xCampo, ++y);
     cout << "Fecha de Nacimiento: ";
     rlutil::locate(xIngreso, y++);
-    _dateB.cargar();
+    _dateB.cargar(55, 20);
 
     _estado = true;
     
