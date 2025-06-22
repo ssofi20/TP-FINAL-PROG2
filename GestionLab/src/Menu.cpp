@@ -11,33 +11,33 @@ void Menu::menuGestionPacientes()
 {
 
     PacienteManager manager;
-    
+
     int y = 0;
 
     while(true)
     {
-        
+
         //Titulo principal centrado
         string titulo = "MENU PACIENTES";
         string linea = "-----------------------------";
-        
+
         rlutil::locate((consola_ancho - titulo.length()) / 2, 9);
         cout << titulo << endl;
         rlutil::locate((consola_ancho - linea.length()) / 2, 10);
         cout << linea << endl;
 
         //Opciones del menu
-        
+
         const char* opciones[] = {
             "REGISTRAR NUEVO PACIENTE",
-            "BUSCAR UN PACIENTE", 
-            "EDITAR INFORMACION DE UN PACIENTE", 
+            "BUSCAR UN PACIENTE",
+            "EDITAR INFORMACION DE UN PACIENTE",
             "DAR DE BAJA UN PACIENTE",
-            "RESTAURAR UN PACIENTE", 
+            "RESTAURAR UN PACIENTE",
             "MOSTRAR LISTADO DE PACIENTES",
             "VOLVER AL MENU ANTERIOR"
         };
-        
+
         showItem(opciones[0], 12, y == 0);
         showItem(opciones[1], 14, y == 2);
         showItem(opciones[2], 16, y == 4);
@@ -45,13 +45,13 @@ void Menu::menuGestionPacientes()
         showItem(opciones[4], 20, y == 8);
         showItem(opciones[5], 22, y == 10);
         showItem(opciones[6], 24, y == 12);
-        
+
         int largoTexto = strlen(opciones[y / 2]);
         rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 12 + y);
         cout << (char)175;
-        
+
         int key = rlutil::getkey();
-        
+
         switch(key)
         {
             case 14: //UP
@@ -73,9 +73,9 @@ void Menu::menuGestionPacientes()
                 }
                 break;
             case 1: //ENTER
-                
+
                 rlutil::cls();
-                
+
                 switch (y)
                 {
                     case 0:
@@ -112,48 +112,48 @@ void Menu::menuGestionTurnos()
 {
 
     TurnoManager manager;
-    
+
     int y = 0;
 
     int opc;
     while(true)
     {
 
-        rlutil::cls();  
-        
+        rlutil::cls();
+
         //Titulo principal centrado
         string titulo = "MENU TURNOS";
         string linea = "-------------------------------------";
-        
+
         rlutil::locate((consola_ancho - titulo.length()) / 2, 9);
         cout << titulo << endl;
         rlutil::locate((consola_ancho - linea.length()) / 2, 10);
         cout << linea << endl;
-        
+
         //Opciones del menu
-        
+
         const char* opciones[] = {
-            "AGENDAR NUEVO TURNO", 
-            "REPROGRAMAR TURNO", 
-            "MODIFICAR ESTADO DE UN TURNO", 
+            "AGENDAR NUEVO TURNO",
+            "REPROGRAMAR TURNO",
+            "MODIFICAR ESTADO DE UN TURNO",
             "BUSCAR TURNOS DE UN PACIENTE",
-            "MOSTRAR LISTA DE TURNOS", 
+            "MOSTRAR LISTA DE TURNOS",
             "VOLVER AL MENU ANTERIOR"
         };
-        
+
         showItem(opciones[0], 12, y == 0);
         showItem(opciones[1], 14, y == 2);
         showItem(opciones[2], 16, y == 4);
         showItem(opciones[3], 18, y == 6);
         showItem(opciones[4], 20, y == 8);
         showItem(opciones[5], 22, y == 10);
-        
+
         int largoTexto = strlen(opciones[y / 2]);
         rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 12 + y);
         cout << (char)175;
-        
+
         int key = rlutil::getkey();
-        
+
         switch(key)
         {
             case 14: //UP
@@ -175,9 +175,9 @@ void Menu::menuGestionTurnos()
                 }
                 break;
             case 1: //ENTER
-                
+
                 rlutil::cls();
-                
+
                 switch (y)
                 {
                     case 0:
@@ -211,47 +211,47 @@ void Menu::menuGestionEstudios()
 {
 
     EstudioManager manager;
-    
+
     int y = 0;
 
     while(true)
     {
-        
+
         rlutil::cls();
-        
+
         //Titulo principal centrado
         string titulo = "MENU ESTUDIOS";
         string linea = "-------------------------------------";
-        
+
         rlutil::locate((consola_ancho - titulo.length()) / 2, 9);
         cout << titulo << endl;
         rlutil::locate((consola_ancho - linea.length()) / 2, 10);
         cout << linea << endl;
 
         //Opciones del menu
-        
+
         const char* opciones[] = {
-            "REGISTRAR UN NUEVO ESTUDIO", 
-            "ELIMINAR UN ESTUDIO", 
-            "MODIFICAR UN ESTUDIO", 
-            "BUSCAR UN ESTUDIO", 
+            "REGISTRAR UN NUEVO ESTUDIO",
+            "ELIMINAR UN ESTUDIO",
+            "MODIFICAR UN ESTUDIO",
+            "BUSCAR UN ESTUDIO",
             "LISTAR TODOS LOS ESTUDIOS",
             "VOLVER AL MENU ANTERIOR"
         };
-        
+
         showItem(opciones[0], 12, y == 0);
         showItem(opciones[1], 14, y == 2);
         showItem(opciones[2], 16, y == 4);
         showItem(opciones[3], 18, y == 6);
         showItem(opciones[4], 20, y == 8);
         showItem(opciones[5], 22, y == 10);
-        
+
         int largoTexto = strlen(opciones[y / 2]);
         rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 12 + y);
         cout << (char)175;
-        
+
         int key = rlutil::getkey();
-        
+
         switch(key)
         {
             case 14: //UP
@@ -273,9 +273,9 @@ void Menu::menuGestionEstudios()
                 }
                 break;
             case 1: //ENTER
-                
+
                 rlutil::cls();
-                
+
                 switch (y)
                 {
                 case 0:
@@ -310,67 +310,67 @@ void Menu::menuGestionDatosSistema()
 
     TipoAnalisisManager mTipoAnalisis;
     TipoMuestraManager mTipoMuestra;
-    
+
     int y = 0;
 
     while(true)
     {
 
         rlutil::cls();
-        
+
         //Titulo principal centrado
         string titulo = "GESTION DE DATOS DEL SISTEMA";
         string linea = "-------------------------------------";
-        
+
         rlutil::locate((consola_ancho - titulo.length()) / 2, 3);
         cout << titulo << endl;
         rlutil::locate((consola_ancho - linea.length()) / 2, 4);
         cout << linea << endl;
-        
+
         const char* opciones[] = {
-            "AGREGAR TIPO DE MUESTRA", 
-            "ELIMINAR TIPO DE MUESTRA", 
-            "MODIFICAR TIPO DE MUESTRA", 
+            "AGREGAR TIPO DE MUESTRA",
+            "ELIMINAR TIPO DE MUESTRA",
+            "MODIFICAR TIPO DE MUESTRA",
             "LISTAR TODOS LOS TIPOS DE MUESTRAS",
             "AGREGAR TIPO DE ANALISIS",
-            "ELIMINAR TIPO DE ANALISIS", 
+            "ELIMINAR TIPO DE ANALISIS",
             "MODIFICAR TIPO DE ANALISIS",
             "LISTAR TODOS LOS TIPOS DE ANALISIS",
             "VOLVER AL MENU ANTERIOR"
         };
-        
+
         string subtitulo1 = "TIPOS DE MUESTRAS";
-        
+
         rlutil::locate((consola_ancho - 60) / 2, 6);
         cout << subtitulo1 << endl;
-        
+
         showItem(opciones[0], 8, y == 0);
         showItem(opciones[1], 10, y == 2);
         showItem(opciones[2], 12, y == 4);
         showItem(opciones[3], 14, y == 6);
-        
+
         cout << endl;
-        
+
         string subtitulo2 = "TIPOS DE ANALISIS";
-        
+
         rlutil::locate((consola_ancho - 60) / 2, 16);
         cout << subtitulo2 << endl;
-        
+
         showItem(opciones[4], 18, y == 8);
         showItem(opciones[5], 20, y == 10);
         showItem(opciones[6], 22, y == 12);
         showItem(opciones[7], 24, y == 14);
-        
+
         showItem(opciones[8], 28, y == 16);
-        
+
         const int filas[] = {
             8, 10, 12, 14, 18, 20, 22, 24, 28
         };
-        
+
         int largoTexto = strlen(opciones[y / 2]);
         rlutil::locate((consola_ancho - largoTexto) / 2 - 3, filas[y/2]);
         cout << (char)175;
-        
+
         int key = rlutil::getkey();
 
         switch(key)
@@ -394,9 +394,9 @@ void Menu::menuGestionDatosSistema()
                 }
                 break;
             case 1: //ENTER
-                
+
                 rlutil::cls();
-                
+
                 switch(y)
                 {
                 case 0:
@@ -438,23 +438,23 @@ void Menu::menuGestionDatosSistema()
 void Menu::menuGestiones()
 {
     int y = 0;
-        
+
     while (true)
     {
-        
+
         rlutil::cls();
-        
+
         //Titulo principal centrado
         string titulo = "MENU GESTIONES";
         string linea = "---------------------";
-        
+
         rlutil::locate((consola_ancho - titulo.length()) / 2, 9);
         cout << titulo << endl;
         rlutil::locate((consola_ancho - linea.length()) / 2, 10);
         cout << linea << endl;
 
         //Opciones del menu
-        
+
         const char* opciones[] = {
             "PACIENTES",
             "TURNOS",
@@ -462,19 +462,19 @@ void Menu::menuGestiones()
             "DATOS DEL SISTEMA",
             "VOLVER A ATRAS"
         } ;
-        
+
         showItem(opciones[0], 12, y == 0);
         showItem(opciones[1], 14, y == 2);
         showItem(opciones[2], 16, y == 4);
         showItem(opciones[3], 18, y == 6);
         showItem(opciones[4], 20, y == 8);
-        
+
         int largoTexto = strlen(opciones[y / 2]);
         rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 12 + y);
         cout << (char)175;
-        
+
         int key = rlutil::getkey();
-        
+
         switch(key)
         {
             case 14: //UP
@@ -496,7 +496,7 @@ void Menu::menuGestiones()
                 }
                 break;
             case 1: //ENTER
-                
+
                 switch (y)
                 {
                     case 0:
@@ -530,43 +530,43 @@ void Menu::menuGestiones()
 void Menu::informe4()
 {
     cout << "PACIENTES ORDENADOS ALFABETICAMENTE" << endl;
-    
+
     PacienteArchivo archivo;
-    
+
     int cant = archivo.cantidadRegistros();
-    
+
     Paciente *vRegistros = new Paciente[cant];
-    
+
     if(vRegistros == nullptr)
     {
         cout << "Error al pedir memoria y leer el archivo" << endl;
         return;
     }
-    
+
     archivo.leer(cant, vRegistros);
-    
+
     for (int i = 0; i < cant; i++)
     {
         for (int j = i + 1; j < cant; j++)
         {
-            
+
             //Hay que poner todas las cadenas en minusculas o mayusculas antes de
             //compararlas.
-            
+
             char apellidoI[40], apellidoJ[40];
             strcpy(apellidoI, vRegistros[i].getApellido());
             strcpy(apellidoJ, vRegistros[j].getApellido());
-            
+
             toLowerWord(apellidoI);
             toLowerWord(apellidoJ);
-            
+
             if(strcmp(apellidoI, apellidoJ) > 0)
             {
                 swap(vRegistros[i], vRegistros[j]);
             }
         }
     }
-    
+
     //Mostrar por pantalla
     for(int i = 0; i < cant; i++)
     {
@@ -574,7 +574,7 @@ void Menu::informe4()
         vRegistros[i].mostrar();
         cout << endl;
     }
-    
+
     delete[] vRegistros;
 }
 
@@ -582,26 +582,26 @@ void Menu::informe5()
 {
 
     int dniPaciente;
-    
+
     cout << "Ingrese el DNI del paciente: ";
     cin >> dniPaciente;
-    
+
     PacienteArchivo archivo;
-    
+
     int pos = archivo.buscar(dniPaciente);
-    
+
     Paciente registro = archivo.leer(pos);
-    
+
     cout << "Estudios realizados por " << registro.getNombre() << " " << registro.getApellido() << endl << endl;
-    
+
     EstudioArchivo archivoEstudios;
-    
+
     int cant = archivoEstudios.cantidadRegistros();
-    
+
     for (int i = 0; i < cant; i++)
     {
         Estudio estudio = archivoEstudios.leer(i);
-        
+
         if(estudio.getDNI() == dniPaciente)
         {
             cout << "---------------" << endl;
@@ -797,16 +797,23 @@ void Menu::menuInformes()
 {
     int opc;
     while (true) {
-        system("cls");
+
+        rlutil::cls();
+        string title = "MENU INFORMES";
+        string linea = "-----------------------------";
+
+        rlutil::locate((consola_ancho - title.length() / 2,9));
+        cout << title << endl;
+
         cout << "Menu Informes" << endl;
-        cout << "-------------------------------------" << endl;
+
         cout << "1. Paciente con mayor cantidad de estudios realizados.  " << endl;
         cout << "2. Recaudacion por tipo de estudio. " << endl;
         cout << "3. Recaudacion anual por mes. " << endl;
         cout << "4. Listar pacientes en orden alfabetico.  " << endl;
         cout << "5. Mostrar historial de un paciente.  " << endl;
         cout << "0. Volver a atras " << endl;
-        cout << "-------------------------------------" << endl;
+
         cout << "Ingrese la opcion deseada: ";
         cin >> opc;
         system ("cls");
@@ -848,19 +855,19 @@ void Menu::menuInformes()
 void Menu::copiaSeguridad()
 {
     int opcion;
-    
+
     cout << "¨Esta seguro que desea realizar una copia de seguridad de todos los archivos?" << endl;
     cout << "1 - SI" << endl;
     cout << "0 - NO" << endl;
     cout << "Seleccion: ";
     cin >> opcion;
-    
+
     if(!opcion)
     {
         cout << "No se han realizado la copia de seguridad" << endl;
         return;
     }
-    
+
     //Pacientes
     PacienteArchivo pacienteArchivo;
     //Turnos
@@ -873,7 +880,7 @@ void Menu::copiaSeguridad()
     TipoMuestraArchivo tipoMuestraArchivo;
     //EstudiosAnalisis
     EstudioAnalisisArchivo estudioAnalisisArchivo;
-    
+
     if(pacienteArchivo.copiaSeguridad()){
         if(turnoArchivo.copiaSeguridad()){
             if(estudioArchivo.copiaSeguridad()){
@@ -904,19 +911,19 @@ void Menu::copiaSeguridad()
 void Menu::restaurarCopiaSeguridad()
 {
    int opcion;
-    
+
     cout << "¨Esta seguro que desea realizar restaurar copia de seguridad de todos los archivos?" << endl;
     cout << "1 - SI" << endl;
     cout << "0 - NO" << endl;
     cout << "Seleccion: ";
     cin >> opcion;
-    
+
     if(!opcion)
     {
         cout << "No se ha restaurado la copia de seguridad" << endl;
         return;
-    } 
-    
+    }
+
     //Pacientes
     PacienteArchivo pacienteArchivo;
     //Turnos
@@ -929,7 +936,7 @@ void Menu::restaurarCopiaSeguridad()
     TipoMuestraArchivo tipoMuestraArchivo;
     //EstudiosAnalisis
     EstudioAnalisisArchivo estudioAnalisisArchivo;
-    
+
     if(pacienteArchivo.restaurarCopia()){
         if(turnoArchivo.restaurarCopia()){
             if(estudioArchivo.restaurarCopia()){
