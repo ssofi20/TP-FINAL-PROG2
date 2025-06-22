@@ -3,11 +3,14 @@
 
 using namespace std;
 
+  //  int ancho_consola = 100;
+
+
 //CONSTRUCTORES
 Paciente::Paciente()
 : _dateB(0,0,0)
 {
-    
+
     _DNI = 0;
     strcpy(_nombre, "SIN NOMBRE");
     strcpy(_apellido, "SIN APELLIDO");
@@ -19,7 +22,7 @@ Paciente::Paciente()
 
 }
 Paciente::Paciente(int DNI, const char *nombre, const char *apellido, const char *telefono, const char *email, const char *obraSocial, const char *numeroAfiliado, Fecha dateB){
-     
+
     setDNI(DNI);
     setNombre(nombre);
     setApellido(apellido);
@@ -91,7 +94,7 @@ bool Paciente::getEstado() const{
 }
 
 void Paciente::cargar(){
-    
+
     cout << "DNI: ";
     cin >> _DNI;
     cout << "Nombre/s: ";
@@ -106,13 +109,12 @@ void Paciente::cargar(){
     cargarCadena(_obraSocial, 59);
     cout << "Numero Afiliado: ";
     cargarCadena(_numeroAfiliado, 19);
-    cout << "Fecha de Nacimiento" << endl;
+    cout << "Fecha de Nacimiento: " << endl;
     _dateB.cargar();
     _estado = true;
-    
 }
 void Paciente::mostrar(){
-    
+
     cout << "DNI: " << _DNI << endl;
     cout << "Nombre/s: " << _nombre << endl;
     cout << "Apellido/s: " << _apellido << endl;
