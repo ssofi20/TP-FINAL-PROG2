@@ -3,6 +3,9 @@
 
 using namespace std;
 
+  //  int ancho_consola = 100;
+
+
 //CONSTRUCTORES
 Paciente::Paciente()
 : _dateB(0,0,0)
@@ -109,48 +112,16 @@ void Paciente::cargar(){
     cout << "Fecha de Nacimiento: " << endl;
     _dateB.cargar();
     _estado = true;
-
 }
 void Paciente::mostrar(){
 
-    int consola_ancho = 100;
-
-    string dni = "DNI: ";
-    string nombre = "Nombre/s: ";
-    string apellido = "Apellido/s: ";
-    string telefono = "Telefono: ";
-    string mail = "Email: ";
-    string obraSocial = "Nombre Obra Social: ";
-    string nroAfiliado = "Numero Afiliado: ";
-    string fechaNac = "Fecha de Nacimiento: ";
-
-    int startLine = 28;
-
-    rlutil::locate((consola_ancho - startLine) / 2, 8);
-    cout << dni << _DNI << endl;
-    rlutil::locate((consola_ancho - startLine) / 2, 9);
-    cout << nombre << _nombre << endl;
-    rlutil::locate((consola_ancho - startLine) / 2, 10);
-    cout << apellido << _apellido << endl;
-    rlutil::locate((consola_ancho - startLine) / 2, 11);
-    cout << telefono << _telefono << endl;
-    rlutil::locate((consola_ancho - startLine) / 2, 12);
-    cout << mail << _email << endl;
-    rlutil::locate((consola_ancho - startLine) / 2, 13);
-    cout << obraSocial << _obraSocial << endl;
-    rlutil::locate((consola_ancho - startLine) / 2, 14);
-    cout << nroAfiliado << _numeroAfiliado << endl;
-    rlutil::locate((consola_ancho - startLine) / 2, 15);
-    cout << fechaNac << _dateB.toString() << endl;
-
-
-    /*cout << "DNI: " << _DNI << endl;
+    cout << "DNI: " << _DNI << endl;
     cout << "Nombre/s: " << _nombre << endl;
     cout << "Apellido/s: " << _apellido << endl;
     cout << "Telefono: " << _telefono << endl;
     cout << "Email: " << _email << endl;
     cout << "Obra Social: " << _obraSocial << endl;
     cout << "Numero Afiliado: " << _numeroAfiliado << endl;
-    cout << "Fecha de Nacimiento: " << _dateB.toString() << endl;*/
+    cout << "Fecha de Nacimiento: " << _dateB.toString() << endl;
 
 }

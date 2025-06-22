@@ -550,9 +550,9 @@ void Menu::informe4()
 
     int startLine4 = (consola_ancho - tituloInforme4.length() - 37);
 
-    rlutil::locate((consola_ancho - startLine4) /2, 5);
+    rlutil::locate((consola_ancho - startLine4) /2, 4);
     cout << tituloInforme4 << endl;
-    rlutil::locate((consola_ancho - startLine4) - 83 / 2, 6);
+    rlutil::locate((consola_ancho - startLine4) - 83 / 2, 5);
     cout << linea4 << endl;
 
 
@@ -593,13 +593,31 @@ void Menu::informe4()
     }
 
     //Mostrar por pantalla
+
     for(int i = 0; i < cant; i++)
     {
-        cout << endl;
-        vRegistros[i].mostrar();
-        cout << endl;
-    }
+        int x = (i*9) + 7;
 
+        rlutil::locate((consola_ancho - startLine4) / 2, (x + i));
+        cout << "DNI: " << vRegistros[i].getDNI() << endl;
+        rlutil::locate((consola_ancho - startLine4) / 2, (x + 1 + i));
+        cout << "NOMBRE Y APELLIDO: " << vRegistros[i].getNombre() << " " << vRegistros[i].getApellido() << endl;
+        rlutil::locate((consola_ancho - startLine4) / 2, (x + 2 + i));
+        cout << "TELEFONO: " << vRegistros[i].getTelefono() << endl;
+        rlutil::locate((consola_ancho - startLine4) / 2, (x + 3 + i));
+        cout << "CORREO ELECTRONICO: " << vRegistros[i].getEmail() << endl;
+        rlutil::locate((consola_ancho - startLine4) / 2, (x + 4 + i));
+        cout << "OBRA SOCIAL:  " << vRegistros[i].getObraSocial() << endl;
+        rlutil::locate((consola_ancho - startLine4) / 2, (x + 5 + i));
+        cout << "NRO. DE AFILIADO: " << vRegistros[i].getNumeroAfiliado() << endl;
+        rlutil::locate((consola_ancho - startLine4) / 2, (x + 6 + i));
+        cout << "FECHA DE NACIMIENTO: " << vRegistros[i].getDateB().toString() << endl;
+
+        rlutil::locate((consola_ancho - startLine4) - 83 / 2, (x + 8 + i));
+        cout << linea4 << endl;
+
+    }
+    cout << endl;
     delete[] vRegistros;
 }
 
@@ -608,8 +626,26 @@ void Menu::informe5()
 
     int dniPaciente;
 
-    cout << "Ingrese el DNI del paciente: ";
+    string tituloInforme5 = "HISTORIAL DE ESTUDIOS POR PACIENTE";
+    string linea5 = "--------------------------------------------";
+
+    int startLine5 = (consola_ancho - tituloInforme5.length() - 37);
+
+    rlutil::locate((consola_ancho - startLine5) /2, 4);
+    cout << tituloInforme5 << endl;
+    rlutil::locate((consola_ancho - startLine5) - 83 / 2, 5);
+    cout << linea5 << endl;
+
+    string ingreso = "INGRESE EL DNI DEL PACIENTE: ";
+
+    rlutil::locate((consola_ancho - startLine5) / 2, 6);
+    cout << ingreso << endl;
+
+    rlutil::locate((consola_ancho - startLine5) - 15 / 2, 6);
     cin >> dniPaciente;
+
+    rlutil::locate((consola_ancho - startLine5) - 83 / 2, 7);
+    cout << linea5 << endl;
 
     PacienteArchivo archivo;
 
@@ -617,7 +653,10 @@ void Menu::informe5()
 
     Paciente registro = archivo.leer(pos);
 
-    cout << "Estudios realizados por " << registro.getNombre() << " " << registro.getApellido() << endl << endl;
+    string titulo2 = "ESTUDIOS REALIZADOS POR";
+
+    rlutil::locate((consola_ancho - startLine5) / 2, 9);
+    cout << titulo2 << registro.getNombre() << " " << registro.getApellido() << endl;
 
     EstudioArchivo archivoEstudios;
 
@@ -629,11 +668,42 @@ void Menu::informe5()
 
         if(estudio.getDNI() == dniPaciente)
         {
-            cout << "---------------" << endl;
-            estudio.mostrar();
-            cout << "---------------" << endl;
+            int x = (i*8) + 11;
+
+            rlutil::locate((consola_ancho - startLine5) / 2, (x + i));
+            cout << "ID ESTUDIO: " << estudio.getIDEstudio() << endl;
+            rlutil::locate((consola_ancho - startLine5) / 2, (x + 1 + i));
+            cout << "DNI: " << estudio.getDNI() << endl;
+            rlutil::locate((consola_ancho - startLine5) / 2, (x + 2 + i));
+            cout << "SALA: " << estudio.getSala() << endl;
+            rlutil::locate((consola_ancho - startLine5) / 2, (x + 3 + i));
+            cout << "ID TURNO: " << estudio.getIDTurno() << endl;
+            rlutil::locate((consola_ancho - startLine5) / 2, (x + 4 + i));
+            cout << "PRECIO: $" << estudio.getPrecio() << endl;
+            rlutil::locate((consola_ancho - startLine5) / 2, (x + 5 + i));
+            cout << "ESTADO DEL ESTUDIO: ";
+            switch(estudio.getEstadoEstudio())
+            {
+            case 1:
+                cout << "EN PROCESO" << endl;
+                break;
+            case 2:
+                cout << "ESPERANDO RESULTADOS" << endl;
+                break;
+            case 3:
+                cout << "RESULTADOS LISTOS" << endl;
+                break;
+            case 4:
+                cout << "ANULADO" << endl;
+                break;
+            }
+
+
+            rlutil::locate((consola_ancho - startLine5) - 83 / 2, (x + 7 + i));
+            cout << linea5 << endl;
         }
     }
+    cout << endl;
 }
 
 void Menu::informe1()
@@ -704,10 +774,10 @@ void Menu::informe1()
 
         cout << endl;
 
-       string dniLinea = "DNI PACIENTE: ";
-       string nameLinea = "NOMBRE Y APELLIDO: ";
-       string dobLinea = "FECHA DE NACIMEINTO: ";
-       string cantAnalisis = "CANTIDAD DE ANALISIS REALIZADOS: ";
+        string dniLinea = "DNI PACIENTE: ";
+        string nameLinea = "NOMBRE Y APELLIDO: ";
+        string dobLinea = "FECHA DE NACIMEINTO: ";
+        string cantAnalisis = "CANTIDAD DE ANALISIS REALIZADOS: ";
 
         rlutil::locate((consola_ancho - startLine) / 2, 11);
         cout << dniLinea << obj.getDNI() << endl;
