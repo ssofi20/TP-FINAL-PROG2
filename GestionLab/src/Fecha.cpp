@@ -55,6 +55,9 @@ void Fecha::setDia(int dia){
 
     if(dia <= 31 && dia >=1){
         _dia = dia;
+    } 
+    else {
+        _dia = 0;
     }
 }
 
