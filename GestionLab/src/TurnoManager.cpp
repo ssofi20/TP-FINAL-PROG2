@@ -6,12 +6,24 @@ using namespace std;
 ///Agregar turno al archivo
 void TurnoManager::opcion1(){
 
+    const int consola_ancho = 100;
     Turno registro;
+
+    rlutil::cls();
     
-    cout << _archivo.cantidadRegistros() << endl;
-    
+    const int xCampo = 30;
+    const int xIngreso = 55;
+    int y = 6;
+
+    string titulo = "FORMULARIO DE NUEVO TURNO";
+    rlutil::locate((consola_ancho - titulo.length()) / 2, y - 2);
+    cout << titulo;
+
     registro.setIDTurno(_archivo.getID());
-    cout << "ID Turno: " << registro.getIDTurno() << endl; 
+    rlutil::locate(xCampo, y);
+    cout << "ID Turno generado:";
+    rlutil::locate(xIngreso, y++);
+    cout << registro.getIDTurno();
     
     bool yaExiste = true;
     
@@ -42,7 +54,6 @@ void TurnoManager::opcion1(){
         cout << "El turno no se pudo registrar" << endl;
     }
     system("pause");
-
 }
 
 ///Cambiar fecha y hora de un turno

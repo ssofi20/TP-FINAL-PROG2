@@ -2,6 +2,7 @@
 #include <string>
 #include "Hora.h"
 #include "Fecha.h"
+#include "PacienteArchivo.h"
 
 class Turno
 {

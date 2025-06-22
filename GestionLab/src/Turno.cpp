@@ -81,8 +81,25 @@ void Turno::cargar(){
     
     bool invalido = true;
     
-    cout << "DNI Paciente: ";
-    cin >> _DNIPaciente;
+    PacienteArchivo archivo;
+    int dniPaciente;
+    
+    while(invalido)
+    {
+        cout << "DNI Paciente: ";
+        cin >> dniPaciente;
+    
+        int pos = archivo.buscar(dniPaciente);
+        if(pos < 0)
+        {
+            cout << "No existe un paciente con ese DNI en el sistema. Intente de nuevo.";
+        } 
+        else {
+            invalido = false;
+        }
+    }
+    
+    invalido = true;
     
     while(invalido){
         cout << "Fecha programada: " << endl;
@@ -90,7 +107,7 @@ void Turno::cargar(){
     
         if(_fechaProgramada.getMes() == 0 || _fechaProgramada.getAnio() == 0){
             cout << _fechaProgramada.toString() << endl;    
-            cout << endl << "Fecha invalida! Pruebe nuevamente" << endl << endl;
+            cout << endl << "Fecha invalida! Pruebe de nuevo." << endl << endl;
         } 
         else {
             invalido = false;
@@ -103,7 +120,7 @@ void Turno::cargar(){
         cout << "Hora programada: " << endl;
         _horaProgramada.cargar();
         if(_horaProgramada.getHora() == 0){
-            cout << "Hora invalida! Pruebe nuevamente" << endl;
+            cout << "Hora invalida! Pruebe de nuevo." << endl;
         }
         else {
             invalido = false;
