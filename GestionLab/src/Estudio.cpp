@@ -104,81 +104,116 @@ bool Estudio::getEstado()
 }
 
 //METODOS CARGAR Y MOSTRAR
-void Estudio::cargar()
+
+void Estudio::cargarAnalisis(int y)
 {
-    char IDEstudio[11];
-    char sala[6];
-    int dni, IDTurno;
-    float precio;
-
-    cout << "ID del estudio: ";
-    cargarCadena(IDEstudio, 10);
-    setIDEstudio(IDEstudio);
-
-    cout << "DNI: ";
-    cin >> dni;
-    setDNI(dni);
-
-    cout << "Sala: ";
-    cargarCadena(sala, 5);
-    setSala(sala);
-
-    cout << "ID turno: ";
-    cin >> IDTurno;
-    setIDTurno(IDTurno);
-
-    cout << "Precio: ";
-    cin >> precio;
-    setPrecio(precio);
-
-    _estado = true;
-    _estadoEstudio = 1;
-
-    /**
-    ANALISIS DEL ESTUDIO
-    - Pedir los ID de los analisis a realizar
-    - Guardalos en el archivo EstudioAnalisis junto con el IDEstudio previamente cargado.
-    - No se pueden repetir registros (IDAnalisis - IDEstudio)
-    */
-
     EstudioAnalisisArchivo archivo;
     TipoAnalisisArchivo archivoAnalisis;
     EstudioAnalisis registro;
     
-    int IDAnalisis = 1;
+    int IDAnalisis;
         
-    while(IDAnalisis!=0){
+    string texto;
+    bool isExist = true;
+    
+    int xCampo = 30;
+    int xIngreso = 55;
+    
+    texto = "ANALISIS DE LA MUESTRA";
+    rlutil::locate(xCampo, y);
+    cout << texto;
         
-        bool yaExiste = true;
+    while(isExist){
         
-        while(yaExiste){
-        
-            cout << "ID Analisis a realizar: ";
-            cin >> IDAnalisis;
+        texto = "ID Analisis a realizar:";
+        rlutil::locate(xCampo, y + 2);
+        cout << texto;
+        rlutil::locate(xIngreso, y + 2);
+        cin >> IDAnalisis;
 
-            int pos = archivoAnalisis.buscar(IDAnalisis);
+        //Verificar si existe el analisis en el sistema
+        int pos = archivoAnalisis.buscar(IDAnalisis);
 
-            if(pos < 0) {
-                cout << "El tipo de analisis no existe en el sistema. Intente nuevamente" << endl;
-            } else {
-                yaExiste = false;
+        if(pos < 0) {
+            texto = "El tipo de analisis no existe en el sistema. Intente nuevamente";
+            rlutil::locate((100 - texto.length())/2, y + 4);
+            cout << texto;
+        } 
+        else {
+            isExist = false;
+        }
+        
+        //Verificar si ya esta registrado en el sistema ese analisis para este estudio
+        int cant = archivo.cantidadRegistros();
+        for(int i = 0; i < cant; i++)
+        {
+            EstudioAnalisis reg = archivo.leer(i);
+            if(reg.getIDAnalisis() == IDAnalisis && strcmp(reg.getIDEstudio(),_IDEstudio) == 0)
+            {
+                isExist = false;
+                break;
             }
         }
-        
-        registro.setIDAnalisis(IDAnalisis);
-        registro.setIDEstudio(IDEstudio);
-        registro.setEstado(true);
-        
-        if(archivo.guardar(registro)){
-            cout << "El analisis se registro exitosamente!" << endl;
-        }
-        else {
-            cout << "No se pudo registrar el analisis :(" << endl;
-        }
-        
-        cout << "Desea registrar otro analisis? 1-SI  0-NO" << endl;
-        cin >> IDAnalisis;
     }
+    
+    registro.setIDAnalisis(IDAnalisis);
+    registro.setIDEstudio(_IDEstudio);
+    registro.setEstado(true);
+    
+    if(archivo.guardar(registro))
+    {
+        texto = "El analisis se registro exitosamente!";
+        rlutil::locate((100 - texto.length())/2, y + 5);
+        cout << texto;
+    }
+    else {
+        texto = "No se pudo registrar el analisis.";
+        rlutil::locate((100 - texto.length())/2, y + 5);
+        cout << texto;
+    }
+}
+
+void Estudio::cargar()
+{
+    const int xCampo = 30;
+    const int xIngreso = 55;
+    int y = 6;
+    string texto;
+    
+    //Titulo centrado
+    texto = "FORMULARIO REGISTRO DE ESTUDIO";
+    rlutil::locate((100 - texto.length()) / 2, y - 2);
+    cout << texto;
+    
+    //Ingresos de datos del estudio
+    rlutil::locate(xCampo, y);
+    cout << "ID del Estudio: ";
+    rlutil::locate(xIngreso, y++);
+    cargarCadena(_IDEstudio, 10);
+    
+    rlutil::locate(xCampo, ++y);
+    cout << "DNI Paciente: ";
+    rlutil::locate(xIngreso, y++);
+    cin >> _DNI;
+
+    rlutil::locate(xCampo, ++y);
+    cout << "Sala: ";
+    rlutil::locate(xIngreso, y++);
+    cargarCadena(_sala, 5);
+
+    rlutil::locate(xCampo, ++y);
+    cout << "ID turno: ";
+    rlutil::locate(xIngreso, y++);
+    cin >> _IDTurno;
+
+    rlutil::locate(xCampo, ++y);
+    cout << "Precio: ";
+    rlutil::locate(xIngreso, y++);
+    cin >> _precio;
+
+    _estado = true;
+    _estadoEstudio = 1;
+
 }
 
 void Estudio::mostrar()

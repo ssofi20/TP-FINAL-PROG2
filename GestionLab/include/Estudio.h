@@ -47,6 +47,7 @@ class Estudio
 
         ///METODOS CARGAR Y MOSTRAR
         void cargar();
+        void cargarAnalisis(int y);
         void mostrar();
 
 };
