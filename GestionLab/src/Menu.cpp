@@ -1214,37 +1214,80 @@ void Menu::restaurarCopiaSeguridad()
 ///INICIO MENU CONFIGURACION
 void Menu::menuConfiguraciones()
 {
-    int opc;
+    int y = 0;
+    rlutil::hidecursor();
     while (true)
     {
-        system("cls");
-        cout << "Menu de Configuraciones" << endl;
-        cout << "-------------------------------------" << endl;
-        cout << "1. Copias de Seguridad" << endl;
-        cout << "2. Restaurar copias de Seguridad" << endl;
-        cout << "0. Volver a atras" << endl;
-        cout << "-------------------------------------" << endl;
-        cout << "Ingrese la opcion deseada: ";
-        cin >> opc;
-        system ("cls");
-        switch (opc)
+        rlutil::cls();
+        string tituloConfig = "MENU DE CONFIGURACIONES";
+        string lineaConfig =  "---------------------------------";
+
+        rlutil::locate((consola_ancho - tituloConfig.length()) / 2, 9);
+        cout << tituloConfig << endl;
+        rlutil::locate((consola_ancho - lineaConfig.length()) / 2, 10);
+        cout << lineaConfig << endl;
+
+        const char* opciones[] =
         {
-        case 1:
-            copiaSeguridad();
-            system("pause");
+            "COPIAS DE SEGURIDAD",
+            "RESTAURAR COPIAS DE SEGURIDAD",
+            "VOLVER AL MENU ANTERIOR"
+        };
+
+        showItem(opciones[0], 12, y == 0);
+        showItem(opciones[1], 14, y == 2);
+        showItem(opciones[2], 16, y == 4);
+
+        int largoTexto = strlen(opciones[y / 2]);
+        rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 12 + y);
+        cout << (char)175;
+
+        int key = rlutil::getkey();
+        switch (key)
+        {
+        case 14: // UP
+            largoTexto = strlen(opciones [y / 2]);
+            rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 12 + y);
+            cout << " " << endl;
+            y = y - 2;
+            if (y < 0)
+            {
+                y = 0;
+            }
             break;
-        case 2:
-            restaurarCopiaSeguridad();
-            system("pause");
+        case 15: // DOWN
+            largoTexto = strlen(opciones [y / 2]);
+            rlutil::locate((consola_ancho - largoTexto) / 2 - 3, 10 + y);
+            cout << " " << endl;
+            y = y + 2;
+            if (y > 4)
+            {
+                y = 4;
+            }
             break;
-        case 0:
-            return;
-        default:
-            cout << "Opcion incorrecta! Intente nuevamente" << endl;
-            system("pause");
-            break;
+        case 1: /// ENTER
+            rlutil::cls();
+            switch(y)
+            {
+            case 0:
+                rlutil::cls();
+                copiaSeguridad();
+                system("pause");
+                break;
+
+            case 2:
+                rlutil::cls();
+                restaurarCopiaSeguridad();
+                system("pause");
+                break;
+
+            case 4:
+                return;
+            }
+            system("cls");
         }
     }
+    return;
 }
 
 ///FIN MENU CONFIGURACION
