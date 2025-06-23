@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "rlutil.h"
 
 class Hora
 {
@@ -25,7 +26,7 @@ class Hora
 
      /// Metodo de clase
         std::string toString();
-        void cargar();
+        void cargar(int x, int y);
 
 };
 
