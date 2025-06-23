@@ -2,6 +2,7 @@
 
 void cargarCadena(char *palabra, int tamano)
 {
+    cin.ignore();
     int i = 0;
     fflush(stdin);
     for (i = 0; i < tamano; i++)

@@ -1,97 +1,107 @@
 #include "EstudioManager.h"
 
 
-///Registrar nuevo estudio.
+//Registrar nuevo estudio.
 void EstudioManager::opcion1()
 {
     int consola_ancho = 100;
     Estudio obj;
-    
+
     bool yaExiste = true;
     string texto;
-    
-    while (yaExiste)
-    {
-        obj.cargar();
-        
+
+    while (yaExiste) {
+        int posy = obj.cargar();
+
+        bool cargando = true;
+        int x = 0;
+        int yOffset = posy + 1;
+
+        while (cargando) {
+            obj.cargarAnalisis(yOffset);
+            yOffset += 7;
+
+            texto = "¨Desea cargar m s an lisis?";
+            rlutil::locate((consola_ancho - texto.length()) / 2, yOffset + 1);
+            cout << texto;
+
+            showItemHorizontal("SI", 41, yOffset + 2, x == 0);
+            showItemHorizontal("NO", 49, yOffset + 2, x == 1);
+
+            int key = rlutil::getkey();
+
+            switch (key) {
+            case 16: x = max(0, x - 1); break; // LEFT
+            case 17: x = min(1, x + 1); break; // RIGHT
+            case 1:  // ENTER
+                if (x == 1) cargando = false;
+                break;
+            }
+        }
+
         int band = 0;
-        
-        int pos = _archivo.buscar(obj.getIDEstudio());
-        
         rlutil::cls();
-        
-        if(pos >= 0)
-        {
-            texto = "Ya existe un estudio con ese ID. Intente nuevamente";
-            rlutil::locate((consola_ancho - texto.length())/2, 15);
+
+        int pos = _archivo.buscar(obj.getIDEstudio());
+        if (pos >= 0) {
+            texto = "Ya existe un estudio con ese ID. Intente nuevamente.";
+            rlutil::locate((consola_ancho - texto.length()) / 2, 15);
             cout << texto;
-            band ++;
-            rlutil::locate((consola_ancho - 33)/2, 16);
+            band++;
+            rlutil::locate((consola_ancho - 33) / 2, 16);
             system("pause");
         }
-        
+
         PacienteArchivo archivoPaciente;
-        
         pos = archivoPaciente.buscar(obj.getDNI());
-        
-        if(pos < 0)
-        {
-            texto = "No existe un paciente registrado en el sistema con ese DNI.";
-            rlutil::locate((consola_ancho - texto.length())/2, 15);
+        if (pos < 0) {
+            texto = "No existe un paciente registrado con ese DNI.";
+            rlutil::locate((consola_ancho - texto.length()) / 2, 15);
             cout << texto;
-            band ++;
-            rlutil::locate((consola_ancho - 33)/2, 16);
+            band++;
+            rlutil::locate((consola_ancho - 33) / 2, 16);
             system("pause");
         }
-        
+
         TurnoArchivo archivoTurno;
-        
         pos = archivoTurno.buscar(obj.getIDTurno());
-        
-        Turno turno = archivoTurno.leer(pos);
-        
-        if(turno.getDNIPaciente() != obj.getDNI())
-        {
-            texto = "Este ID de turno no esta registrado al nombre de este paciente.";
-            rlutil::locate((consola_ancho - texto.length())/2, 15);
+        if (pos < 0) {
+            texto = "No existe un turno con ese ID.";
+            rlutil::locate((consola_ancho - texto.length()) / 2, 15);
             cout << texto;
-            band ++;
-            rlutil::locate((consola_ancho - 33)/2, 16);
+            band++;
+            rlutil::locate((consola_ancho - 33) / 2, 16);
             system("pause");
-        } 
-        else if (pos < 0)
-        {
-            texto = "No existe un turno registrado en el sistema con ese ID.";
-            rlutil::locate((consola_ancho - texto.length())/2, 15);
-            band ++;
-            rlutil::locate((consola_ancho - 33)/2, 16);
-            system("pause");
+        } else {
+            Turno turno = archivoTurno.leer(pos);
+            if (turno.getDNIPaciente() != obj.getDNI()) {
+                texto = "Este ID de turno no corresponde a ese paciente.";
+                rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+                cout << texto;
+                band++;
+                rlutil::locate((consola_ancho - 33) / 2, 16);
+                system("pause");
+            }
         }
-        
-        if(band == 0)
-        {
+
+        if (band == 0) {
             yaExiste = false;
         }
-        
+
         rlutil::cls();
     }
 
-    if (_archivo.guardar(obj))
-    {
-        texto = "Se ha registrado exitosamente!";
-        rlutil::locate((consola_ancho - texto.length())/2, 15);
-    }
-    else
-    {
-        texto= "No se pudo registrar el estudio. ";
-        rlutil::locate((consola_ancho - texto.length())/2, 15);
-    }
-    rlutil::locate((consola_ancho - 33)/2, 16);
+    texto = _archivo.guardar(obj)
+        ? "­Se ha registrado exitosamente!"
+        : "No se pudo registrar el estudio.";
+
+    rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+    cout << texto;
+    rlutil::locate((consola_ancho - 33) / 2, 16);
     system("pause");
-    
 }
 
-/// Eliminar estudio
+//Eliminar estudio
 void EstudioManager::opcion2()
 {
     Estudio registro;
@@ -134,7 +144,7 @@ void EstudioManager::opcion2()
     }
 }
 
-///Modificar estudio (Sala - analisis asignados - estado)
+//Modificar estudio (Sala - analisis asignados - estado)
 void EstudioManager::opcion3()
 {
 
@@ -247,7 +257,7 @@ void EstudioManager::opcion3()
 
 }
 
-///Buscar un estudio
+//Buscar un estudio
 void EstudioManager::opcion4()
 {
 
@@ -283,7 +293,7 @@ void EstudioManager::opcion4()
     system("pause");
 }
 
-///Listado de estudios
+//Listado de estudios
 void EstudioManager::opcion5()
 {
     int cantidad = _archivo.cantidadRegistros();

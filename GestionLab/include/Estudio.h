@@ -46,7 +46,7 @@ class Estudio
         bool getEstado();
 
         ///METODOS CARGAR Y MOSTRAR
-        void cargar();
+        int cargar();
         void cargarAnalisis(int y);
         void mostrar();
 
