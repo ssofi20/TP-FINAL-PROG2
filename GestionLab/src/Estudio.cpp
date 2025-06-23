@@ -135,8 +135,9 @@ void Estudio::cargarAnalisis(int y)
             texto = "El tipo de an lisis no existe en el sistema. Intente nuevamente.";
             rlutil::locate((100 - texto.length()) / 2, y + 4);
             cout << texto;
+            rlutil::locate((100 - 33) / 2, y + 4);
             system("pause");
-            continue;
+            return;
         }
 
         // Verificar si ya est  registrado para este estudio
@@ -147,6 +148,7 @@ void Estudio::cargarAnalisis(int y)
                 texto = "Ese an lisis ya fue registrado para este estudio.";
                 rlutil::locate((100 - texto.length()) / 2, y + 4);
                 cout << texto;
+                rlutil::locate((100 - 33) / 2, y + 4);
                 system("pause");
                 return;
             }
@@ -164,8 +166,9 @@ void Estudio::cargarAnalisis(int y)
     } else {
         texto = "No se pudo registrar el an lisis.";
     }
-    rlutil::locate((100 - texto.length()) / 2, y + 5);
+    rlutil::locate((100 - texto.length()) / 2, y + 4);
     cout << texto;
+    rlutil::locate((100 - 33) / 2, y + 5);
     system("pause");
 }
 

@@ -10,34 +10,9 @@ void EstudioManager::opcion1()
     bool yaExiste = true;
     string texto;
 
-    while (yaExiste) {
+    while (yaExiste) 
+    {
         int posy = obj.cargar();
-
-        bool cargando = true;
-        int x = 0;
-        int yOffset = posy + 1;
-
-        while (cargando) {
-            obj.cargarAnalisis(yOffset);
-            yOffset += 7;
-
-            texto = "¨Desea cargar m s an lisis?";
-            rlutil::locate((consola_ancho - texto.length()) / 2, yOffset + 1);
-            cout << texto;
-
-            showItemHorizontal("SI", 41, yOffset + 2, x == 0);
-            showItemHorizontal("NO", 49, yOffset + 2, x == 1);
-
-            int key = rlutil::getkey();
-
-            switch (key) {
-            case 16: x = max(0, x - 1); break; // LEFT
-            case 17: x = min(1, x + 1); break; // RIGHT
-            case 1:  // ENTER
-                if (x == 1) cargando = false;
-                break;
-            }
-        }
 
         int band = 0;
         rlutil::cls();
@@ -64,17 +39,22 @@ void EstudioManager::opcion1()
         }
 
         TurnoArchivo archivoTurno;
+        
         pos = archivoTurno.buscar(obj.getIDTurno());
-        if (pos < 0) {
+        if (pos < 0) 
+        {
             texto = "No existe un turno con ese ID.";
             rlutil::locate((consola_ancho - texto.length()) / 2, 15);
             cout << texto;
             band++;
             rlutil::locate((consola_ancho - 33) / 2, 16);
             system("pause");
-        } else {
+        } 
+        else 
+        {
             Turno turno = archivoTurno.leer(pos);
-            if (turno.getDNIPaciente() != obj.getDNI()) {
+            if (turno.getDNIPaciente() != obj.getDNI()) 
+            {
                 texto = "Este ID de turno no corresponde a ese paciente.";
                 rlutil::locate((consola_ancho - texto.length()) / 2, 15);
                 cout << texto;
@@ -90,6 +70,51 @@ void EstudioManager::opcion1()
 
         rlutil::cls();
     }
+    
+    bool cargando = true;
+    int x = 0;
+
+    rlutil::cls();    
+    obj.cargarAnalisis(10);
+    
+    while (cargando) 
+    {
+
+        texto = "¨Desea cargar m s an lisis?";
+        rlutil::locate((consola_ancho - texto.length()) / 2, 18);
+        cout << texto;
+
+        showItemHorizontal("SI", 45, 20, x == 0);
+        showItemHorizontal("NO", 55, 20, x == 1);
+
+        int key = rlutil::getkey();
+
+        switch (key) {
+        case 16: // LEFT
+            x--;
+            if(x < 0){
+                x = 0;
+            }
+            break;
+        case 17:// RIGHT
+            x++;
+            if(x > 1){
+                x = 1;
+            }
+            break;
+        case 1:  // ENTER
+            if (x == 1) {
+                cargando = false;
+            }
+            else {
+                rlutil::cls();    
+                obj.cargarAnalisis(10);
+            }
+            break;
+        }
+    }
+    
+    rlutil::cls();
 
     texto = _archivo.guardar(obj)
         ? "­Se ha registrado exitosamente!"
@@ -106,7 +131,12 @@ void EstudioManager::opcion2()
 {
     Estudio registro;
     char idEstudio [11];
-    cout << "Ingrese el ID del estudio a dar de baja: ";
+    int consola_ancho = 100;
+    
+    string texto =  "Ingrese el ID del estudio a dar de baja: ";
+    rlutil::locate((consola_ancho - texto.length())/2, 14);
+    cout << texto;
+    rlutil::locate((consola_ancho - 10)/2, 16);
     cargarCadena(idEstudio, 10);
 
     int cantidadReg = _archivo.cantidadRegistros();
@@ -123,25 +153,34 @@ void EstudioManager::opcion2()
             break;
         }
     }
+    
+    rlutil::cls();
 
     if(encontrado)
     {
         registro.setEstado(false);
         if(_archivo.guardar(registro, pos))
         {
-            cout << "Estudio dado de baja exitosamente!" << endl;
+            texto = "Estudio dado de baja exitosamente!";
+            rlutil::locate((consola_ancho - texto.length())/2, 14);
+            cout << texto;
         }
         else
         {
-            cout << "Error al dar de baja el estudio" << endl;
+            texto = "Error al dar de baja el estudio";
+            rlutil::locate((consola_ancho - texto.length())/2, 14);
+            cout << texto;
         }
-        system("pause");
     }
     else
     {
-        cout << "No se encontro un estudio con ese ID en el archivo" << endl;
-        system("pause");
+        texto = "No se encontro un estudio con ese ID en el archivo";
+        rlutil::locate((consola_ancho - texto.length())/2, 14);
+        cout << texto;
     }
+    
+    rlutil::locate((consola_ancho - 33)/2, 16);
+    system("pause");
 }
 
 //Modificar estudio (Sala - analisis asignados - estado)

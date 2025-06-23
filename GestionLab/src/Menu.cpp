@@ -100,11 +100,8 @@ void Menu::menuGestionPacientes()
                 break;
             case 12:
                 return;
-            default:
-                cout << "Opcion incorrecta! Intente nuevamente" << endl;
-                system("pause");
-                break;
             }
+            rlutil::cls();
             break;
         }
     }
@@ -133,7 +130,6 @@ void Menu::menuGestionTurnos()
         cout << linea << endl;
 
         //Opciones del menu
-
         const char* opciones[] =
         {
             "AGENDAR NUEVO TURNO",
@@ -202,11 +198,8 @@ void Menu::menuGestionTurnos()
                 break;
             case 10:
                 return;
-            default:
-                cout << "Opcion incorrecta! Intente nuevamente" << endl;
-                system("pause");
-                break;
             }
+            rlutil::cls();
             break;
         }
     }
@@ -303,11 +296,8 @@ void Menu::menuGestionEstudios()
                 break;
             case 10:
                 return;
-            default:
-                cout << "Opcion incorrecta! Intente nuevamente" << endl;
-                system("pause");
-                break;
             }
+            rlutil::cls();
             break;
         }
     }
@@ -438,6 +428,7 @@ void Menu::menuGestionDatosSistema()
             case 16:
                 return;
             }
+            rlutil::cls();
             break;
         }
     }
