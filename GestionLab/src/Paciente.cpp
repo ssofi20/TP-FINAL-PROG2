@@ -94,34 +94,134 @@ bool Paciente::getEstado() const{
 }
 
 void Paciente::cargar(){
+    
+    const int xCampo = 30;
+    const int xIngreso = 55;
+    int y = 6;
+    
+    rlutil::cls();
+    
+    string titulo = "FORMULARIO DE INGRESO DE PACIENTE";
+    rlutil::locate((100 - titulo.length()) / 2, y - 2);
+    cout << titulo;
 
+    rlutil::locate(xCampo, y);
     cout << "DNI: ";
+    rlutil::locate(xIngreso, y++);
     cin >> _DNI;
+    cin.ignore(); 
+
+    rlutil::locate(xCampo, ++y);
     cout << "Nombre/s: ";
+    rlutil::locate(xIngreso, y++);
     cargarCadena(_nombre, 29);
+
+    rlutil::locate(xCampo, ++y);
     cout << "Apellido/s: ";
+    rlutil::locate(xIngreso, y++);
     cargarCadena(_apellido, 39);
+
+    rlutil::locate(xCampo, ++y);
     cout << "Telefono: ";
+    rlutil::locate(xIngreso, y++);
     cargarCadena(_telefono, 10);
+
+    rlutil::locate(xCampo, ++y);
     cout << "Email: ";
+    rlutil::locate(xIngreso, y++);
     cargarCadena(_email, 59);
+
+    rlutil::locate(xCampo, ++y);
     cout << "Nombre Obra Social: ";
+    rlutil::locate(xIngreso, y++);
     cargarCadena(_obraSocial, 59);
+
+    rlutil::locate(xCampo, ++y);
     cout << "Numero Afiliado: ";
+    rlutil::locate(xIngreso, y++);
     cargarCadena(_numeroAfiliado, 19);
-    cout << "Fecha de Nacimiento: " << endl;
-    _dateB.cargar();
+
+    rlutil::locate(xCampo, ++y);
+    cout << "Fecha de Nacimiento: ";
+    rlutil::locate(xIngreso, y++);
+    _dateB.cargar(55, 20);
+
     _estado = true;
 }
+
 void Paciente::mostrar(){
 
-    cout << "DNI: " << _DNI << endl;
-    cout << "Nombre/s: " << _nombre << endl;
-    cout << "Apellido/s: " << _apellido << endl;
-    cout << "Telefono: " << _telefono << endl;
-    cout << "Email: " << _email << endl;
-    cout << "Obra Social: " << _obraSocial << endl;
-    cout << "Numero Afiliado: " << _numeroAfiliado << endl;
-    cout << "Fecha de Nacimiento: " << _dateB.toString() << endl;
+    const int xCampo = 30;
+    const int xIngreso = 55;
+    int y = 6;
+    
+    string titulo = "INFORMACION DEL PACIENTE";
+    rlutil::locate((100 - titulo.length()) / 2, y - 2);
+    cout << titulo;
 
+    rlutil::locate(xCampo, y);
+    cout << "DNI:";
+    rlutil::locate(xIngreso, y++);
+    cout << _DNI;
+
+    rlutil::locate(xCampo, ++y);
+    cout << "Nombre/s:";
+    rlutil::locate(xIngreso, y++);
+    cout << _nombre;
+
+    rlutil::locate(xCampo, ++y);
+    cout << "Apellido/s:";
+    rlutil::locate(xIngreso, y++);
+    cout << _apellido;
+
+    rlutil::locate(xCampo, ++y);
+    cout << "Telefono:";
+    rlutil::locate(xIngreso, y++);
+    cout << _telefono;
+
+    rlutil::locate(xCampo, ++y);
+    cout << "Email:";
+    rlutil::locate(xIngreso, y++);
+    cout << _email;
+
+    rlutil::locate(xCampo, ++y);
+    cout << "Obra Social:";
+    rlutil::locate(xIngreso, y++);
+    cout << _obraSocial;
+
+    rlutil::locate(xCampo, ++y);
+    cout << "Numero Afiliado:";
+    rlutil::locate(xIngreso, y++);
+    cout << _numeroAfiliado;
+
+    rlutil::locate(xCampo, ++y);
+    cout << "Fecha de Nacimiento:";
+    rlutil::locate(xIngreso, y++);
+    cout << _dateB.toString();
+}
+
+void Paciente::mostrarHorizontal(int y)
+{
+  
+    rlutil::locate(2, y);
+    cout << _DNI;
+
+    rlutil::locate(12, y);
+    cout << _apellido;
+
+    rlutil::locate(28, y);
+    cout << _nombre;
+
+    rlutil::locate(42, y);
+    cout << _telefono;
+
+    rlutil::locate(56, y);
+    cout << _numeroAfiliado;
+
+    rlutil::locate(70, y);
+    cout << _obraSocial;
+
+    rlutil::locate(88, y);
+    cout << _dateB.toString(); 
+    
 }

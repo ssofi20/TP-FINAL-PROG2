@@ -36,6 +36,7 @@ class Paciente
         //METODOS CARGAR Y MOSTRAR 
         void cargar();
         void mostrar();
+        void mostrarHorizontal(int y);
         
     private:
         int _DNI;

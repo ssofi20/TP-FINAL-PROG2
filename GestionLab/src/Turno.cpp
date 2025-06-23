@@ -86,7 +86,7 @@ void Turno::cargar(){
     
     while(invalido){
         cout << "Fecha programada: " << endl;
-        _fechaProgramada.cargar();
+        _fechaProgramada.cargar(20,20);
     
         if(_fechaProgramada.getMes() == 0 || _fechaProgramada.getAnio() == 0){
             cout << _fechaProgramada.toString() << endl;    

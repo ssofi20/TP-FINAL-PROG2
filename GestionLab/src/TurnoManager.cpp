@@ -69,7 +69,7 @@ void TurnoManager::opcion2(){
     
     Fecha newFecha;
     cout << "Ingrese la nueva fecha" << endl;
-    newFecha.cargar();
+    newFecha.cargar(55, 20);
     registro.setFechaProgramada(newFecha);
     
     Hora newHora;

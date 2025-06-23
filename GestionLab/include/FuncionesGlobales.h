@@ -13,3 +13,5 @@ void toLowerWord(char *palabra);
 void showItem(const char *texto, int posy, bool selected);
 
 void cuadrado();
+
+void showItemHorizontal(const char *texto, int posx, int posy, bool selected);
