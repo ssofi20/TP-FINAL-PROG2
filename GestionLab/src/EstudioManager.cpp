@@ -167,7 +167,7 @@ void EstudioManager::opcion2()
         }
         else
         {
-            texto = "Error al dar de baja el estudio";
+            texto = "No se encontro un estudio con ese ID";
             rlutil::locate((consola_ancho - texto.length())/2, 14);
             cout << texto;
         }
@@ -186,114 +186,191 @@ void EstudioManager::opcion2()
 //Modificar estudio (Sala - analisis asignados - estado)
 void EstudioManager::opcion3()
 {
-
+    int consola_ancho = 100;
+    
     char idEstudio [11];
-    cout << "Ingrese el ID del estudio que desea modificar: ";
+    string texto = "Ingrese el ID del estudio que desea modificar: ";
+    rlutil::locate((consola_ancho - texto.length())/2, 14);
+    cout << texto;
+    rlutil::locate((consola_ancho - 10)/2, 16);
     cargarCadena(idEstudio, 10);
 
     int pos = _archivo.buscar(idEstudio);
 
     if(pos < 0)
     {
-        cout << "No se encontro un estudio con ese ID en el archivo" << endl;
+        texto = "No se encontro un estudio con ese ID en el archivo";
+        rlutil::locate((consola_ancho - texto.length())/2, 15);
+        cout << texto;
+        rlutil::locate((consola_ancho - 33)/2, 16);
         system("pause");
         return;
     }
 
     Estudio registro = _archivo.leer(pos);
-
-    int opcion;
-    cout << "Seleccione la opcion que corresponda: " << endl;
-    cout << "1- Modificar sala" << endl;
-    cout << "2- Modificar analisis asignados" << endl;
-    cout << "3- Modificar estado del estudio" << endl;
-    cout << "0- Cancelar y volver al menu anterior" << endl;
-    cout << "Seleccion: ";
-    cin >> opcion;
-
-    switch(opcion)
-    {
-    case 1:
-    {
-        char newSala[6];
-        cout << "Ingrese la nueva sala: ";
-        cargarCadena(newSala, 5);
-        registro.setSala(newSala);
-        if(_archivo.guardar(registro, pos))
+    
+    int y = 0;
+    
+    while(true)
+    {        
+        //Texto centrado
+        texto = "SELECCIONE LA OPCION QUE DESEA MODIFICAR";
+        rlutil::locate((consola_ancho - texto.length())/2, 8);
+        cout << texto;
+        
+        //Opciones del menu
+        showItem("SALA", 12, y == 0);
+        showItem("ANALISIS ASIGNADO", 14, y == 1);
+        showItem("ESTADO DEL ESTUDIO", 16, y == 2);
+        showItem("VOLVER", 18, y == 3);
+        
+        int key = rlutil::getkey();
+        
+        switch(key)
         {
-            cout << "Modificado exitosamente!" << endl;
-        }
-        else
-        {
-            cout << "No se pudo modificar el registro!" << endl;
-        }
-    }
-    break;
-    case 2:
-    {
-        int idAnalisis;
-        int newId;
-        cout << "Ingrese el ID del analisis a modificar: " ;
-        cin >> idAnalisis;
-
-        EstudioAnalisis reg;
-        EstudioAnalisisArchivo arch;
-        int cant = arch.cantidadRegistros();
-
-        for (int x=0; x < cant; x++)
-        {
-            reg = arch.leer(x);
-            if (strcmp(reg.getIDEstudio(), idEstudio)==0)
+        case 14:
+            y--;
+            if(y < 0) y = 0;
+            break;
+        case 15:
+            y++;
+            if(y > 3) y = 3;
+            break;
+        case 1:
+            rlutil::cls();
+            switch(y)
             {
-                if (reg.getIDAnalisis() == idAnalisis)
+                case 0:
                 {
-                    cout << "Ingrese el nuevo ID del analisis: " << endl;
-                    cin >> newId;
-                    reg.setIDAnalisis(newId);
-                    if (arch.guardar(reg, x))
+                    char newSala[6];
+                    texto = "Ingrese la nueva sala: ";
+                    rlutil::locate((consola_ancho - texto.length())/2, 10);
+                    cout << texto;
+                    rlutil::locate((consola_ancho - 4)/2, 12);
+                    cargarCadena(newSala, 5);
+                    registro.setSala(newSala);
+                    
+                    if(_archivo.guardar(registro, pos))
                     {
-                        cout << "El ID fue modificado correctamente. " << endl;
+                        texto = "Modificado exitosamente!";
                     }
                     else
                     {
-                        cout << "No se pudo modificar el ID.";
+                        texto = "No se pudo modificar el registro!";
+                    }
+                    rlutil::cls();
+                    rlutil::locate((consola_ancho - texto.length())/2, 14);
+                    cout << texto;
+                    rlutil::locate((consola_ancho - 33)/2, 16);
+                    system("pause");
+                }
+                break;
+                case 1:
+                {
+                    int idAnalisis;
+                    int newId;
+                    texto = "Ingrese el ID del analisis a modificar:";
+                    rlutil::locate((consola_ancho - texto.length())/2, 10);
+                    cout << texto;
+                    rlutil::locate((consola_ancho - 3)/2, 12);
+                    cin >> idAnalisis;
+
+                    EstudioAnalisis reg;
+                    EstudioAnalisisArchivo arch;
+                    int cant = arch.cantidadRegistros();
+                    
+                    bool encontrado = false;
+
+                    for (int x=0; x < cant; x++)
+                    {
+                        reg = arch.leer(x);
+                        if (strcmp(reg.getIDEstudio(), idEstudio) == 0)
+                        {
+                            if (reg.getIDAnalisis() == idAnalisis)
+                            {
+                                encontrado = true;
+                                texto = "Ingrese el nuevo ID del analisis: ";
+                                rlutil::locate((consola_ancho - texto.length())/2, 15);
+                                cout << texto;
+                                rlutil::locate((consola_ancho - 10)/2, 17);
+                                cin >> newId;
+                                reg.setIDAnalisis(newId);
+                                if (arch.guardar(reg, x))
+                                {
+                                    texto = "El ID fue modificado correctamente.";
+                                }
+                                else
+                                {
+                                    texto = "No se pudo modificar el ID.";
+                                }
+                            }
+                        }
+                        rlutil::cls();
+                        rlutil::locate((consola_ancho - texto.length())/2, 14);
+                        cout << texto;
+                        rlutil::locate((consola_ancho - 33)/2, 16);
+                        system("pause");
+                    }
+                    if(!encontrado)
+                    {
+                        texto = "No se encuentra registrado en este estudio el ID de analisis";
+                        rlutil::locate((consola_ancho - texto.length())/2, 15);
+                        cout << texto;
+                        rlutil::locate((consola_ancho - 33)/2, 16);
+                        system("pause");
                     }
                 }
+                break;
+                case 2:
+                {
+                    texto = "SELECCIONE LA OPCION DESEADA";
+                    rlutil::locate((consola_ancho - texto.length())/2, 9);
+                    cout << texto;
+                    int posy = 0;
+                    while(true)
+                    {
+                        showItem("EN PROCESO", 12, posy == 0);
+                        showItem("ESPERANDO RESULTADOS", 14, posy == 1);
+                        showItem("RESULTADOS LISTOS", 16, posy == 2);
+                        showItem("ANULADO", 18, posy == 3);
+
+                        int ingreso = rlutil::getkey();
+
+                        switch(ingreso) {
+                        case 14:
+                            posy--;
+                            if(posy < 0) posy = 0;
+                            break;
+                        case 15:
+                            posy++;
+                            if(posy > 3) posy = 3;
+                            break;
+                        case 1:
+                            registro.setEstadoEstudio(posy+1);
+                            if(_archivo.guardar(registro, pos)) {
+                                texto = "Modificado exitosamente!";
+                            } else {
+                                texto = "No se pudo modificar el registro!";
+                            }
+                            rlutil::cls();
+                            rlutil::locate((consola_ancho - texto.length())/2, 14);
+                            cout << texto;
+                            rlutil::locate((consola_ancho - 33)/2, 16);
+                            system("pause");
+                            return;
+                            break;
+                        }
+                    }
+                }
+                break;
+                case 3:
+                    return;
+                break;
             }
-            else
-            {
-                cout << "No se encontro el ID del analisis.";
-            }
+            break;
         }
-    }
-    break;
-    case 3:
-    {
-        int newEstado;
-        cout << "Seleccione segun corresponda: " << endl;
-        cout << "1. En proceso" << endl;
-        cout << "2. Esperando resultados" << endl;
-        cout << "3. Resultados listos" << endl;
-        cout << "4. Anulado" << endl;
-        cin >> newEstado;
-        registro.setEstadoEstudio(newEstado);
-        if(_archivo.guardar(registro, pos))
-        {
-            cout << "Modificado exitosamente!" << endl;
-        }
-        else
-        {
-            cout << "No se pudo modificar el registro!" << endl;
-        }
-    }
-    break;
-    case 0:
-        return;
-    default:
-        cout << "Seleccion invalida!" << endl;
     }
     system("pause");
-
 }
 
 //Buscar un estudio
