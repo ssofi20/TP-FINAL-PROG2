@@ -29,8 +29,9 @@ void TipoMuestraManager::opcion1()
         rlutil::locate((startLine - 10) / 2,9);
         cout << linea << endl;
 
-        rlutil::locate((startLine - 10) / 2,11);
+        rlutil::locate((startLine - 10) / 2, 11);
         cout << "Ingrese el ID: ";
+        rlutil::locate((startLine + 19) / 2, 11);
         cin >> IDTipo;
 
         int pos = _archivo.buscar(IDTipo);
@@ -40,6 +41,7 @@ void TipoMuestraManager::opcion1()
             rlutil::locate((startLine - 20) / 2, 11);
             cout << "Ya existe un tipo de muestra con este ID. Intente nuevamente." << endl;
             cout << endl;
+            rlutil::locate((startLine - 20) / 2, 15);
             system("pause");
         }
         else
@@ -50,11 +52,13 @@ void TipoMuestraManager::opcion1()
 
     rlutil::locate((startLineAux - 10) / 2, 12);
     cout << "Ingrese el nombre del tipo de muestra: " << endl;
+    rlutil::locate((startLineAux + 30) / 2, 12);
     cargarCadena(nombre, 34);
     registro.setIDMuestra(IDTipo);
     registro.setNombre(nombre);
     registro.setEstado(true);
     cout << endl;
+    rlutil::locate((startLineAux - 20) / 2, 15);
     system("pause");
 
 
@@ -64,6 +68,7 @@ void TipoMuestraManager::opcion1()
         rlutil::locate((startLineAux - 20) / 2, 11);
         cout << "Se ha guardado con exito!" << endl;
         cout << endl;
+        rlutil::locate((startLineAux - 20) / 2, 15);
         system("pause");
     }
     else
@@ -72,9 +77,9 @@ void TipoMuestraManager::opcion1()
         rlutil::locate((startLineAux - 20) / 2, 11);
         cout << "No se ha podido guardar :(" << endl;
         cout << endl;
+        rlutil::locate((startLineAux - 20) / 2, 15);
         system("pause");
     }
-    system("pause");
 }
 
 ///Dar de baja un tipo de muestra
@@ -93,8 +98,9 @@ void TipoMuestraManager::opcion2()
 
     int IDTipo;
 
-    rlutil::locate((startLine - 20) / 2,11);
+    rlutil::locate((startLine - 20) / 2, 11);
     cout << "Ingrese el ID de tipo de muestra que desea dar de baja: ";
+    rlutil::locate((startLine + 92) / 2, 11);
     cin >> IDTipo;
 
     int cant = _archivo.cantidadRegistros();
@@ -120,6 +126,7 @@ void TipoMuestraManager::opcion2()
         rlutil::locate((startLine - 20) / 2,11);
         cout << "El ID ingresado no existe en el archivo" << endl;
         cout << endl;
+        rlutil::locate((startLine - 20) / 2, 15);
         system("pause");
         return;
     }
@@ -141,13 +148,14 @@ void TipoMuestraManager::opcion3()
 
     rlutil::locate( startLine /2, 8);
     cout << titulo << endl;
-    rlutil::locate((startLine - 10) / 2,9);
+    rlutil::locate((startLine - 10) / 2, 9);
     cout << linea << endl;
 
 
     int IDTipo;
     rlutil::locate((startLine - 25) / 2,11);
     cout << "Ingrese el ID de tipo de muestra que desea modificar: ";
+    rlutil::locate((startLine + 83) / 2,11);
     cin >> IDTipo;
 
     int cant = _archivo.cantidadRegistros();
@@ -170,9 +178,10 @@ void TipoMuestraManager::opcion3()
     if(!encontrado)
     {
         rlutil::cls();
-        rlutil::locate((startLine - 20) / 2,11);
+        rlutil::locate((startLine - 20) / 2, 11);
         cout << "El ID ingresado no existe en el archivo" << endl;
         cout << endl;
+        rlutil::locate((startLine - 20) / 2, 15);
         system("pause");
         return;
     }
@@ -180,17 +189,20 @@ void TipoMuestraManager::opcion3()
     char newNombre[35];
     rlutil::locate((startLine - 25) / 2, 12);
     cout << "Ingrese el nuevo nombre " << endl;
+    rlutil::locate((startLine + 40) / 2, 12);
     cargarCadena(newNombre, 34);
     registro.setNombre(newNombre);
     cout << endl;
+    rlutil::locate((startLine - 20) / 2, 15);
     system("pause");
 
     if(_archivo.guardar(registro, posicion))
     {
         rlutil::cls();
-        rlutil::locate((startLine - 20) / 2,11);
+        rlutil::locate((startLine - 20) / 2, 11);
         cout << "El registro fue modificado exitosamente!" << endl;
         cout << endl;
+        rlutil::locate((startLine - 20) / 2, 15);
         system("pause");
         return;
     }
@@ -200,10 +212,10 @@ void TipoMuestraManager::opcion3()
         rlutil::locate((startLine - 20) / 2,11);
         cout << "El registro no pudo ser modificado" << endl;
         cout << endl;
+        rlutil::locate((startLine - 20) / 2, 15);
         system("pause");
         return;
     }
-    system("pause");
 }
 
 ///Listar todos los tipos de muestras
@@ -233,16 +245,17 @@ void TipoMuestraManager::opcion4()
 
         int x = (y*4) + 7;
 
-        rlutil::locate(( startLine + 10) / 2, (x + i));
+        rlutil::locate(( startLine + 10) / 2, x);
         cout << "ID Tipo Muestra: " << registro.getIDMuestra() << endl;
-        rlutil::locate((startLine + 10) / 2, (x + 1 + i));
+        rlutil::locate((startLine + 10) / 2, (x + 1));
         cout << "Nombre: " << registro.getNombre() << endl;
 
-        rlutil::locate((startLine - 10) / 2, (x + 3 + i));
+        rlutil::locate((startLine - 10) / 2, (x + 3));
         cout << linea << endl;
         y++;
         }
     }
     cout << endl;
+    rlutil::locate((startLine - 10) / 2, (y*4 + 15));
     system("pause");
 }

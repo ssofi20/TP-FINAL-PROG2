@@ -47,6 +47,7 @@ void TipoAnalisisManager::opcion1()
             rlutil::locate((startLine - 10) / 2, 11);
             cout << "Ese ID ya existe en el archivo!." << endl;
             cout << endl;
+            rlutil::locate((startLine - 10) / 2, 15);
             system("pause");
             return;
         }
@@ -58,6 +59,7 @@ void TipoAnalisisManager::opcion1()
     cargarCadena(nombre, 59);
     registro.setNombre(nombre);
     cout << endl;
+    rlutil::locate((startLine - 10) / 2, 17);
     system("pause");
 
     registro.setEstado(true);
@@ -69,6 +71,7 @@ void TipoAnalisisManager::opcion1()
         rlutil::locate((startLine - 10) / 2, 11);
         cout << "El nuevo analisis se registro de forma existosa." << endl;
         cout << endl;
+        rlutil::locate((startLine - 10) / 2, 15);
         system("pause");
 
     }
@@ -79,10 +82,9 @@ void TipoAnalisisManager::opcion1()
         rlutil::locate((startLine - 10) / 2, 11);
         cout << "El analisis no pudo ser registrado en archivo." << endl;
         cout << endl;
+        rlutil::locate((startLine - 10) / 2, 15);
         system("pause");
     }
-    system("pause");
-
 }
 
 ///Dar de baja un tipo de analisis
@@ -100,11 +102,12 @@ void TipoAnalisisManager::opcion2()
 
     rlutil::locate( startLine /2, 8);
     cout << titulo << endl;
-    rlutil::locate((startLine - 10) / 2,9);
+    rlutil::locate((startLine - 10) / 2, 9);
     cout << linea << endl;
 
     rlutil::locate((startLine - 10) / 2, 11);
     cout << "Ingrese el ID del analisis a dar de baja: ";
+    rlutil::locate((startLine + 74) / 2, 11);
     cin >> IDAnalisis;
 
     int cantidadReg = _archivo.cantidadRegistros();
@@ -131,6 +134,7 @@ void TipoAnalisisManager::opcion2()
             rlutil::locate((startLine - 10) / 2, 11);
             cout << "Analisis dado de baja exitosamente!" << endl;
             cout << endl;
+            rlutil::locate((startLine - 10) / 2, 15);
             system("pause");
             return;
         }
@@ -140,11 +144,10 @@ void TipoAnalisisManager::opcion2()
             rlutil::locate((startLine - 10) / 2, 11);
             cout << "Error al dar de baja el Analisis" << endl;
             cout << endl;
+            rlutil::locate((startLine - 10) / 2, 15);
             system("pause");
             return;
-
         }
-        system("pause");
     }
     else
     {
@@ -152,12 +155,10 @@ void TipoAnalisisManager::opcion2()
         rlutil::locate((startLine - 10) / 2, 11);
         cout << "No se encontro un analisis con ese ID en el archivo" << endl;
         cout << endl;
+        rlutil::locate((startLine - 10) / 2, 15);
         system("pause");
         return;
-
     }
-    system("pause");
-
 }
 
 ///Modificar un tipo de analisis
@@ -191,6 +192,7 @@ void TipoAnalisisManager::opcion3()
         rlutil::locate((startLine - 20) / 2, 11);
         cout << "No se encontro un analisis con ese ID en el archivo" << endl;
         cout << endl;
+        rlutil::locate((startLine - 10) / 2, 15);
         system("pause");
     }
 
@@ -207,11 +209,11 @@ void TipoAnalisisManager::opcion3()
         rlutil::locate((startLine - 10) / 2, 11);
         cout << linea << endl;
 
-        rlutil::locate((startLine + 12) / 2, 13);
+        rlutil::locate((startLine + 5) / 2, 13);
         cout << "Modificar nombre." << endl;
-        rlutil::locate((startLine + 12) / 2, 15);
+        rlutil::locate((startLine + 5) / 2, 15);
         cout << "Cancelar y volver al menu anterior." << endl;
-        rlutil::locate((startLine + 8) / 2, 13 + y);
+        rlutil::locate((startLine + 1) / 2, 13 + y);
         cout << (char)175 << endl;
 
         int key = rlutil::getkey();
@@ -238,28 +240,31 @@ void TipoAnalisisManager::opcion3()
             case 0:
             {
                 rlutil::cls();
-                rlutil::locate((startLine - 20) / 2, 11);
+                rlutil::locate((startLine - 10) / 2, 11);
                 cout << "Ingresar el nuevo nombre del analisis: " << endl;
                 cargarCadena(nombre, 59);
                 cout << endl;
+                rlutil::locate((startLine - 10) / 2, 15);
                 system("pause");
                 registro.setNombre(nombre);
 
                 if (_archivo.guardar(registro, pos))
                 {
                     rlutil::cls();
-                    rlutil::locate((startLine - 20) / 2, 11);
+                    rlutil::locate((startLine - 10) / 2, 11);
                     cout << "El nuevo nombre se guardo exitosamente. " << endl;
                     cout << endl;
+                    rlutil::locate((startLine - 10) / 2, 15);
                     system("pause");
                     return;
                 }
                 else
                 {
                     rlutil::cls();
-                    rlutil::locate((startLine - 20) / 2, 11);
+                    rlutil::locate((startLine - 10) / 2, 11);
                     cout << "No se pudo modificar el nombre del analisis en archivo. " << endl;
                     cout << endl;
+                    rlutil::locate((startLine - 10) / 2, 15);
                     system("pause");
                     return;
                 }
@@ -280,7 +285,7 @@ void TipoAnalisisManager::opcion3()
 void TipoAnalisisManager::opcion4()
 {
     int cantidad = _archivo.cantidadRegistros();
-rlutil::cls();
+    rlutil::cls();
     string titulo = "LISTADO DE LOS TIPO DE ANALISIS";
     string linea =  "-----------------------------------------";
 
@@ -299,26 +304,18 @@ rlutil::cls();
         {
            int x = (y*5) + 7;
 
-        rlutil::locate(( startLine + 10) / 2, (x + i));
+        rlutil::locate(( startLine + 5) / 2, (x + i));
         cout << "ID del analisis: "<< registro.getIDAnalisis() << endl;
-        rlutil::locate((startLine + 10) / 2, (x + 1 + i));
+        rlutil::locate((startLine + 5) / 2, (x + 1 + i));
         cout << "ID del tipo de muestra: " << registro.getIDMuestra() << endl;
-        rlutil::locate((startLine + 10) / 2, (x + 2 + i));
+        rlutil::locate((startLine + 5) / 2, (x + 2 + i));
         cout << "Nombre del analisis: " << registro.getNombre() << endl;
 
         rlutil::locate((startLine - 10) / 2, (x + 4 + i));
         cout << linea << endl;
         y++;
-
-
-            /*cout << "-------------------------" << endl;
-            cout << "ID del analisis: "<< registro.getIDAnalisis() << endl;
-            cout << "ID del tipo de muestra: " << registro.getIDMuestra() << endl;
-            cout << "Nombre del analisis: " << registro.getNombre() << endl;
-            cout << "-------------------------" << endl << endl;*/
         }
     }
-    cout << endl;
+    rlutil::locate((startLine - 10) / 2, (y*4 + 20));
     system("pause");
-
 }
