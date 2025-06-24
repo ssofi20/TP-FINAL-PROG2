@@ -559,7 +559,11 @@ void Menu::informe4()
 
     if(vRegistros == nullptr)
     {
+        rlutil::cls();
+        rlutil::locate((consola_ancho - startLine4) - 83 / 2, 9);
         cout << "Error al pedir memoria y leer el archivo" << endl;
+        cout << endl;
+        system("pause");
         return;
     }
 
