@@ -1008,7 +1008,7 @@ void Menu::menuInformes()
             largoTexto = strlen(opciones[y/2]);
             rlutil::locate((consola_ancho - largoTexto)/ 2 -3, 10 + y);
             cout << " " << endl;
-            y = y +2;
+            y = y + 2;
             if (y > 10)
             {
                 y = 10;
@@ -1063,150 +1063,320 @@ void Menu::menuInformes()
 
 void Menu::copiaSeguridad()
 {
-    int opcion;
-
-    cout << "¨Esta seguro que desea realizar una copia de seguridad de todos los archivos?" << endl;
-    cout << "1 - SI" << endl;
-    cout << "0 - NO" << endl;
-    cout << "Seleccion: ";
-    cin >> opcion;
-
-    if(!opcion)
+    int op = 0, y = 0;
+    while(op == 0)
     {
-        cout << "No se han realizado la copia de seguridad" << endl;
-        return;
-    }
+        rlutil::hidecursor();
+        rlutil::cls();
 
-    //Pacientes
-    PacienteArchivo pacienteArchivo;
-    //Turnos
-    TurnoArchivo turnoArchivo;
-    //Estudios
-    EstudioArchivo estudioArchivo;
-    //TiposAnalisis
-    TipoAnalisisArchivo tipoAnalisisArchivo;
-    //TiposMuestra
-    TipoMuestraArchivo tipoMuestraArchivo;
-    //EstudiosAnalisis
-    EstudioAnalisisArchivo estudioAnalisisArchivo;
+        string titulo = "COPIAS DE SEGURIDAD";
+        string linea = "-----------------------------";
 
-    if(pacienteArchivo.copiaSeguridad())
-    {
-        if(turnoArchivo.copiaSeguridad())
+        int startLine = (consola_ancho - titulo.length() + 10 );
+
+        rlutil::locate(startLine / 2, 8);
+        cout << titulo << endl;
+        rlutil::locate((startLine - 10) / 2, 9);
+        cout << linea << endl;
+
+        rlutil::locate((startLine - 59) / 2, 11);
+        cout << "Esta seguro que desea realizar una copia de seguridad de todos los archivos?" << endl;
+        rlutil::locate((startLine + 18) / 2, 13);
+        cout << "SI" << endl;
+        rlutil::locate((startLine + 18) / 2, 15);
+        cout << "NO" << endl;
+        rlutil::locate((startLine + 18) / 2, 17);
+        cout << "VOLVER AL MENU ANTERIOR" << endl;
+        rlutil::locate((startLine + 14)/ 2, 13 + y);
+        cout << (char)175 << endl;
+
+        int key = rlutil::getkey();
+
+        switch(key)
         {
-            if(estudioArchivo.copiaSeguridad())
+        case 14: // UP
+            if (y > 0)
             {
-                if(tipoAnalisisArchivo.copiaSeguridad())
+                y = y - 2;
+            }
+
+            break;
+
+        case 15: // DOWN
+            if (y < 4)
+            {
+                y = y + 2;
+            }
+            break;
+
+        case 1: //ENTER
+            switch(y)
+            {
+            case 0:
+            {
+
+                //Pacientes
+                PacienteArchivo pacienteArchivo;
+                //Turnos
+                TurnoArchivo turnoArchivo;
+                //Estudios
+                EstudioArchivo estudioArchivo;
+                //TiposAnalisis
+                TipoAnalisisArchivo tipoAnalisisArchivo;
+                //TiposMuestra
+                TipoMuestraArchivo tipoMuestraArchivo;
+                //EstudiosAnalisis
+                EstudioAnalisisArchivo estudioAnalisisArchivo;
+
+                if(pacienteArchivo.copiaSeguridad())
                 {
-                    if(tipoMuestraArchivo.copiaSeguridad())
+                    if(turnoArchivo.copiaSeguridad())
                     {
-                        if(estudioAnalisisArchivo.copiaSeguridad())
+                        if(estudioArchivo.copiaSeguridad())
                         {
-                            cout << "La copia de seguridad de todos los archivos se realizo con exito!" << endl;
+                            if(tipoAnalisisArchivo.copiaSeguridad())
+                            {
+                                if(tipoMuestraArchivo.copiaSeguridad())
+                                {
+                                    if(estudioAnalisisArchivo.copiaSeguridad())
+                                    {
+                                        rlutil::cls();
+                                        rlutil::locate((startLine - 10) / 2, 9);
+                                        cout << "La copia de seguridad de todos los archivos se realizo con exito!" << endl;
+                                        cout << endl;
+                                        system("pause");
+                                    }
+                                    else
+                                    {
+                                        rlutil::cls();
+                                        rlutil::locate((startLine - 10) / 2, 9);
+                                        cout << "Error con la copia de seguridad de Analisis de estudios" << endl;
+                                        cout << endl;
+                                        system("pause");
+                                    }
+                                }
+                                else
+                                {
+                                    rlutil::cls();
+                                    rlutil::locate((startLine - 10) / 2, 9);
+                                    cout << "Error con la copia de seguridad de Tipos de Muestras" << endl;
+                                    cout << endl;
+                                    system("pause");
+                                }
+                            }
+                            else
+                            {
+                                rlutil::cls();
+                                rlutil::locate((startLine - 10) / 2, 9);
+                                cout << "Error con la copia de seguridad de Tipos de Analisis" << endl;
+                                cout << endl;
+                                system("pause");
+                            }
                         }
                         else
                         {
-                            cout << "Error con la copia de seguridad de Analisis de estudios" << endl;
+                            rlutil::cls();
+                            rlutil::locate((startLine - 10) / 2, 9);
+                            cout << "Error con la copia de seguridad de Estudios" << endl;
+                            cout << endl;
+                            system("pause");
                         }
                     }
                     else
                     {
-                        cout << "Error con la copia de seguridad de Tipos de Muestras" << endl;
+                        rlutil::cls();
+                        rlutil::locate((startLine - 10) / 2, 9);
+                        cout << "Error con la copia de seguridad de Turnos" << endl;
+                        cout << endl;
+                        system("pause");
                     }
                 }
                 else
                 {
-                    cout << "Error con la copia de seguridad de Tipos de Analisis" << endl;
+                    rlutil::cls();
+                    rlutil::locate((startLine - 10) / 2, 9);
+                    cout << "Error con la copia de seguridad de Pacientes" << endl;
+                    cout << endl;
+                    system("pause");
                 }
+                break;
             }
-            else
-            {
-                cout << "Error con la copia de seguridad de Estudios" << endl;
+
+            case 2:
+
+                rlutil::cls();
+                rlutil::locate((startLine - 10) / 2, 9);
+                cout << "No se han realizado la copia de seguridad" << endl;
+                cout << endl;
+                system("pause");
+                break;
+
+            case 4:
+                return;
             }
         }
-        else
-        {
-            cout << "Error con la copia de seguridad de Turnos" << endl;
-        }
     }
-    else
-    {
-        cout << "Error con la copia de seguridad de Pacientes" << endl;
-    }
+    return;
 }
+
 
 void Menu::restaurarCopiaSeguridad()
 {
-    int opcion;
+    int opc = 0, y = 0;
 
-    cout << "¨Esta seguro que desea realizar restaurar copia de seguridad de todos los archivos?" << endl;
-    cout << "1 - SI" << endl;
-    cout << "0 - NO" << endl;
-    cout << "Seleccion: ";
-    cin >> opcion;
-
-    if(!opcion)
+    while (opc == 0)
     {
-        cout << "No se ha restaurado la copia de seguridad" << endl;
-        return;
-    }
+        rlutil::hidecursor();
+        rlutil::cls();
 
-    //Pacientes
-    PacienteArchivo pacienteArchivo;
-    //Turnos
-    TurnoArchivo turnoArchivo;
-    //Estudios
-    EstudioArchivo estudioArchivo;
-    //TiposAnalisis
-    TipoAnalisisArchivo tipoAnalisisArchivo;
-    //TiposMuestra
-    TipoMuestraArchivo tipoMuestraArchivo;
-    //EstudiosAnalisis
-    EstudioAnalisisArchivo estudioAnalisisArchivo;
+        string titulo = "RESTAURAR COPIAS DE SEGURIDAD";
+        string linea =  "---------------------------------------";
 
-    if(pacienteArchivo.restaurarCopia())
-    {
-        if(turnoArchivo.restaurarCopia())
+        int startLine = (consola_ancho - titulo.length() + 10 );
+
+        rlutil::locate(startLine / 2, 8);
+        cout << titulo << endl;
+        rlutil::locate((startLine - 10) / 2, 9);
+        cout << linea << endl;
+
+        rlutil::locate((startLine - 59) / 2, 11);
+        cout << "¨Esta seguro que desea restaurar la copia de seguridad de todos los archivos?" << endl;
+        rlutil::locate((startLine + 20) / 2, 13);
+        cout << "SI" << endl;
+        rlutil::locate((startLine + 20) / 2, 15);
+        cout << "NO" << endl;
+        rlutil::locate((startLine + 20) / 2, 17);
+        cout << "VOLVER AL MENU ANTERIOR" << endl;
+        rlutil::locate((startLine + 16)/ 2, 13 + y);
+        cout << (char)175 << endl;
+
+        int key = rlutil::getkey();
+
+        switch(key)
         {
-            if(estudioArchivo.restaurarCopia())
+        case 14: // UP
+            if (y > 0)
             {
-                if(tipoAnalisisArchivo.restaurarCopia())
+                y = y - 2;
+            }
+
+            break;
+
+        case 15: // DOWN
+            if (y < 4)
+            {
+                y = y + 2;
+            }
+            break;
+
+        case 1: //ENTER
+            switch(y)
+            {
+            case 0:
+            {
+
+                //Pacientes
+                PacienteArchivo pacienteArchivo;
+                //Turnos
+                TurnoArchivo turnoArchivo;
+                //Estudios
+                EstudioArchivo estudioArchivo;
+                //TiposAnalisis
+                TipoAnalisisArchivo tipoAnalisisArchivo;
+                //TiposMuestra
+                TipoMuestraArchivo tipoMuestraArchivo;
+                //EstudiosAnalisis
+                EstudioAnalisisArchivo estudioAnalisisArchivo;
+
+                if(pacienteArchivo.restaurarCopia())
                 {
-                    if(tipoMuestraArchivo.restaurarCopia())
+                    if(turnoArchivo.restaurarCopia())
                     {
-                        if(estudioAnalisisArchivo.restaurarCopia())
+                        if(estudioArchivo.restaurarCopia())
                         {
-                            cout << "La copia de seguridad de todos los archivos se restauro con exito!" << endl;
+                            if(tipoAnalisisArchivo.restaurarCopia())
+                            {
+                                if(tipoMuestraArchivo.restaurarCopia())
+                                {
+                                    if(estudioAnalisisArchivo.restaurarCopia())
+                                    {
+                                        rlutil::cls();
+                                        rlutil::locate((startLine - 20) / 2, 9);
+                                        cout << "La copia de seguridad de todos los archivos se restauro con exito!" << endl;
+                                        cout << endl;
+                                        system("pause");
+                                    }
+                                    else
+                                    {
+                                        rlutil::cls();
+                                        rlutil::locate((startLine - 20) / 2, 9);
+                                        cout << "Error con la restauracion de la copia de seguridad de Analisis de estudios" << endl;
+                                        cout << endl;
+                                        system("pause");
+                                    }
+                                }
+                                else
+                                {
+                                    rlutil::cls();
+                                    rlutil::locate((startLine - 20) / 2, 9);
+                                    cout << "Error con la restauracion de la copia de seguridad de Tipos de Muestras" << endl;
+                                    cout << endl;
+                                    system("pause");
+                                }
+                            }
+                            else
+                            {
+                                rlutil::cls();
+                                rlutil::locate((startLine - 20) / 2, 9);
+                                cout << "Error con la restauracion de la copia de seguridad de Tipos de Analisis" << endl;
+                                cout << endl;
+                                system("pause");
+                            }
                         }
                         else
                         {
-                            cout << "Error con la restauracion de la copia de seguridad de Analisis de estudios" << endl;
+                            rlutil::cls();
+                            rlutil::locate((startLine - 20) / 2, 9);
+                            cout << "Error con la restauracion de la copia de seguridad de Estudios" << endl;
+                            cout << endl;
+                            system("pause");
                         }
                     }
                     else
                     {
-                        cout << "Error con la restauracion de la copia de seguridad de Tipos de Muestras" << endl;
+                        rlutil::cls();
+                        rlutil::locate((startLine - 20) / 2, 9);
+                        cout << "Error con la restauracion de la copia de seguridad de Turnos" << endl;
+                        cout << endl;
+                        system("pause");
                     }
                 }
                 else
                 {
-                    cout << "Error con la restauracion de la copia de seguridad de Tipos de Analisis" << endl;
+                    rlutil::cls();
+                    rlutil::locate((startLine - 20) / 2, 9);
+                    cout << "Error con la restauracion de la copia de seguridad de Pacientes" << endl;
+                    cout << endl;
+                    system("pause");
                 }
+                break;
             }
-            else
-            {
-                cout << "Error con la restauracion de la copia de seguridad de Estudios" << endl;
+
+            case 2:
+
+                rlutil::cls();
+                rlutil::locate((startLine - 10) / 2, 9);
+                cout << "No se ha restaurado la copia de seguridad" << endl;
+                cout << endl;
+                system("pause");
+                break;
+
+            case 4:
+                return;
             }
         }
-        else
-        {
-            cout << "Error con la restauracion de la copia de seguridad de Turnos" << endl;
-        }
     }
-    else
-    {
-        cout << "Error con la restauracion de la copia de seguridad de Pacientes" << endl;
-    }
+     return;
 }
 
 ///FIN FUNCIONES MENU CONFIGURACION
