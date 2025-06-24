@@ -34,12 +34,13 @@ void TipoMuestraManager::opcion1()
         cin >> IDTipo;
 
         int pos = _archivo.buscar(IDTipo);
-        if (pos >=0)
+        if (pos <= 0)
         {
             rlutil::cls();
             rlutil::locate((startLine - 20) / 2, 11);
             cout << "Ya existe un tipo de muestra con este ID. Intente nuevamente." << endl;
             cout << endl;
+            rlutil::locate((startLine - 20) / 2, 13);
             system("pause");
         }
         else
@@ -50,6 +51,7 @@ void TipoMuestraManager::opcion1()
 
     rlutil::locate((startLineAux - 10) / 2, 12);
     cout << "Ingrese el nombre del tipo de muestra: " << endl;
+    cin.ignore();
     cargarCadena(nombre, 34);
     registro.setIDMuestra(IDTipo);
     registro.setNombre(nombre);
@@ -86,7 +88,7 @@ void TipoMuestraManager::opcion2()
 
     int startLine = (consolaAncho - titulo.length() + 10);
 
-    rlutil::locate( startLine /2, 8);
+    rlutil::locate(startLine /2, 8);
     cout << titulo << endl;
     rlutil::locate((startLine - 10) / 2,9);
     cout << linea << endl;
