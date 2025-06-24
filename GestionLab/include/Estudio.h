@@ -50,6 +50,7 @@ class Estudio
         void cargarAnalisis(int y);
         string toStringEstado();
         void mostrar();
+        int mostrarHorizontal(int y);
 
 };
 

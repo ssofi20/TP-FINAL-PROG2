@@ -93,7 +93,8 @@ bool Paciente::getEstado() const{
     return _estado;
 }
 
-void Paciente::cargar(){
+void Paciente::cargar()
+{
     
     const int xCampo = 30;
     const int xIngreso = 55;
@@ -147,7 +148,8 @@ void Paciente::cargar(){
     _estado = true;
 }
 
-void Paciente::mostrar(){
+void Paciente::mostrar()
+{
 
     const int xCampo = 30;
     const int xIngreso = 55;

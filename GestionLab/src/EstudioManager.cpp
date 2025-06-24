@@ -419,20 +419,6 @@ void EstudioManager::opcion4()
 
     registro.mostrar();
 
-    //int cant = _archivoIntermedio.cantidadRegistros();
-
-    /*
-    for(int i = 0; i < cant; i++){
-        EstudioAnalisis reg = _archivoIntermedio.leer(i);
-        if(strcmp(reg.getIDEstudio(), idEstudio) == 0){
-            ///Tipo Analisis
-            cout << "Analisis Realizados: " << endl;
-            int pos = _archivoAnalisis.buscar(reg.getIDAnalisis());
-            TipoAnalisis obj = _archivoAnalisis.leer(pos);
-            cout << obj.getNombre() << endl;
-        }
-    }
-    */
     rlutil::locate((consola_ancho - 33)/2, 29);
     system("pause");
 }
@@ -440,19 +426,36 @@ void EstudioManager::opcion4()
 //Listado de estudios
 void EstudioManager::opcion5()
 {
-    int cantidad = _archivo.cantidadRegistros();
-    cout << "Listado de estudios" << endl << endl;
+    int consola_ancho = 100;
+    rlutil::cls();
+    
+    string titulo = "LISTADO DE ESTUDIOS";
+    rlutil::locate((100 - titulo.length()) / 2, 3);
+    cout << titulo;
+    
+    rlutil::locate(2, 5);    cout << "ID ESTUDIO";             
+    rlutil::locate(14, 5);   cout << "DNI PACIENTE";           
+    rlutil::locate(28, 5);   cout << "SALA";                    
+    rlutil::locate(36, 5);   cout << "ID TURNO";                
+    rlutil::locate(48, 5);   cout << "PRECIO";                  
+    rlutil::locate(60, 5);   cout << "ESTADO";                  
+    rlutil::locate(86, 5);   cout << "ANALISIS";
 
+    rlutil::locate(3, 6);
+    cout << string(96, '-');
+    
+    int cantidad = _archivo.cantidadRegistros();
+    int y = 7;
+    
     for (int i = 0; i < cantidad; i++)
     {
         Estudio registro = _archivo.leer(i);
         if(registro.getEstado())
         {
-            cout << "-------------------------" << endl;
-            registro.mostrar();
-            cout << "-------------------------" << endl << endl;
+            y = registro.mostrarHorizontal(y);
         }
     }
+    rlutil::locate((consola_ancho - 33)/2, y + 2);
     system("pause");
 }
 

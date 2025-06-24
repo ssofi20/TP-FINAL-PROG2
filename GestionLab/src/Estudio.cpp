@@ -293,3 +293,48 @@ void Estudio::mostrar()
     }
 }
 
+int Estudio::mostrarHorizontal(int y)
+{
+    rlutil::locate(2, y);
+    cout << _IDEstudio;
+
+    rlutil::locate(14, y);
+    cout << _DNI;
+
+    rlutil::locate(28, y);
+    cout << _sala;
+
+    rlutil::locate(36, y);
+    cout << _IDTurno;
+
+    rlutil::locate(48, y);
+    cout << _precio;
+
+    rlutil::locate(60, y);
+    cout << toStringEstado();
+    
+    //Nombres de los analisis
+    EstudioAnalisisArchivo archivo;
+    TipoAnalisisArchivo archivoAnalisis;
+    TipoAnalisis tipoAnalisis;
+
+    int cantReg = archivo.cantidadRegistros();
+
+    for (int i = 0; i < cantReg; i++)
+    {
+        EstudioAnalisis registro;
+        registro = archivo.leer(i);
+
+        if (strcmp (registro.getIDEstudio(), _IDEstudio)==0)
+        {
+            int pos = archivoAnalisis.buscar(registro.getIDAnalisis());
+            tipoAnalisis = archivoAnalisis.leer(pos);
+            
+            rlutil::locate(86, y);
+            cout << tipoAnalisis.getNombre();
+            y++;
+        }
+    }
+    
+    return y;
+}
