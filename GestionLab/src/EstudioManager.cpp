@@ -12,7 +12,7 @@ void EstudioManager::opcion1()
 
     while (yaExiste) 
     {
-        int posy = obj.cargar();
+        obj.cargar();
 
         int band = 0;
         rlutil::cls();
@@ -193,6 +193,7 @@ void EstudioManager::opcion3()
     rlutil::locate((consola_ancho - texto.length())/2, 14);
     cout << texto;
     rlutil::locate((consola_ancho - 10)/2, 16);
+    cin.ignore();
     cargarCadena(idEstudio, 10);
 
     int pos = _archivo.buscar(idEstudio);
@@ -210,6 +211,8 @@ void EstudioManager::opcion3()
     Estudio registro = _archivo.leer(pos);
     
     int y = 0;
+    
+    rlutil::cls();
     
     while(true)
     {        
@@ -357,7 +360,6 @@ void EstudioManager::opcion3()
                             cout << texto;
                             rlutil::locate((consola_ancho - 33)/2, 16);
                             system("pause");
-                            return;
                             break;
                         }
                     }
@@ -365,37 +367,61 @@ void EstudioManager::opcion3()
                 break;
                 case 3:
                     return;
-                break;
+                    break;
             }
             break;
         }
     }
-    system("pause");
 }
 
 //Buscar un estudio
 void EstudioManager::opcion4()
 {
+    int consola_ancho = 100;
 
     char idEstudio [11];
-    cout << "Ingrese el ID del estudio: ";
+    string texto = "Ingrese el ID del estudio que desea consultar: ";
+    rlutil::locate((consola_ancho - texto.length())/2, 14);
+    cout << texto;
+    rlutil::locate((consola_ancho - 10)/2, 16);
+    cin.ignore();
     cargarCadena(idEstudio, 10);
 
     int pos = _archivo.buscar(idEstudio);
 
     if(pos < 0)
     {
-        cout << "No se encontro un estudio con ese ID en el archivo" << endl;
+        texto = "No se encontro un estudio con ese ID en el archivo";
+        rlutil::locate((consola_ancho - texto.length())/2, 15);
+        cout << texto;
+        rlutil::locate((consola_ancho - 33)/2, 16);
         system("pause");
         return;
     }
 
     Estudio registro = _archivo.leer(pos);
+    
+    if(!registro.getEstado())
+    {
+        texto = "Este estudio se encuentra dado de baja";
+        rlutil::locate((consola_ancho - texto.length())/2, 15);
+        cout << texto;
+        rlutil::locate((consola_ancho - 33)/2, 16);
+        system("pause");
+        return;
+    }
+    
+    rlutil::cls();
+    
+    string titulo = "INFORMACION DEL ESTUDIO";
+    rlutil::locate((100 - titulo.length()) / 2, 4);
+    cout << titulo;
 
     registro.mostrar();
 
-    int cant = _archivoIntermedio.cantidadRegistros();
+    //int cant = _archivoIntermedio.cantidadRegistros();
 
+    /*
     for(int i = 0; i < cant; i++){
         EstudioAnalisis reg = _archivoIntermedio.leer(i);
         if(strcmp(reg.getIDEstudio(), idEstudio) == 0){
@@ -406,6 +432,8 @@ void EstudioManager::opcion4()
             cout << obj.getNombre() << endl;
         }
     }
+    */
+    rlutil::locate((consola_ancho - 33)/2, 29);
     system("pause");
 }
 

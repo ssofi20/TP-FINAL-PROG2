@@ -2,6 +2,7 @@
 #include <cstring>
 #include "TipoAnalisis.h"
 #include "TipoAnalisisArchivo.h"
+#include "rlutil.h"
 
 class EstudioAnalisis
 {
@@ -22,7 +23,7 @@ class EstudioAnalisis
 
         //Metodos de la clase
         void cargar();
-        void mostrar();
+        void mostrar(int y);
 
     private:
 

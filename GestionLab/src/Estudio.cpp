@@ -172,7 +172,7 @@ void Estudio::cargarAnalisis(int y)
     system("pause");
 }
 
-int Estudio::cargar()
+void Estudio::cargar()
 {
     const int xCampo = 30;
     const int xIngreso = 55;
@@ -184,6 +184,7 @@ int Estudio::cargar()
     rlutil::locate((100 - texto.length()) / 2, y - 2);
     cout << texto;
 
+    cin.ignore();
     rlutil::locate(xCampo, y);
     cout << "ID del Estudio: ";
     rlutil::locate(xIngreso, y++);
@@ -193,7 +194,8 @@ int Estudio::cargar()
     cout << "DNI Paciente: ";
     rlutil::locate(xIngreso, y++);
     cin >> _DNI;
-
+    
+    cin.ignore();
     rlutil::locate(xCampo, ++y);
     cout << "Sala: ";
     rlutil::locate(xIngreso, y++);
@@ -212,36 +214,72 @@ int Estudio::cargar()
     _estado = true;
     _estadoEstudio = 1;
 
-    return y;
+}
+
+string Estudio::toStringEstado()
+{
+    switch(_estadoEstudio)
+    {
+    case 1:
+        return "En proceso";
+        break;
+    case 2:
+        return "Esperando resultados";
+        break;
+    case 3:
+        return "Resultados listos";
+        break;
+    case 4:
+        return "Anulado";
+        break;
+    }
 }
 
 void Estudio::mostrar()
 {
-    cout << "ID ESTUDIO: " << _IDEstudio << endl;
-    cout << "DNI: " << _DNI << endl;
-    cout << "SALA: " << _sala << endl;
-    cout << "ID TURNO: " << _IDTurno << endl;
-    cout << "PRECIO: $" << _precio << endl;
-    cout << "ESTADO DEL ESTUDIO: ";
-    switch(_estadoEstudio)
-    {
-    case 1:
-        cout << "En proceso" << endl;
-        break;
-    case 2:
-        cout << "Esperando resultados" << endl;
-        break;
-    case 3:
-        cout << "Resultados listos" << endl;
-        break;
-    case 4:
-        cout << "Anulado" << endl;
-        break;
-    }
+    const int xCampo = 30;
+    const int xIngreso = 55;
+    int y = 6;
+    
+    rlutil::locate(xCampo, y);
+    cout << "ID Estudio:";
+    rlutil::locate(xIngreso, y++);
+    cout << _IDEstudio;
+
+    rlutil::locate(xCampo, ++y);
+    cout << "DNI Paciente:";
+    rlutil::locate(xIngreso, y++);
+    cout << _DNI;
+    
+    rlutil::locate(xCampo, ++y);
+    cout << "Sala:";
+    rlutil::locate(xIngreso, y++);
+    cout << _sala;
+    
+    rlutil::locate(xCampo, ++y);
+    cout << "ID Turno:";
+    rlutil::locate(xIngreso, y++);
+    cout << _IDTurno;
+    
+    rlutil::locate(xCampo, ++y);
+    cout << "Precio:";
+    rlutil::locate(xIngreso, y++);
+    cout << _precio;
+    
+    rlutil::locate(xCampo, ++y);
+    cout << "Estado del estudio:";
+    rlutil::locate(xIngreso, y++);
+    cout << toStringEstado();
+    
+    int posActual = y+1;
 
     EstudioAnalisisArchivo archivo;
 
     int cantReg = archivo.cantidadRegistros();
+    
+    string texto = "ANALISIS DEL ESTUDIO";
+    rlutil::locate(xCampo, posActual);
+    cout << texto;
 
     for (int i=0; i < cantReg; i++)
     {
@@ -250,7 +288,7 @@ void Estudio::mostrar()
 
         if (strcmp (registro.getIDEstudio(), _IDEstudio)==0)
         {
-            registro.mostrar();
+            registro.mostrar(posActual+2);
         }
     }
 }
