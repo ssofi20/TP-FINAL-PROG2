@@ -53,7 +53,7 @@ void TipoMuestraManager::opcion1()
     rlutil::locate((startLineAux - 10) / 2, 12);
     cout << "Ingrese el nombre del tipo de muestra: " << endl;
     rlutil::locate((startLineAux + 30) / 2, 12);
-    cin << nombre << endl;
+    cin >> nombre;
     cargarCadena(nombre, 34);
     registro.setIDMuestra(IDTipo);
     registro.setNombre(nombre);
