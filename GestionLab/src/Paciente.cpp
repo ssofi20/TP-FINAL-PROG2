@@ -93,14 +93,13 @@ bool Paciente::getEstado() const{
     return _estado;
 }
 
-void Paciente::cargar(){
+void Paciente::cargar()
+{
     
     const int xCampo = 30;
     const int xIngreso = 55;
     int y = 6;
-    
-    rlutil::cls();
-    
+        
     string titulo = "FORMULARIO DE INGRESO DE PACIENTE";
     rlutil::locate((100 - titulo.length()) / 2, y - 2);
     cout << titulo;
@@ -149,7 +148,8 @@ void Paciente::cargar(){
     _estado = true;
 }
 
-void Paciente::mostrar(){
+void Paciente::mostrar()
+{
 
     const int xCampo = 30;
     const int xIngreso = 55;

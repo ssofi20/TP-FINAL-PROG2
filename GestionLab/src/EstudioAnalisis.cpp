@@ -50,7 +50,6 @@ bool EstudioAnalisis::getEstado()
 
 void EstudioAnalisis::cargar()
 {
-
     cout << "ID Estudio: ";
     cin >> _IDEstudio;
     cout << "ID Analisis: ";
@@ -58,10 +57,13 @@ void EstudioAnalisis::cargar()
     _estado = true;
 }
 
-void EstudioAnalisis::mostrar()
+void EstudioAnalisis::mostrar(int y)
 {
     TipoAnalisisArchivo obj;
     TipoAnalisis registro;
+    
+    int xCampo = 30; 
+    int xIngreso = 55; 
 
     int cant = obj.cantidadRegistros();
     for (int i=0; i < cant; i++)
@@ -69,9 +71,15 @@ void EstudioAnalisis::mostrar()
         registro = obj.leer(i);
         if (registro.getIDAnalisis()==_IDAnalisis)
         {
-
-            cout << "ID Analisis: " << _IDAnalisis << endl;
-            cout << "NOMBRE DEL ANALISIS: " << registro.getNombre() << endl;
+            rlutil::locate(xCampo, y);
+            cout << "ID Analisis: ";
+            rlutil::locate(xIngreso, y++);
+            cout << _IDAnalisis;
+            
+            rlutil::locate(xCampo, ++y);
+            cout << "Nombre: "; 
+            rlutil::locate(xIngreso, y++);
+            cout << registro.getNombre();
 
         }
     }
