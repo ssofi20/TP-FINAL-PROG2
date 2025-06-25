@@ -159,7 +159,7 @@ void Turno::cargar(){
         cout << "Hora programada: ";
         _horaProgramada.cargar(xIngreso, y);
 
-        if (_horaProgramada.getHora() == 0 || _horaProgramada.getMinuto() == 0) {
+        if (_horaProgramada.getHora() == 0 || _horaProgramada.getMinuto() == -1) {
             rlutil::locate(xCampo, y + 2);
             cout << "Hora invalida! Pruebe de nuevo.";
             rlutil::anykey();

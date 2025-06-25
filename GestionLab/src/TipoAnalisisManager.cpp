@@ -56,6 +56,7 @@ void TipoAnalisisManager::opcion1()
     rlutil::locate((startLine - 10) / 2, 13);
     cout << "Ingrese el nombre del analisis: " << endl;
     rlutil::locate((startLine + 60) / 2, 13);
+    cin.ignore();
     cargarCadena(nombre, 59);
     registro.setNombre(nombre);
     cout << endl;
@@ -242,6 +243,7 @@ void TipoAnalisisManager::opcion3()
                 rlutil::cls();
                 rlutil::locate((startLine - 10) / 2, 11);
                 cout << "Ingresar el nuevo nombre del analisis: " << endl;
+                cin.ignore();
                 cargarCadena(nombre, 59);
                 cout << endl;
                 rlutil::locate((startLine - 10) / 2, 15);

@@ -136,39 +136,44 @@ void PacienteManager::opcion3()
     obj = _archivo.leer(pos);
 
     int x = 0;
+    
+    bool seleccionando = true;
+    while(seleccionando)
+    {
+        obj.mostrar();
 
-    obj.mostrar();
+        texto = "¨Desea modificar los datos de este paciente?";
+        rlutil::locate((consola_ancho - texto.length()) / 2, 25);
+        cout << texto;
 
-    texto = "¨Desea modificar los datos de este paciente?";
-    rlutil::locate((consola_ancho - texto.length()) / 2, 25);
-    cout << texto;
+        showItemHorizontal("SI", 41, 27, x == 0);
+        showItemHorizontal("NO", 49, 27, x == 1);
 
-    showItemHorizontal("SI", 41, 27, x == 0);
-    showItemHorizontal("NO", 49, 27, x == 1);
+        int key = rlutil::getkey();
 
-    int key = rlutil::getkey();
-
-    switch(key) {
-        case 16: //LEFT
-            x--;
-            if(x < 0) {
-                x = 0;
-            }
-            break;
-        case 17: //RIGTH
-            x++;
-            if(x > 1) {
-                x = 1;
-            }
-            break;
-        case 1: //ENTER
-            switch(x) {
-            case 0:
+        switch(key) {
+            case 16: //LEFT
+                x--;
+                if(x < 0) {
+                    x = 0;
+                }
                 break;
-            case 1:
-                return;
-            }
-            break;
+            case 17: //RIGTH
+                x++;
+                if(x > 1) {
+                    x = 1;
+                }
+                break;
+            case 1: //ENTER
+                switch(x) {
+                case 0:
+                    seleccionando = false;
+                    break;
+                case 1:
+                    return;
+                }
+                break;
+        }
     }
 
     int y = 0;

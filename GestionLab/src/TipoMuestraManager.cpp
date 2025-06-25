@@ -53,7 +53,7 @@ void TipoMuestraManager::opcion1()
     rlutil::locate((startLineAux - 10) / 2, 12);
     cout << "Ingrese el nombre del tipo de muestra: " << endl;
     rlutil::locate((startLineAux + 30) / 2, 12);
-    cin >> nombre;
+    cin.ignore();
     cargarCadena(nombre, 34);
     registro.setIDMuestra(IDTipo);
     registro.setNombre(nombre);
@@ -189,8 +189,9 @@ void TipoMuestraManager::opcion3()
 
     char newNombre[35];
     rlutil::locate((startLine - 25) / 2, 12);
-    cout << "Ingrese el nuevo nombre " << endl;
+    cout << "Ingrese el nuevo nombre: " << endl;
     rlutil::locate((startLine + 40) / 2, 12);
+    cin.ignore();
     cargarCadena(newNombre, 34);
     registro.setNombre(newNombre);
     cout << endl;

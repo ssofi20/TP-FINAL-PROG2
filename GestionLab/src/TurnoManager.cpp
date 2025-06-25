@@ -268,7 +268,7 @@ void TurnoManager::opcion4()
         texto = "No existe un paciente con ese DNI en el archivo.";
         rlutil::locate((consola_ancho - texto.length()) / 2, 15);
         cout << texto;
-        rlutil::locate((consola_ancho - 33 / 2), 17);
+        rlutil::locate((consola_ancho - 33)/2, 17);
         system("pause");
         return;
     }

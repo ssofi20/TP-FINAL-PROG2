@@ -32,12 +32,12 @@ void Hora::setHora (int hora)
 
 void Hora::setMinuto(int minuto)
 {
-    if (minuto < 61 && minuto >0)
+    if (minuto < 61 && minuto >= 0)
     {
         _minuto = minuto;
     }
     else {
-        _minuto = 0;
+        _minuto = -1;
     }
 }
 
