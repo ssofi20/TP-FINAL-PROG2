@@ -818,7 +818,7 @@ void Menu::informe2()
         {
             objEstAnalisis = archivoEstAnalisis.leer(x);
 
-            if (strcmp(objEst.getIDEstudio(),objEstAnalisis.getIDEstudio())==0)
+            if (objEst.getIDEstudio() == objEstAnalisis.getIDEstudio())
             {
                 int pos = archivoAnalisis.buscar(objEstAnalisis.getIDAnalisis());
                 objAnalisis = archivoAnalisis.leer(pos);

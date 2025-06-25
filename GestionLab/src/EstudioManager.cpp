@@ -9,6 +9,9 @@ void EstudioManager::opcion1()
 
     bool yaExiste = true;
     string texto;
+    
+    //ID generado automatico
+    obj.setIDEstudio(_archivo.getID());
 
     while (yaExiste) 
     {
@@ -17,18 +20,8 @@ void EstudioManager::opcion1()
         int band = 0;
         rlutil::cls();
 
-        int pos = _archivo.buscar(obj.getIDEstudio());
-        if (pos >= 0) {
-            texto = "Ya existe un estudio con ese ID. Intente nuevamente.";
-            rlutil::locate((consola_ancho - texto.length()) / 2, 15);
-            cout << texto;
-            band++;
-            rlutil::locate((consola_ancho - 33) / 2, 16);
-            system("pause");
-        }
-
         PacienteArchivo archivoPaciente;
-        pos = archivoPaciente.buscar(obj.getDNI());
+        int pos = archivoPaciente.buscar(obj.getDNI());
         if (pos < 0) {
             texto = "No existe un paciente registrado con ese DNI.";
             rlutil::locate((consola_ancho - texto.length()) / 2, 15);
@@ -130,14 +123,14 @@ void EstudioManager::opcion1()
 void EstudioManager::opcion2()
 {
     Estudio registro;
-    char idEstudio [11];
+    int idEstudio;
     int consola_ancho = 100;
     
     string texto =  "Ingrese el ID del estudio a dar de baja: ";
     rlutil::locate((consola_ancho - texto.length())/2, 14);
     cout << texto;
     rlutil::locate((consola_ancho - 10)/2, 16);
-    cargarCadena(idEstudio, 10);
+    cin >> idEstudio;
 
     int cantidadReg = _archivo.cantidadRegistros();
 
@@ -146,7 +139,7 @@ void EstudioManager::opcion2()
     for(int i = 0; i < cantidadReg; i++)
     {
         registro = _archivo.leer(i);
-        if (strcmp(registro.getIDEstudio(), idEstudio) == 0)
+        if (registro.getIDEstudio() == idEstudio)
         {
             encontrado = true;
             pos = i;
@@ -188,13 +181,12 @@ void EstudioManager::opcion3()
 {
     int consola_ancho = 100;
     
-    char idEstudio [11];
+    int idEstudio;
     string texto = "Ingrese el ID del estudio que desea modificar: ";
     rlutil::locate((consola_ancho - texto.length())/2, 14);
     cout << texto;
     rlutil::locate((consola_ancho - 10)/2, 16);
-    cin.ignore();
-    cargarCadena(idEstudio, 10);
+    cin >> idEstudio;
 
     int pos = _archivo.buscar(idEstudio);
 
@@ -287,7 +279,7 @@ void EstudioManager::opcion3()
                     for (int x=0; x < cant; x++)
                     {
                         reg = arch.leer(x);
-                        if (strcmp(reg.getIDEstudio(), idEstudio) == 0)
+                        if (reg.getIDEstudio() == idEstudio)
                         {
                             if (reg.getIDAnalisis() == idAnalisis)
                             {
@@ -379,13 +371,12 @@ void EstudioManager::opcion4()
 {
     int consola_ancho = 100;
 
-    char idEstudio [11];
+    int idEstudio;
     string texto = "Ingrese el ID del estudio que desea consultar: ";
     rlutil::locate((consola_ancho - texto.length())/2, 14);
     cout << texto;
     rlutil::locate((consola_ancho - 10)/2, 16);
-    cin.ignore();
-    cargarCadena(idEstudio, 10);
+    cin >> idEstudio;
 
     int pos = _archivo.buscar(idEstudio);
 

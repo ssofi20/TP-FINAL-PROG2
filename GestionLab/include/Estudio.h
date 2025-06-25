@@ -10,7 +10,7 @@ class Estudio
 {
     private:
 
-        char _IDEstudio [11];
+        int _IDEstudio;
         int _DNI;
         int _estadoEstudio;
         char _sala[6];
@@ -23,11 +23,11 @@ class Estudio
         /// Constructores
 
         Estudio();
-        Estudio(const char *IDEstudio, int dni, int estEstudio, const char *sala, int IDTurno, float precio);
+        Estudio(int IDEstudio, int dni, int estEstudio, const char *sala, int IDTurno, float precio);
 
         /// Setters
 
-        void setIDEstudio (const char *idEstudio);
+        void setIDEstudio (int idEstudio);
         void setDNI (int dni);
         void setEstadoEstudio(int estadoEstudio);
         void setSala (const char *sala);
@@ -37,7 +37,7 @@ class Estudio
 
         /// Getters
 
-        const char *getIDEstudio();
+        int getIDEstudio();
         int getDNI();
         int getEstadoEstudio();
         const char *getSala();

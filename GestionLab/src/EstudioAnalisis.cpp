@@ -6,12 +6,12 @@ using namespace std;
 EstudioAnalisis::EstudioAnalisis()
 {
 
-    strcpy(_IDEstudio, "0");
+    _IDEstudio = 0;
     _IDAnalisis = 0;
     _estado = true;
 
 }
-EstudioAnalisis::EstudioAnalisis(const char *IDEstudio, int IDAnalisis)
+EstudioAnalisis::EstudioAnalisis(int IDEstudio, int IDAnalisis)
 {
     setIDEstudio(IDEstudio);
     setIDAnalisis(IDAnalisis);
@@ -19,9 +19,9 @@ EstudioAnalisis::EstudioAnalisis(const char *IDEstudio, int IDAnalisis)
 }
 
 //SETTERS
-void EstudioAnalisis::setIDEstudio(const char *IDEstudio)
+void EstudioAnalisis::setIDEstudio(int IDEstudio)
 {
-    strcpy(_IDEstudio, IDEstudio);
+    _IDEstudio = IDEstudio;
 }
 void EstudioAnalisis::setIDAnalisis(int IDAnalisis)
 {
@@ -33,7 +33,7 @@ void EstudioAnalisis::setEstado(bool estado)
 }
 
 //GETTERS
-const char * EstudioAnalisis::getIDEstudio()
+int EstudioAnalisis::getIDEstudio()
 {
     return _IDEstudio;
 }

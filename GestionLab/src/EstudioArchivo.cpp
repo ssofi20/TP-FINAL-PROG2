@@ -45,7 +45,7 @@ void EstudioArchivo::leer(int cantidadRegistros, Estudio *vec)
     fclose(pFile);
 }
 
-int EstudioArchivo::buscar(const char* IDEstudio)
+int EstudioArchivo::buscar(int IDEstudio)
 {
     FILE *pFile = fopen(_nombreArchivo.c_str(), "rb");
     if (pFile == nullptr)
@@ -56,7 +56,7 @@ int EstudioArchivo::buscar(const char* IDEstudio)
     int cantidad = cantidadRegistros();
     for(int i = 0; i < cantidad; i++){
         estudio = leer(i);
-        if (strcmp(estudio.getIDEstudio(), IDEstudio) == 0)
+        if (estudio.getIDEstudio() == IDEstudio)
         {
             return i;
         }
@@ -129,4 +129,9 @@ bool EstudioArchivo::restaurarCopia()
     fclose(pFile);
     
     return true;
+}
+
+int EstudioArchivo::getID()
+{
+    return cantidadRegistros() + 1;
 }

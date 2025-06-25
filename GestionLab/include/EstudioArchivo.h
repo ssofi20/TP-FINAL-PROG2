@@ -15,11 +15,12 @@ class EstudioArchivo
         int cantidadRegistros();
         Estudio leer(int posicion);
         void leer(int cantidadRegistros, Estudio *vec);
-        int buscar(const char* IDEstudio);
+        int buscar(int IDEstudio);
         bool guardar(Estudio registro);
         bool guardar(Estudio registro, int posicion);
         bool copiaSeguridad();
         bool restaurarCopia();
+        int getID();
 
 };
 

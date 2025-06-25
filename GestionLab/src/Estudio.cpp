@@ -7,7 +7,7 @@ using namespace std;
 
 Estudio::Estudio()
 {
-    strcpy(_IDEstudio, "SIN ID");
+    _IDEstudio = 0;
     _DNI = 0;
     _estadoEstudio = 0;
     strcpy(_sala, "SIN SALA");
@@ -16,7 +16,7 @@ Estudio::Estudio()
     _estado = true;
 }
 
-Estudio::Estudio(const char *IDEstudio, int dni, int estEstudio, const char *sala, int IDTurno, float precio)
+Estudio::Estudio(int IDEstudio, int dni, int estEstudio, const char *sala, int IDTurno, float precio)
 {
     setIDEstudio(IDEstudio);
     setDNI(dni);
@@ -28,9 +28,9 @@ Estudio::Estudio(const char *IDEstudio, int dni, int estEstudio, const char *sal
 
 /// Setters
 
-void Estudio::setIDEstudio(const char *idEstudio)
+void Estudio::setIDEstudio (int idEstudio)
 {
-    strcpy(_IDEstudio, idEstudio);
+    _IDEstudio = idEstudio;
 }
 
 void Estudio::setDNI (int dni)
@@ -68,7 +68,7 @@ void Estudio::setEstado(bool estado)
 
 /// Getters
 
-const char * Estudio::getIDEstudio()
+int Estudio::getIDEstudio()
 {
     return _IDEstudio;
 }
@@ -144,7 +144,7 @@ void Estudio::cargarAnalisis(int y)
         int cant = archivo.cantidadRegistros();
         for (int i = 0; i < cant; i++) {
             EstudioAnalisis reg = archivo.leer(i);
-            if (reg.getIDAnalisis() == IDAnalisis && strcmp(reg.getIDEstudio(), _IDEstudio) == 0) {
+            if (reg.getIDAnalisis() == IDAnalisis && reg.getIDEstudio() == _IDEstudio) {
                 texto = "Ese an lisis ya fue registrado para este estudio.";
                 rlutil::locate((100 - texto.length()) / 2, y + 4);
                 cout << texto;
@@ -184,11 +184,10 @@ void Estudio::cargar()
     rlutil::locate((100 - texto.length()) / 2, y - 2);
     cout << texto;
 
-    cin.ignore();
     rlutil::locate(xCampo, y);
-    cout << "ID del Estudio: ";
+    cout << "ID Generado: ";
     rlutil::locate(xIngreso, y++);
-    cargarCadena(_IDEstudio, 10);
+    cout << _IDEstudio;
 
     rlutil::locate(xCampo, ++y);
     cout << "DNI Paciente: ";
@@ -286,7 +285,7 @@ void Estudio::mostrar()
         EstudioAnalisis registro;
         registro = archivo.leer(i);
 
-        if (strcmp (registro.getIDEstudio(), _IDEstudio)==0)
+        if (registro.getIDEstudio() == _IDEstudio)
         {
             registro.mostrar(posActual+2);
         }
@@ -325,7 +324,7 @@ int Estudio::mostrarHorizontal(int y)
         EstudioAnalisis registro;
         registro = archivo.leer(i);
 
-        if (strcmp (registro.getIDEstudio(), _IDEstudio)==0)
+        if (registro.getIDEstudio() == _IDEstudio)
         {
             int pos = archivoAnalisis.buscar(registro.getIDAnalisis());
             tipoAnalisis = archivoAnalisis.leer(pos);
