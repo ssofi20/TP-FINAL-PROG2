@@ -205,6 +205,7 @@ void Menu::menuGestionTurnos()
                 return;
             default:
                 cout << "Opcion incorrecta! Intente nuevamente" << endl;
+                rlutil::locate((consola_ancho - linea.length()) / 2, 15);
                 system("pause");
                 break;
             }
@@ -306,6 +307,7 @@ void Menu::menuGestionEstudios()
                 return;
             default:
                 cout << "Opcion incorrecta! Intente nuevamente" << endl;
+                rlutil::locate((consola_ancho - linea.length()) / 2, 15);
                 system("pause");
                 break;
             }
@@ -564,7 +566,12 @@ void Menu::informe4()
 
     if(vRegistros == nullptr)
     {
+        rlutil::cls();
+        rlutil::locate((consola_ancho - startLine4) - 83 / 2, 10);
         cout << "Error al pedir memoria y leer el archivo" << endl;
+        cout << endl;
+        rlutil::locate((consola_ancho - startLine4) - 83 / 2, 15);
+        system("pause");
         return;
     }
 
@@ -653,7 +660,7 @@ void Menu::informe5()
 
     Paciente registro = archivo.leer(pos);
 
-    string titulo2 = "ESTUDIOS REALIZADOS POR";
+    string titulo2 = "ESTUDIOS REALIZADOS POR ";
 
     rlutil::locate((consola_ancho - startLine5) / 2, 9);
     cout << titulo2 << registro.getNombre() << " " << registro.getApellido() << endl;
@@ -720,6 +727,19 @@ void Menu::informe1()
     int cantidad = arcPaci.cantidadRegistros();
     int cantReg = arcEst.cantidadRegistros();
 
+    rlutil::cls();
+    string tituloInforme1 = "PACIENTE CON MAS ESTUDIOS REALIZADOS: ";
+    string lineaInforme1 = "-----------------------------------------------";
+
+    int startLine = (tituloInforme1.length() - 10);
+
+    rlutil::locate((consola_ancho - startLine) / 2, 8);
+    cout << tituloInforme1 << endl;
+    rlutil::locate((consola_ancho - startLine - 10) / 2, 9);
+    cout << lineaInforme1 << endl;
+
+    cout << endl;
+
     for (int i = 0; i < cantidad; i++)/// Recorre los pacientes
     {
         Paciente reg = arcPaci.leer(i);
@@ -761,19 +781,6 @@ void Menu::informe1()
 
 /// MUESTRA DE RESULTADOS
 
-        rlutil::cls();
-        string tituloInforme1 = "PACIENTE CON MAS ESTUDIOS REALIZADOS: ";
-        string lineaInforme1 = "-----------------------------------------------";
-
-        int startLine = (tituloInforme1.length() - 10);
-
-        rlutil::locate((consola_ancho - startLine) / 2, 8);
-        cout << tituloInforme1 << endl;
-        rlutil::locate((consola_ancho - startLine - 10) / 2, 9);
-        cout << lineaInforme1 << endl;
-
-        cout << endl;
-
         string dniLinea = "DNI PACIENTE: ";
         string nameLinea = "NOMBRE Y APELLIDO: ";
         string dobLinea = "FECHA DE NACIMEINTO: ";
@@ -789,6 +796,9 @@ void Menu::informe1()
         rlutil::locate((consola_ancho - startLine) / 2, 15);
         cout << cantAnalisis << contador2 << endl;
         cout << endl;
+
+        rlutil::locate((consola_ancho - startLine - 10) / 2, 20);
+        system("pause");
         return;
 
     }
@@ -797,8 +807,6 @@ void Menu::informe1()
 void Menu::informe2()
 {
     /// Recaudación por tipo de estudio.
-
-    //int y = 0;
 
     Estudio objEst;
     EstudioArchivo archivoEst;
@@ -852,7 +860,6 @@ void Menu::informe2()
                     auxBiopsias += objEst.getPrecio();
                     break;
                 }
-
             }
         }
     }
@@ -866,8 +873,6 @@ void Menu::informe2()
     cout << tituloInforme2 << endl;
     rlutil::locate((consola_ancho - startLine2 - 10) / 2, 9);
     cout << lineaInforme2 << endl;
-
-    cout << endl;
 
 
     string sangre = "FACTURACION TOTAL DE ESTUDIOS DE SANGRE: ";
@@ -887,9 +892,9 @@ void Menu::informe2()
     cout << secreciones << auxSec << endl;
     rlutil::locate((consola_ancho - startLine2) - 81 / 2, 15);
     cout << biopsias << auxBiopsias << endl;
-    cout << endl;
 
-    return;
+    rlutil::locate((consola_ancho - startLine2) - 81 / 2, 18);
+    cout << endl;
 }
 
 void Menu::informe3()
@@ -1022,37 +1027,41 @@ void Menu::menuInformes()
             case 0:
                 rlutil::cls();
                 informe1();
+                rlutil::locate((consola_ancho - linea.length()) / 2, 18);
                 system("pause");
                 break;
 
             case 2:
                 rlutil::cls();
                 informe2();
+                rlutil::locate((consola_ancho - linea.length()) / 2, 18);
                 system("pause");
                 break;
 
             case 4:
                 rlutil::cls();
                 informe3();
+                rlutil::locate((consola_ancho - linea.length()) / 2, 18);
                 system("pause");
                 break;
 
             case 6:
                 rlutil::cls();
                 informe4();
+                rlutil::locate((consola_ancho - linea.length()) / 2, 18);
                 system("pause");
                 break;
 
             case 8:
                 rlutil::cls();
                 informe5();
+                rlutil::locate((consola_ancho - linea.length()) / 2, 18);
                 system("pause");
                 break;
 
             case 10:
                 return;
             }
-            system ("cls");
         }
     }
 }
@@ -1144,6 +1153,7 @@ void Menu::copiaSeguridad()
                                         rlutil::locate((startLine - 10) / 2, 9);
                                         cout << "La copia de seguridad de todos los archivos se realizo con exito!" << endl;
                                         cout << endl;
+                                        rlutil::locate((startLine - 10) / 2, 15);
                                         system("pause");
                                     }
                                     else
@@ -1152,6 +1162,7 @@ void Menu::copiaSeguridad()
                                         rlutil::locate((startLine - 10) / 2, 9);
                                         cout << "Error con la copia de seguridad de Analisis de estudios" << endl;
                                         cout << endl;
+                                        rlutil::locate((startLine - 10) / 2, 15);
                                         system("pause");
                                     }
                                 }
@@ -1161,6 +1172,7 @@ void Menu::copiaSeguridad()
                                     rlutil::locate((startLine - 10) / 2, 9);
                                     cout << "Error con la copia de seguridad de Tipos de Muestras" << endl;
                                     cout << endl;
+                                    rlutil::locate((startLine - 10) / 2, 15);
                                     system("pause");
                                 }
                             }
@@ -1170,6 +1182,7 @@ void Menu::copiaSeguridad()
                                 rlutil::locate((startLine - 10) / 2, 9);
                                 cout << "Error con la copia de seguridad de Tipos de Analisis" << endl;
                                 cout << endl;
+                                rlutil::locate((startLine - 10) / 2, 15);
                                 system("pause");
                             }
                         }
@@ -1179,6 +1192,7 @@ void Menu::copiaSeguridad()
                             rlutil::locate((startLine - 10) / 2, 9);
                             cout << "Error con la copia de seguridad de Estudios" << endl;
                             cout << endl;
+                            rlutil::locate((startLine - 10) / 2, 15);
                             system("pause");
                         }
                     }
@@ -1188,6 +1202,7 @@ void Menu::copiaSeguridad()
                         rlutil::locate((startLine - 10) / 2, 9);
                         cout << "Error con la copia de seguridad de Turnos" << endl;
                         cout << endl;
+                        rlutil::locate((startLine - 10) / 2, 15);
                         system("pause");
                     }
                 }
@@ -1197,6 +1212,7 @@ void Menu::copiaSeguridad()
                     rlutil::locate((startLine - 10) / 2, 9);
                     cout << "Error con la copia de seguridad de Pacientes" << endl;
                     cout << endl;
+                    rlutil::locate((startLine - 10) / 2, 15);
                     system("pause");
                 }
                 break;
@@ -1208,15 +1224,16 @@ void Menu::copiaSeguridad()
                 rlutil::locate((startLine - 10) / 2, 9);
                 cout << "No se han realizado la copia de seguridad" << endl;
                 cout << endl;
+                rlutil::locate((startLine - 10) / 2, 15);
                 system("pause");
                 break;
 
             case 4:
+                rlutil::locate((startLine - 10) / 2, 20);
                 return;
             }
         }
     }
-    return;
 }
 
 
@@ -1304,6 +1321,7 @@ void Menu::restaurarCopiaSeguridad()
                                         rlutil::locate((startLine - 20) / 2, 9);
                                         cout << "La copia de seguridad de todos los archivos se restauro con exito!" << endl;
                                         cout << endl;
+                                        rlutil::locate((startLine - 10) / 2, 15);
                                         system("pause");
                                     }
                                     else
@@ -1312,6 +1330,7 @@ void Menu::restaurarCopiaSeguridad()
                                         rlutil::locate((startLine - 20) / 2, 9);
                                         cout << "Error con la restauracion de la copia de seguridad de Analisis de estudios" << endl;
                                         cout << endl;
+                                        rlutil::locate((startLine - 10) / 2, 15);
                                         system("pause");
                                     }
                                 }
@@ -1321,6 +1340,7 @@ void Menu::restaurarCopiaSeguridad()
                                     rlutil::locate((startLine - 20) / 2, 9);
                                     cout << "Error con la restauracion de la copia de seguridad de Tipos de Muestras" << endl;
                                     cout << endl;
+                                    rlutil::locate((startLine - 10) / 2, 15);
                                     system("pause");
                                 }
                             }
@@ -1330,6 +1350,7 @@ void Menu::restaurarCopiaSeguridad()
                                 rlutil::locate((startLine - 20) / 2, 9);
                                 cout << "Error con la restauracion de la copia de seguridad de Tipos de Analisis" << endl;
                                 cout << endl;
+                                rlutil::locate((startLine - 10) / 2, 15);
                                 system("pause");
                             }
                         }
@@ -1339,6 +1360,7 @@ void Menu::restaurarCopiaSeguridad()
                             rlutil::locate((startLine - 20) / 2, 9);
                             cout << "Error con la restauracion de la copia de seguridad de Estudios" << endl;
                             cout << endl;
+                            rlutil::locate((startLine - 10) / 2, 15);
                             system("pause");
                         }
                     }
@@ -1348,6 +1370,7 @@ void Menu::restaurarCopiaSeguridad()
                         rlutil::locate((startLine - 20) / 2, 9);
                         cout << "Error con la restauracion de la copia de seguridad de Turnos" << endl;
                         cout << endl;
+                        rlutil::locate((startLine - 10) / 2, 15);
                         system("pause");
                     }
                 }
@@ -1357,6 +1380,7 @@ void Menu::restaurarCopiaSeguridad()
                     rlutil::locate((startLine - 20) / 2, 9);
                     cout << "Error con la restauracion de la copia de seguridad de Pacientes" << endl;
                     cout << endl;
+                    rlutil::locate((startLine - 10) / 2, 15);
                     system("pause");
                 }
                 break;
@@ -1368,15 +1392,16 @@ void Menu::restaurarCopiaSeguridad()
                 rlutil::locate((startLine - 10) / 2, 9);
                 cout << "No se ha restaurado la copia de seguridad" << endl;
                 cout << endl;
+                rlutil::locate((startLine - 10) / 2, 15);
                 system("pause");
                 break;
 
             case 4:
+                rlutil::locate((startLine - 10) / 2, 20);
                 return;
             }
         }
     }
-     return;
 }
 
 ///FIN FUNCIONES MENU CONFIGURACION
@@ -1442,22 +1467,23 @@ void Menu::menuConfiguraciones()
             case 0:
                 rlutil::cls();
                 copiaSeguridad();
+                rlutil::locate((consola_ancho - lineaConfig.length()) / 2, 20);
                 system("pause");
                 break;
 
             case 2:
                 rlutil::cls();
                 restaurarCopiaSeguridad();
+                rlutil::locate((consola_ancho - lineaConfig.length()) / 2, 20);
                 system("pause");
                 break;
 
             case 4:
+                rlutil::locate((consola_ancho - lineaConfig.length()) / 2, 20);
                 return;
             }
-            system("cls");
         }
     }
-    return;
 }
 
 ///FIN MENU CONFIGURACION
