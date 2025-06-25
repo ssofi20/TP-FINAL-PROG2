@@ -1,6 +1,8 @@
 #pragma once
 #include "TipoMuestraArchivo.h"
 #include "FuncionesGlobales.h"
+#include "rlutil.h"
+
 
 class TipoMuestraManager
 {
