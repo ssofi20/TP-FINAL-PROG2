@@ -16,7 +16,6 @@ void Menu::menuGestionPacientes()
 
     while(true)
     {
-
         //Titulo principal centrado
         string titulo = "MENU PACIENTES";
         string linea = "-----------------------------";
@@ -514,27 +513,23 @@ void Menu::menuGestiones()
             }
             break;
         case 1: //ENTER
-
+            rlutil::cls();
             switch (y)
             {
-            case 0:
-                menuGestionPacientes();
-                break;
-            case 2:
-                menuGestionTurnos();
-                break;
-            case 4:
-                menuGestionEstudios();
-                break;
-            case 6:
-                menuGestionDatosSistema();
-                break;
-            case 8:
-                return;
-            default:
-                cout << "Opcion incorrecta! Intente nuevamente" << endl;
-                system("pause");
-                break;
+                case 0:
+                    menuGestionPacientes();
+                    break;
+                case 2:
+                    menuGestionTurnos();
+                    break;
+                case 4:
+                    menuGestionEstudios();
+                    break;
+                case 6:
+                    menuGestionDatosSistema();
+                    break;
+                case 8:
+                    return;
             }
             break;
         }

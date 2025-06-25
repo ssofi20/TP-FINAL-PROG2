@@ -1,6 +1,7 @@
 #include "Fecha.h"
 #include <ctime>
 #include <iostream>
+#include "rlutil.h"
 
 using namespace std;
 
@@ -54,6 +55,9 @@ void Fecha::setDia(int dia){
 
     if(dia <= 31 && dia >=1){
         _dia = dia;
+    } 
+    else {
+        _dia = 0;
     }
 }
 
@@ -102,19 +106,26 @@ void Fecha::setFechaActual(){
     _anio = now->tm_year + 1900;
 }
 
-void Fecha::cargar(){
+void Fecha::cargar(int x, int y){
     
     int dia, mes, anio;
-    
+
+    rlutil::locate(x, y);
     cout << "Dia: ";
+    rlutil::locate(x + 5, y++);
     cin >> dia;
     setDia(dia);
+
+    rlutil::locate(x, y);
     cout << "Mes: ";
+    rlutil::locate(x + 5, y++);
     cin >> mes;
     setMes(mes);
+
+    rlutil::locate(x, y);
     cout << "Anio: ";
+    rlutil::locate(x + 5, y++);
     cin >> anio;
     setAnio(anio);
-
 }
 

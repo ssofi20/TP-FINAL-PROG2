@@ -3,184 +3,337 @@
 
 using namespace std;
 
-///Agregar turno al archivo
-void TurnoManager::opcion1(){
+//Agregar turno al archivo
+void TurnoManager::opcion1()
+{
 
+    const int consola_ancho = 100;
     Turno registro;
-    
-    cout << _archivo.cantidadRegistros() << endl;
-    
-    registro.setIDTurno(_archivo.getID());
-    cout << "ID Turno: " << registro.getIDTurno() << endl; 
-    
-    bool yaExiste = true;
-    
-    while (yaExiste)
-    {
-        registro.cargar();
+    rlutil::cls();
 
-        PacienteArchivo archivo;
-        
-        int pos = archivo.buscar(registro.getDNIPaciente());
-        
-        if(pos < 0)
-        {
-            cout << "Ese DNI no existe en el archivo. Inte nuevamente o registre al paciente" << endl;
-            system("pause");
-            system("cls");
-        }
-        else 
-        {
-            yaExiste = false;
-        }
-    }
+    //Generar el ID automaticamente
+    registro.setIDTurno(_archivo.getID());
+
+    registro.cargar();
+    
+    string texto;
+    
+    rlutil::cls();
     
     if(_archivo.guardar(registro)){
-        cout << "El Turno se registro correctamente" << endl;
+        texto = "El Turno se registro correctamente";
+        rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+        cout << texto;
+        rlutil::locate((consola_ancho - 33) / 2, 16);
+        system("pause");
     } 
     else {
-        cout << "El turno no se pudo registrar" << endl;
+        texto = "El turno no se pudo registrar";
+        rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+        cout << texto;
+        rlutil::locate((consola_ancho - 33) / 2, 16);
+        system("pause");
     }
-    system("pause");
-
 }
 
-///Cambiar fecha y hora de un turno
-void TurnoManager::opcion2(){
+//Cambiar fecha y hora de un turno
+void TurnoManager::opcion2()
+{
+    int consola_ancho = 100;
+    string texto;
     
     int IDTurno;
-    cout << "Ingrese el ID del turno a modificar: ";
+    texto = "Ingrese el ID del turno que desea reprogramar: ";
+    rlutil::locate((consola_ancho - texto.length()) / 2, 6);
+    cout << texto;
+    rlutil::locate((consola_ancho - 8) / 2, 8);
     cin >> IDTurno;
     
+    rlutil::cls();
+    
     int pos = _archivo.buscar(IDTurno);
+    
     if(pos < 0){
-        cout << "Ese ID no existe en el archivo";
+        texto = "Ese ID no existe en el archivo";
+        rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+        cout << texto;
+        rlutil::locate((consola_ancho - 33), 16);
         system("pause");
         return;
     }
     
     Turno registro = _archivo.leer(pos);
     
-    if(registro.getIDTurno() < 0){
-        cout << "Error al buscar el turno" << endl;
-        system("pause");
-        return;
+    int y = 0;
+    Fecha newFecha;
+    Hora newHora;
+    
+    bool salir = true;
+    
+    while(salir)
+    {
+        rlutil::cls();
+        
+        texto = "SELECCIONE LA OPCION QUE CORRESPONDA";
+        rlutil::locate((consola_ancho - texto.length()) / 2, 8);
+        cout << texto;
+        
+        showItem("NUEVA FECHA", 10, y == 0);
+        showItem("NUEVO HORARIO", 12, y == 1);
+        showItem("VOLVER A ATRAS", 16, y == 2);
+        
+        int key = rlutil::getkey();
+        
+        switch(key)
+        {
+        case 14: //Up
+            y--;
+            if(y < 0){
+                y = 0;
+            }
+            break;
+        case 15: //Down
+            y++;
+            if(y > 2){
+                y = 2;
+            }
+            break;
+        case 1: //Enter
+            rlutil::cls();
+            switch(y)
+            {
+            case 0: //Cambiar fecha
+                texto = "Ingrese la nueva fecha";
+                rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+                cout << texto;
+                newFecha.cargar(45, 17);
+                registro.setFechaProgramada(newFecha);
+                break;
+            case 1: //Cambiar hora
+                texto = "Ingrese la nueva hora: ";
+                rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+                cout << texto;
+                newHora.cargar(45, 17);
+                registro.setHoraProgramada(newHora);
+                break;
+            case 2: //Salir
+                return;
+            }
+            break;
+        }
     }
     
-    Fecha newFecha;
-    cout << "Ingrese la nueva fecha" << endl;
-    newFecha.cargar();
-    registro.setFechaProgramada(newFecha);
-    
-    Hora newHora;
-    cout << "Ingrese la nueva hora" << endl;
-    newHora.cargar();
-    registro.setHoraProgramada(newHora);
+    rlutil::cls();
     
     if(_archivo.guardar(registro, pos)){
-        cout << "El Turno se reprogram¢ exitosamente!" << endl;
-        system("pause");
-        return;
+        texto = "El Turno se reprogram¢ exitosamente!";
+        rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+        cout << texto;
     }
     else {
-        cout << "El Turno no se pudo guardar en el archivo!" << endl;
-        system("pause");
-        return;
+        texto = "El Turno no se pudo guardar en el archivo!";
+        rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+        cout << texto;
     }
+    rlutil::locate((consola_ancho - 33) / 2, 16); 
+    system("pause");
+    return;
 }
 
-///Modificar estado de un turno
-void TurnoManager::opcion3(){
+//Modificar estado de un turno
+void TurnoManager::opcion3()
+{
+    
+    int consola_ancho = 100;
+    string texto;
     
     int IDTurno;
-    cout << "Ingrese el ID del turno a modificar: ";
+    texto = "Ingrese el ID del turno a modificar: ";
+    rlutil::locate((consola_ancho - texto.length()) / 2, 6);
+    cout << texto;
+    rlutil::locate((consola_ancho - 8) / 2, 8);
     cin >> IDTurno;
     
+    rlutil::cls();
+    
     int pos = _archivo.buscar(IDTurno);
+    
     if(pos < 0){
-        cout << "Ese ID no existe en el archivo";
+        texto = "Ese ID no existe en el archivo";
+        rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+        cout << texto;
+        rlutil::locate((consola_ancho - 33), 16);
         system("pause");
         return;
     }
     
-    Turno registro = _archivo.leer(pos);
-    
-    if(registro.getIDTurno() < 0){
-        cout << "Error al buscar el turno" << endl;
-        system("pause");
-        return;
-    }
-    
+    int y = 0;
     int estadoTurno;
-    cout << "Seleccione la opcion que corresponda: " << endl;
-    cout << "2- Confirmado" << endl;
-    cout << "3- Finalizado" << endl;
-    cout << "4- Cancelado" << endl;
-    cout << "5- Ausente" << endl;
-    cout << "Seleccion: ";
-    cin >> estadoTurno;
+    bool salir = true;
     
-    if(estadoTurno < 2 || estadoTurno > 5){
-        cout << "Opcion invalida!" << endl;
-        system("pause");
-        return;
+    while(salir)
+    {
+        texto = "SELECCIONE LA OPCION QUE CORRESPONDA";
+        rlutil::locate((consola_ancho - texto.length()) / 2, 8);
+        cout << texto;
+        
+        showItem("CONFIRMADO", 10, y == 0);
+        showItem("FINALIZADO", 12, y == 1);
+        showItem("CANCELADO", 14, y == 2);
+        showItem("AUSENTE", 16, y == 3);
+        showItem("SALIR", 20, y == 4);
+        
+        int key = rlutil::getkey();
+        
+        switch(key)
+        {
+        case 14: //Up
+            y--;
+            if(y < 0){
+                y = 0;
+            }
+            break;
+        case 15: //Down
+            y++;
+            if(y > 4){
+                y = 4;
+            }
+            break;
+        case 1: //Enter
+            rlutil::cls();
+            switch(y)
+            {
+            case 0: //Confirmado
+                estadoTurno = 2;
+                break;
+            case 1: //Finalizado
+                estadoTurno = 3;
+                break;
+            case 2: //Cancelado
+                estadoTurno = 4;
+                break;
+            case 3: //Ausente
+                estadoTurno = 5;
+                break;
+            case 4: //Salir
+                return;
+            }
+            salir = false;
+            break;
+        }
     }
     
+    rlutil::cls();
+    Turno registro = _archivo.leer(pos);
     registro.setEstadoTurno(estadoTurno);
     
     if(_archivo.guardar(registro, pos)){
-        cout << "El Turno fue modificado exitosamente!" << endl;
-        system("pause");
-        return;
+        texto = "El Turno fue modificado exitosamente!";
+        rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+        cout << texto;
     }
     else {
-        cout << "El Turno no pudo ser modificado!" << endl;
-        system("pause");
-        return;
+        texto = "El Turno no pudo ser modificado!";
+        rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+        cout << texto;
     }
-
+    rlutil::locate((consola_ancho - 33) / 2, 16); 
+    system("pause");
+    return;
 }
 
-
-/// Buscar turnos del paciente
+//Buscar turnos del paciente
 void TurnoManager::opcion4()
 {
-    Turno registro;
+    int consola_ancho = 100;
     int dni;
     int cantidad = _archivo.cantidadRegistros();
 
-    cout << "Ingrese el DNI del paciente por el que quiere consultar: ";
+    string texto;
+    
+    texto = "Ingrese el DNI del paciente por el que quiere consultar: ";
+    rlutil::locate((consola_ancho - texto.length()) / 2, 6);
+    cout << texto;
+    rlutil::locate((consola_ancho - 8) / 2, 8);
     cin >> dni;
+    
+    PacienteArchivo archivoPaciente;
+    
+    int pos = archivoPaciente.buscar(dni);
+    
+    rlutil::cls();
+    
+    if(pos < 0)
+    {
+        texto = "No existe un paciente con ese DNI en el archivo.";
+        rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+        cout << texto;
+        rlutil::locate((consola_ancho - 33 / 2), 17);
+        system("pause");
+        return;
+    }
+        
+    texto = "LISTADO DE TURNOS DEL PACIENTE";
+    rlutil::locate((consola_ancho - texto.length()) / 2, 4);
+    cout << texto;
+    
+    // Mostrar encabezados
+    rlutil::locate(3, 6);  cout << "ID";
+    rlutil::locate(12, 6); cout << "DNI";
+    rlutil::locate(28, 6); cout << "Fecha";
+    rlutil::locate(45, 6); cout << "Hora";
+    rlutil::locate(60, 6); cout << "Estado";
+    
+    rlutil::locate(3, 7);
+    cout << string(75, '-');
 
+    int y = 8;
+    Turno registro;
     for (int i = 0; i < cantidad; i++)
     {
         registro = _archivo.leer(i);
         if (registro.getDNIPaciente() == dni)
         {
-            cout << "-------------------------" << endl;
-            registro.mostrar();
-            cout << "-------------------------" << endl << endl;
+            registro.mostrar(y);
+            y++;
         }
     }
+    
+    rlutil::locate((consola_ancho - 33)/2, y + 2);
     system("pause");
 }
 
-/// Listar todos los turnos
+//Listar todos los turnos
 void TurnoManager::opcion5()
 {
-    cout << "Listado de turnos" << endl;
+    int consola_ancho = 100;
+    string texto = "LISTADO DE TURNOS";
+    rlutil::locate((consola_ancho - texto.length()) / 2, 4);
+    cout << texto;
+    
+    // Mostrar encabezados
+    rlutil::locate(3, 6);  cout << "ID";
+    rlutil::locate(12, 6); cout << "DNI";
+    rlutil::locate(28, 6); cout << "Fecha";
+    rlutil::locate(45, 6); cout << "Hora";
+    rlutil::locate(60, 6); cout << "Estado";
+    
+    rlutil::locate(3, 7);
+    cout << string(75, '-');
+    
     int cantidad = _archivo.cantidadRegistros();
 
+    int y = 8;
+    
     for (int i = 0; i < cantidad; i++)
     {
         Turno registro = _archivo.leer(i);
         if(registro.getEstadoTurno())
         {
-            cout << "-------------------------" << endl;
-            registro.mostrar();
-            cout << "-------------------------" << endl << endl;
+            registro.mostrar(y);
+            y++;
         }
     }
+    rlutil::locate((consola_ancho - 33)/2, y + 2);
     system("pause");
-
 }

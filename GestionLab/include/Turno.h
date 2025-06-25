@@ -2,6 +2,7 @@
 #include <string>
 #include "Hora.h"
 #include "Fecha.h"
+#include "PacienteArchivo.h"
 
 class Turno
 {
@@ -38,6 +39,7 @@ class Turno
         
         ///Metodos de la clase
         void cargar();
-        void mostrar();
+        void mostrar(int y);
+        std::string estadoToString();
 };
 

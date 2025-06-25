@@ -56,16 +56,23 @@ int Hora::getMinuto()
 
 ///Metodos de la clase
 
-void Hora::cargar(){
+void Hora::cargar(int x, int y){
 
-    int hora, minutos;
+    int hora, minuto;
 
+    rlutil::locate(x, y);
     cout << "Hora: ";
+    rlutil::locate(x + 6, y);
     cin >> hora;
+    
     setHora(hora);
-    cout << "Minutos: ";
-    cin >> minutos;
-    setMinuto(minutos);
+
+    rlutil::locate(x, y + 1);
+    cout << "Minuto: ";
+    rlutil::locate(x + 8, y + 1);
+    cin >> minuto;
+    
+    setMinuto(minuto);
     
 }
 
