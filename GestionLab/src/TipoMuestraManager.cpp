@@ -35,7 +35,7 @@ void TipoMuestraManager::opcion1()
         cin >> IDTipo;
 
         int pos = _archivo.buscar(IDTipo);
-        if (pos <= 0)
+        if (pos >= 0)
         {
             rlutil::cls();
             rlutil::locate((startLine - 20) / 2, 11);
