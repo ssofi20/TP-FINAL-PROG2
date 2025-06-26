@@ -17,9 +17,9 @@ void PacienteManager::opcion1()
         int band = 0;
 
         int pos = _archivo.buscar(obj.getDNI());
-        
+
         string textoError;
-        
+
         if(pos >= 0)
         {
             rlutil::cls();
@@ -50,7 +50,7 @@ void PacienteManager::opcion1()
     }
 
     string textoMensaje;
-    
+
     if (_archivo.guardar(obj))
     {
         rlutil::cls();
@@ -65,7 +65,7 @@ void PacienteManager::opcion1()
         rlutil::locate((consola_ancho - textoMensaje.length()) / 2, 15);
         cout << textoMensaje << endl;
     }
-    
+
     rlutil::locate((consola_ancho - 33) / 2, 16);
     system("pause");
 }
@@ -78,11 +78,11 @@ void PacienteManager::opcion2()
     string texto = "Ingrese el numero de DNI del paciente que desea buscar: ";
     rlutil::locate((consola_ancho - texto.length()) / 2, 6);
     cout << texto << endl;
-    
+
     rlutil::locate((consola_ancho - 8) / 2, 8);
     cin >> dni;
     int pos = _archivo.buscar(dni);
-    
+
     if (pos < 0)
     {
         rlutil::cls();
@@ -93,19 +93,19 @@ void PacienteManager::opcion2()
         system("pause");
         return;
     }
-    
+
     Paciente obj = _archivo.leer(pos);
-    
+
     rlutil::cls();
-    
+
     obj.mostrar();
-    
+
     rlutil::locate((consola_ancho - 33) / 2, 26);
     system("pause");
 }
 
 //Editar informacion de un paciente por DNI
-void PacienteManager::opcion3() 
+void PacienteManager::opcion3()
 {
     int consola_ancho = 100;
     int dni;
@@ -121,7 +121,7 @@ void PacienteManager::opcion3()
     rlutil::cls();
 
     string textoError;
-    if(pos < 0) 
+    if(pos < 0)
     {
         textoError = "No existe un paciente con ese DNI en el archivo.";
         rlutil::locate((consola_ancho - textoError.length()) / 2, 15);
@@ -136,7 +136,7 @@ void PacienteManager::opcion3()
     obj = _archivo.leer(pos);
 
     int x = 0;
-    
+
     bool seleccionando = true;
     while(seleccionando)
     {
@@ -219,6 +219,7 @@ void PacienteManager::opcion3()
                 rlutil::locate((consola_ancho - texto.length()) / 2, 15);
                 cout << texto;
                 rlutil::locate(50, 17);
+                cin.ignore();
                 cargarCadena(nombre, 29);
                 obj.setNombre(nombre);
                 if(_archivo.guardar(obj, pos)) {
@@ -238,6 +239,7 @@ void PacienteManager::opcion3()
                 rlutil::locate((consola_ancho - texto.length()) / 2, 15);
                 cout << texto;
                 rlutil::locate(50, 17);
+                cin.ignore();
                 cargarCadena(apellido, 39);
                 obj.setApellido(apellido);
                 if(_archivo.guardar(obj, pos)) {
@@ -256,6 +258,7 @@ void PacienteManager::opcion3()
                 rlutil::locate((consola_ancho - texto.length()) / 2, 15);
                 cout << texto;
                 rlutil::locate(50, 17);
+                cin.ignore();
                 cargarCadena(nroTel, 10);
                 obj.setNombre(nroTel);
                 if(_archivo.guardar(obj, pos)) {
@@ -274,6 +277,7 @@ void PacienteManager::opcion3()
                 rlutil::locate((consola_ancho - texto.length()) / 2, 15);
                 cout << texto;
                 rlutil::locate(50, 17);
+                cin.ignore();
                 cargarCadena(mail, 59);
                 obj.setEmail(mail);
                 if(_archivo.guardar(obj, pos)) {
@@ -292,6 +296,7 @@ void PacienteManager::opcion3()
                 rlutil::locate((consola_ancho - texto.length()) / 2, 15);
                 cout << texto;
                 rlutil::locate(50, 17);
+                cin.ignore();
                 cargarCadena(obraSocial, 49);
                 obj.setObraSocial(obraSocial);
                 if(_archivo.guardar(obj, pos)) {
@@ -310,6 +315,7 @@ void PacienteManager::opcion3()
                 rlutil::locate((consola_ancho - texto.length()) / 2, 15);
                 cout << texto;
                 rlutil::locate(50, 17);
+                cin.ignore();
                 cargarCadena(nroAfiliado, 10);
 
                 int cant = _archivo.cantidadRegistros();
@@ -377,9 +383,9 @@ void PacienteManager::opcion4() {
     int pos = _archivo.buscar(dni);
 
     bool encontrado = false;
-    
+
     Paciente registro;
-    
+
     if(pos >= 0)
     {
         encontrado = true;
@@ -387,7 +393,7 @@ void PacienteManager::opcion4() {
     }
 
     rlutil::cls();
-    
+
     if(encontrado){
 
         registro.setEstado(false);
@@ -401,13 +407,13 @@ void PacienteManager::opcion4() {
             rlutil::locate((consola_ancho - texto.length()) / 2, 15);
             cout << texto << endl;
         }
-    } 
+    }
     else {
         texto = "No se encontro un paciente con ese DNI en el archivo";
         rlutil::locate((consola_ancho - texto.length()) / 2, 15);
         cout << texto << endl;
     }
-    
+
     rlutil::locate((consola_ancho - 33) / 2, 17);
     system("pause");
 }
@@ -418,12 +424,12 @@ void PacienteManager::opcion5()
     int consola_ancho = 100;
 
     Paciente registro;
-    
+
     int DNI;
     string texto = "Ingrese el DNI del paciente a dar de alta:";
     rlutil::locate((consola_ancho - texto.length()) / 2, 6);
     cout << texto;
-    
+
     rlutil::locate((consola_ancho - 8) / 2, 8);
     cin >> DNI;
 
@@ -442,7 +448,7 @@ void PacienteManager::opcion5()
     }
 
     rlutil::cls();
-    
+
     if(encontrado){
 
         registro.setEstado(true);
@@ -456,13 +462,13 @@ void PacienteManager::opcion5()
             rlutil::locate((consola_ancho - texto.length()) / 2, 15);
             cout << texto << endl;
         }
-    } 
+    }
     else {
         texto = "No se encontro un paciente con ese DNI en el archivo";
         rlutil::locate((consola_ancho - texto.length()) / 2, 15);
         cout << texto << endl;
     }
-    
+
     rlutil::locate((consola_ancho - 33) / 2, 17);
     system("pause");
 }
@@ -486,8 +492,8 @@ void PacienteManager::opcion6()
         system("pause");
         return;
     }
-    
-    
+
+
     rlutil::locate(2, 4);   cout << "DNI";
     rlutil::locate(12, 4);  cout << "Apellido";
     rlutil::locate(28, 4);  cout << "Nombre";
@@ -504,7 +510,7 @@ void PacienteManager::opcion6()
         Paciente reg = _archivo.leer(i);
         if (reg.getEstado()) {
             reg.mostrarHorizontal(y);
-            y++; 
+            y++;
         }
     }
 
