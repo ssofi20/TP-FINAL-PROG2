@@ -23,8 +23,6 @@ class Fecha
         //METODOS DE LA CLASE
         std::string toString();
         void cargar(int x, int y);
-        bool anteriorFecha(Fecha otra);
-
 
     private:
 

@@ -106,15 +106,6 @@ void Fecha::setFechaActual(){
     _anio = now->tm_year + 1900;
 }
 
-bool Fecha::anteriorFecha(Fecha otra)
-{
-    if(_anio < otra.getAnio()){return true;}
-    if(_anio == otra.getAnio() && _mes < otra.getMes()){return true;}
-    if(_anio == otra.getAnio() && _mes == otra.getMes() && _dia < otra.getDia()){return true;}
-    
-    return false;
-}
-
 void Fecha::cargar(int x, int y){
     
     int dia, mes, anio;
