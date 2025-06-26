@@ -439,7 +439,7 @@ void EstudioManager::opcion5()
     rlutil::locate(36, 5);   cout << "ID TURNO";                
     rlutil::locate(48, 5);   cout << "PRECIO";                  
     rlutil::locate(60, 5);   cout << "ESTADO";                  
-    rlutil::locate(86, 5);   cout << "ANALISIS";
+    rlutil::locate(75, 5);   cout << "ANALISIS";
 
     rlutil::locate(3, 6);
     cout << string(96, '-');

@@ -329,7 +329,7 @@ int Estudio::mostrarHorizontal(int y)
             int pos = archivoAnalisis.buscar(registro.getIDAnalisis());
             tipoAnalisis = archivoAnalisis.leer(pos);
             
-            rlutil::locate(86, y);
+            rlutil::locate(75, y);
             cout << tipoAnalisis.getNombre();
             y++;
         }
