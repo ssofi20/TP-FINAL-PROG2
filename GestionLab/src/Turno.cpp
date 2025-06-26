@@ -132,8 +132,11 @@ void Turno::cargar(){
         rlutil::locate(xCampo, y);
         cout << "Fecha programada: ";
         _fechaProgramada.cargar(xIngreso, y);
+        
+        Fecha fechaActual;
+        fechaActual.setFechaActual();
 
-        if (_fechaProgramada.getDia() == 0 || _fechaProgramada.getMes() == 0 || _fechaProgramada.getAnio() == 0) {
+        if (_fechaProgramada.getDia() == 0 || _fechaProgramada.getMes() == 0 || _fechaProgramada.getAnio() == 0 ){
             rlutil::locate(xCampo, y + 3);
             cout << "Fecha invalida! Pruebe de nuevo.";
             rlutil::anykey();
@@ -145,7 +148,20 @@ void Turno::cargar(){
             cout << "           ";
             rlutil::locate(xCampo, y + 3);
             cout << "                                ";
-        } else {
+        } else if (fechaActual.anteriorFecha(_fechaProgramada)){
+            rlutil::locate(xCampo, y + 3);
+            cout << "Fecha invalida! Pruebe de nuevo.";
+            rlutil::anykey();
+            rlutil::locate(xIngreso, y);
+            cout << "           ";
+            rlutil::locate(xIngreso, y + 1);
+            cout << "           ";
+            rlutil::locate(xIngreso, y + 2);
+            cout << "           ";
+            rlutil::locate(xCampo, y + 3);
+            cout << "                                ";
+        } 
+        else {
             invalido = false;
         }
     }
