@@ -536,7 +536,7 @@ void Menu::informe4()
     string linea4 = "---------------------------------------------";
 
     int startLine4 = (consola_ancho - tituloInforme4.length() - 37);
-
+    rlutil::locate((consola_ancho - startLine4) /2, 400);
     rlutil::locate((consola_ancho - startLine4) /2, 4);
     cout << tituloInforme4 << endl;
     rlutil::locate((consola_ancho - startLine4) - 83 / 2, 5);
@@ -1027,14 +1027,14 @@ void Menu::menuInformes()
                 rlutil::cls();
                 informe3();
                 rlutil::locate((consola_ancho - linea.length()) / 2, 18);
-                system("pause");
+                system("pause>nul");
                 break;
 
             case 6:
                 rlutil::cls();
                 informe4();
                 rlutil::locate((consola_ancho - linea.length()) / 2, 18);
-                system("pause");
+                system("pause>nul");
                 break;
 
             case 8:
