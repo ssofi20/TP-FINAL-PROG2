@@ -108,7 +108,6 @@ void Paciente::cargar()
     cout << "DNI: ";
     rlutil::locate(xIngreso, y++);
     cin >> _DNI;
-    cin.ignore();
 
     rlutil::locate(xCampo, ++y);
     cout << "Nombre/s: ";
@@ -119,13 +118,11 @@ void Paciente::cargar()
     rlutil::locate(xCampo, ++y);
     cout << "Apellido/s: ";
     rlutil::locate(xIngreso, y++);
-    cin.ignore();
     cargarCadena(_apellido, 39);
 
     rlutil::locate(xCampo, ++y);
     cout << "Telefono: ";
     rlutil::locate(xIngreso, y++);
-    cin.ignore();
     cargarCadena(_telefono, 10);
 
     rlutil::locate(xCampo, ++y);
@@ -137,13 +134,13 @@ void Paciente::cargar()
     rlutil::locate(xCampo, ++y);
     cout << "Nombre Obra Social: ";
     rlutil::locate(xIngreso, y++);
-    cin.ignore();
+    //cin.ignore();
     cargarCadena(_obraSocial, 59);
 
     rlutil::locate(xCampo, ++y);
     cout << "Numero Afiliado: ";
     rlutil::locate(xIngreso, y++);
-    cin.ignore();
+    //cin.ignore();
     cargarCadena(_numeroAfiliado, 19);
 
     rlutil::locate(xCampo, ++y);
