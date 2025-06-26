@@ -319,6 +319,6 @@ void TipoAnalisisManager::opcion4()
         y++;
         }
     }
-    rlutil::locate((startLine - 10) / 2, (y*5 + 20));
+    rlutil::locate((startLine - 10) / 2, (y*5 + 40));
     system("pause");
 }
