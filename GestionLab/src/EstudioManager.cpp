@@ -55,6 +55,15 @@ void EstudioManager::opcion1()
                 rlutil::locate((consola_ancho - 33) / 2, 16);
                 system("pause");
             }
+            else if(turno.getEstadoTurno() == 2)
+            {
+                texto = "Este turno esta cancelado. Pruebe con otro.";
+                rlutil::locate((consola_ancho - texto.length()) / 2, 15);
+                cout << texto;
+                band++;
+                rlutil::locate((consola_ancho - 33) / 2, 16);
+                system("pause"); 
+            }
         }
 
         if (band == 0) {
